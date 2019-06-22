@@ -1,0 +1,43 @@
+Szia Marci!
+
+Küldöm az ígért hozzáférési adatokat.
+Elküldöm még azokat az oldalakat, amik vagy felépítésükben vagy dizájnukban tetszettek nekünk.
+
+https://freelanceengine.enginethemes.com/projects/
+
+https://www.orderfox.com/home/en-US/1281-find-new-rfqs-with-orderfox-com-in-a-matter-of-seconds.html
+
+https://www.logivest.de/ 
+
+https://www.invoiceninja.com/
+
+Hozzáférési adatok:
+
+Hostinger.hu belépés  -- pipa
+www.hostinger.hu
+Küldtem emailen hozzáférési igényt az admin oldalhoz.
+
+DB Account adatok:
+DB Name: u410658578_cash
+DB_User: u410658578_cash
+MySQL Host: https://auth-db190.hostinger.hu
+Pwd: Hostinger_73
+Importálni tudod a meglévő domain db-t a mellékelt sql lefuttatásával a lokális gépedre.
+Majd küldd el a géped IP címét, hogy be tudjam állítani a távoli SQL Remote hozzáférésedet! - 
+
+Email beállítások:
+Webmail: https://webmail1.hostinger.hu/  
+Email fiók: cash@fr-demo.xyz
+Pwd: Hostinger_73
+SMTP = smtp.hostinger.com
+smtp_port = 587
+
+GibHub Repo
+GitHub URL: https://github.com/frobi73/cash.git
+Pwd: Hostinger_73
+Tettem fel egy Gitrepo teszt file.txt a Cash könyvtárba
+
+Ha bármit elfelejtettem volna, akkor jelezd és pótolom.
+ 
+Üdv.
+Robi
