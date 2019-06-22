@@ -8,16 +8,58 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <style>
+      body
+      {
+        font-size:15px !important;
+      }
+      .jumbotron
+      {
+        margin-bottom:0px !important;
+      }
+      #front
+      {
+      background-image: url(images/bg.png); background-size: 100%;
+      font-size:150%;
+      color:white;
+      }
+    </style>
+    <title>FR-DEMO</title>
   </head>
   <body>
       <?php 
         include("navbar.html");
       ?>
-    <h1>Hello, world!</h1>
+   
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <div class="jumbotron jumbotron-fluid" id="front">
+      <div class="container">
+        <h1 class="display-2">Welcome to XYZ</h1>
+        <h1 class="display-3">Növelje cége hatékonyságát és profitját!</h1>
+        <h1 class="display-4">Túrbózza fel vállalkozását egyedülálló üzleti platformunk segítségével.</h1>
+        </p>
+      </div>
+    </div>
+
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <div class="row">
+          <div class="col-3">
+              Oldalunkat jelenleg x cég használja
+          </div>
+          <div class="col-3">
+            Az elmúlt hónapban xy cég nyújtott segítséget egymásnak
+          </div>
+          <div class="col-3">
+            
+          </div>
+          <div class="col-3">
+            
+          </div>
+      </div>
+    </div>
+  </div>
     
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
