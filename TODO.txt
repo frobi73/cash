@@ -1,2 +1,6 @@
 TODO:
 
+Hostinger - pipa
+DB account kapcsolat -
+e-mail - 
+GitHub repo - pipa

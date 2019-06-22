@@ -9,8 +9,8 @@
     <title>fr-demo</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
+    <?php include("navbar.html") ?>
+    
 
 
 
