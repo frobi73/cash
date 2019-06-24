@@ -121,37 +121,8 @@ a:focus {
   color: #fff;
 }
 #contact .box {
-  background-color: #222;
-  color: #999;
-}
-#contact .box h1,
-#contact .box h2,
-#contact .box h3 {
-  color: #fff;
-}
-#contact .box a {
-  color: #999;
-}
-#contact .box a:hover {
-  color: #52b6ec;
-}
-#contact .box input[type="text"],
-#contact .box input[type="email"],
-#contact .box textarea {
-  background-color: #111;
-  border: 0;
-  -webkit-transition: 300ms;
-  -moz-transition: 300ms;
-  -o-transition: 300ms;
-  transition: 300ms;
-}
-#contact .box input[type="text"]:focus,
-#contact .box input[type="email"]:focus,
-#contact .box textarea:focus {
-  background-color: #000;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  background-color: #f3f3f3;
+  color: black;
 }
 .box {
   padding: 50px 30px;

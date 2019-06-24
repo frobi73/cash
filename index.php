@@ -12,11 +12,60 @@
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <style>
+
+            * {box-sizing: border-box}
+
+
+        input[type=text], input[type=password], input[type=email], input[type=number] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: 1px solid #52b6ec;
+        background: #white;
+        }
+
+        input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+        background-color: #ddd;
+        outline: none;
+        }
+
+        hr {
+        border: 1px solid #52b6ec;
+        }
+
+        .registerbtn {
+        background-color: #52b6ec;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+        opacity:1;
+        }
+
+        a {
+        color: dodgerblue;
+        }
+
+        .signin {
+        background-color: #f1f1f1;
+        text-align: center;
+        }
+        </style>
 </head><!--/head-->
 
 <body data-spy="scroll" data-target="#navbar" data-offset="0">
@@ -45,6 +94,34 @@
             </div>
         </div>
     </header><!--/#header-->
+
+
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+            <script src="dist/jquery.cookieMessage.min.js"></script>
+        <script type="text/javascript">
+                $.cookieMessage({
+                    'mainMessage': 'This website uses cookies. By using this website you consent to our use of these cookies. For more information visit the  <a href="https://ec.europa.eu/info/law/law-topic/data-protection/reform_hu?pk_source=google_ads&pk_medium=paid&pk_campaign=gdpr2019"> GDPR Law Website</a>. ',
+                    'acceptButton': 'Got It!',
+                    'fontSize': '16px',
+                    'backgroundColor': '#222',
+                });
+        </script>
+
+        <script type="text/javascript">
+
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-36251023-1']);
+                _gaq.push(['_setDomainName', 'jqueryscript.net']);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+
+        </script>
+
 
     <section id="main-slider" class="carousel">
         <div class="carousel-inner">
@@ -186,10 +263,41 @@
             <div class="box last">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1>Példa Regisztrációs form</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo qui voluptate recusandae 
-                            error autem esse quae beatae voluptatem asperiores tempore ut, 
-                            veritatis inventore vel iure, culpa animi nobis doloribus quas!</p>
+                                <form action="action_page.php">
+                                        <div class="container">
+                                            <h2 class="display-4">Register</h2>
+                                            <p>Kérlek tölts ki minden mezőt a regisztráláshoz.</p>
+                                            <hr>
+
+                                            <label for="username"><b>Username</b></label>
+                                            <input type="text" placeholder="Enter Username" name="username" required>
+
+                                            <label for="email"><b>Email</b></label>
+                                            <input type="email" placeholder="Enter Email" name="email" required>
+
+                                            <label for="psw"><b>Password</b></label>
+                                            <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                            <label for="psw-repeat"><b>Repeat Password</b></label>
+                                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+                                            <label for="taxnumber"><b>Adószám - példa mező / lehet cserélni</b></label>
+                                            <input type="number" placeholder="Enter Tax Number" name="taxnumber" min="0" max="10000000" required>
+
+                                            <hr>
+
+                                            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a> and the GDPR stuff</p>
+                                            <button type="submit" class="registerbtn" name="reg_user">Register</button>
+                                        </div>
+
+                                        <div class="container signin">
+                                            <p>Already have an account? <a href="#">Sign in</a>.</p>
+                                        </div>
+                                </form>
+                            </div><!--/.col-sm-6-->
+                            <div class="col-sm-6">
+                        <p> Péda Login Form</p>
+
                         <div class="status alert alert-success" style="display: none"></div>
                         
                     </div><!--/.col-sm-6-->
