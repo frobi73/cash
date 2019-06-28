@@ -4,13 +4,17 @@ session_start();
 // initializing variables
 $username = "";
 $email    = "";
+$name = "";
+$taxnumber = "";
+$company_name="";
+$mobile_number="";
 $errors = array(); 
 
 // connect to the database
 include('db_config.php');
 
 // REGISTER USER
-if (isset($_POST['reg_user'])) {
+if (isset($_POST['submit'])) {
 
   $username = mysqli_real_escape_string($connection, $_POST['username']);
   $email = mysqli_real_escape_string($connection, $_POST['email']);
