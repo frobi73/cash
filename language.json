@@ -1,0 +1,17 @@
+{
+    "config": {
+      "default": "en"
+    },
+    "language": 
+    {
+      "en": {
+        "#demo": "Sample H1"
+      },
+      "de": {
+        "#demo": "Das Sample H1"
+      },
+      "hu": {
+        "#demo": "Példa bemutatás"
+      }
+    }
+  }

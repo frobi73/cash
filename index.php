@@ -19,8 +19,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-   
- 
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+
+
+        <script src="jquery.MultiLanguage.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $.MultiLanguage('language.json');
+      })
+    </script>
+    <script src="src/jquery.MultiLanguage.min.js"></script>
+
+    <script>
+                $(document).ready(function()
+                {
+                  $.MultiLanguage('language.json');
+                }
+                )
+    </script>
+
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="images/ico/favicon.ico">
 
@@ -69,8 +88,8 @@
             <div class="row">
                 <div class="box">
                     <div class="col col-lg-12">
-                            <h2 class="text-center">
-                                Példa Bemutatás
+                            <h2 class="text-center" id="demo">
+                                
                             </h2>
                             <hr>
                         <div class="row">
