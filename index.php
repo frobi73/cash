@@ -49,8 +49,8 @@
     <div class="brand">
       Capacity Sharing
     </div>
-    <div class="brand brand-bar">
-        Túrbózza fel vállalkozását egyedi üzleti oldalunkal
+    <div class="brand brand-bar" id="band">
+       
     </div>
 
                 <?php 
@@ -96,31 +96,31 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class="fas fa-chart-line icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4>Jelenlegi céges erőforrásai jobb kihasználásával magasabb bevételre tehet szert</h4>
+                                        <h4 id="k1"></h4>
                                         </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class="fas fa-globe icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4>Cégének piaci jelenléte tovább növekedhet. Globális és nemzetközi piacra lépés lehetősége</h4>
+                                        <h4 id="k2"></h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class=" fas fa-industry icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4>Vezető szerepet vállalhat egy innovativ üzleti közösség kialakításábant</h4>
+                                        <h4 id="k3"></h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-6 col-sm-6">
                                     <div class="center">
                                         <i class="far fa-clock icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4>Adminisztratív és reklám tevékenységekre fordított idők, költségek csökkenthetők</h4>
+                                        <h4 id="k4"></h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-6 col-sm-12">
                                     <div class="center">
                                         <i class="fas fa-landmark icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4>Cége hosszútávú innovatív munkaadóként jelenhet meg a munkaerőpiacon</h4>
+                                        <h4 id="k5" ></h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                             </div><!--/.row-->

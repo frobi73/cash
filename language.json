@@ -1,17 +1,56 @@
 {
     "config": {
-      "default": "en"
+      "default": "hu"
     },
     "language": 
     {
       "en": {
-        "#demo": "Sample H1"
+        "#nav1" : "Home",
+        "#nav2" : "Prices",
+        "#nav3" : "Features",
+        "#nav4" : "Login",
+        "#nav5" : "Register",
+        "#nav6" : "Languages",
+
+        "#demo": "Sample H1",
+        "#band": "Make your company way better with our business stuff",
+        "#k1" : "Make better use of your current business resources to make more profit",
+        "#k2": "Make your company's market much bigger. You can enter Global Market too." ,
+        "#k3": "Take the leadership in an innovative business collaboration",
+        "#k4": "Pay less money for advertisment and administrative stuff." ,
+        "#k5": "You can make your company innovative and better on the labor market"
       },
       "de": {
-        "#demo": "Das Sample H1"
+        "#nav1" : "Zuhause",
+        "#nav2" : "Preise" ,
+        "#nav3" : "Eigenschaften",
+        "#nav4" : "Anmeldung" ,
+        "#nav5" : "Registrieren",
+        "#nav6" : "Sprachen",
+
+          "#demo": "Das Sample H1",
+          "#band": "Fahren Sie mit Ihrem Unternehmen auf unserer einzigartigen Unternehmensseite",
+          "#k1": "Nutzen Sie Ihre aktuellen Geschäftsressourcen besser, um höhere Einnahmen zu erzielen.",
+          "#k2": "Die Marktpräsenz Ihres Unternehmens wächst möglicherweise weiter. Weltweiter und internationaler Marktzugang",
+          "#k3": "Auf dem Weg zu einer innovativen Geschäftswelt",
+          "#k4": "Zeitaufwand für Verwaltung und Werbung, Kosten können gesenkt werden",
+          "#k5": "Ihr Unternehmen kann langfristig als innovativer Arbeitgeber auf dem Arbeitsmarkt auftreten."
       },
       "hu": {
-        "#demo": "Példa bemutatás"
+        "#nav1" : "Főoldal" ,
+        "#nav2" : "Áraink" ,
+        "#nav3" :  "Az oldal bemutatása",
+        "#nav4" :  " Bejelentkezés",
+        "#nav5" : "Regisztráció" ,
+        "#nav6" : "Nyelvek",
+        "#demo": "Példa bemutatás",
+        "#band": "Túrbózza fel vállalkozását egyedi üzleti oldalunkal",
+        "#k1":"Jelenlegi céges erőforrásai jobb kihasználásával magasabb bevételre tehet szert",
+        "#k2": "Cégének piaci jelenléte tovább növekedhet. Globális és nemzetközi piacra lépés lehetősége" ,
+        "#k3": "Vezető szerepet vállalhat egy innovativ üzleti közösség kialakításábant",
+        "#k4": "Adminisztratív és reklám tevékenységekre fordított idők, költségek csökkenthetők" ,
+        "#k5": "Cége hosszútávú innovatív munkaadóként jelenhet meg a munkaerőpiacon"
+      
       }
     }
   }
