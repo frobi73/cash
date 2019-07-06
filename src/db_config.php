@@ -1,6 +1,6 @@
 <?php
 
-        $servername = "sql190.main-hosting.eu";
+        $servername = "localhost";
         $username = "u410658578_cash";
         $password = "Hostinger_73";
         $dbname = "u410658578_cash";
