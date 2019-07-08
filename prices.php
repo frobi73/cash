@@ -1,3 +1,33 @@
+<?php 
+session_start();
+
+if(isset($_SESSION['lang']))
+{
+    switch($_SESSION['lang'])
+    {
+        case "en":
+           require('lang/en.php');		
+       break;
+       
+       case "hu":
+           require('lang/hu.php');		
+       break;
+       
+       case "de":
+           require('lang/de.php');		
+       break;	
+       
+       default: 
+           require('lang/hu.php');		
+    }
+}
+else
+{
+    $_SESSION['lang'] = "hu";
+    header('Location:'.$_SERVER['PHP_SELF']);
+    exit();
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,15 +59,6 @@
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
-    <script src="src/jquery.MultiLanguage.min.js"></script>
-
-    <script>
-                $(document).ready(function()
-                    {
-                    $.MultiLanguage('language.json');
-                    }
-                )
-    </script>
 
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
@@ -48,12 +69,12 @@
     <div class="brand">
       Capacity Sharing
     </div>
-    <div class="brand brand-bar">
-        Túrbózza fel vállalkozását egyedi üzleti oldalunkal
+    <div class="brand brand-bar" >
+        <?=$lang['band'];?>
     </div>
 
                     <?php 
-                        include("src/navbar.html");
+                        include("src/navbar.php");
                         //<!-- Script Cookie-->
                         include("src/cookie.html");
                         //<!-- Script Cookie-->

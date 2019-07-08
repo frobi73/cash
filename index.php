@@ -1,5 +1,35 @@
+<?php 
+session_start();
+
+if(isset($_SESSION['lang']))
+{
+    switch($_SESSION['lang'])
+    {
+        case "en":
+           require('lang/en.php');		
+       break;
+       
+       case "hu":
+           require('lang/hu.php');		
+       break;
+       
+       case "de":
+           require('lang/de.php');		
+       break;	
+       
+       default: 
+           require('lang/hu.php');		
+    }
+}
+else
+{
+    $_SESSION['lang'] = "hu";
+    header('Location:'.$_SERVER['PHP_SELF']);
+    exit();
+}
+?>
 <!doctype html>
-<html lang="en">
+<html lang="hu">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -29,17 +59,6 @@
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
-    <script src="src/jquery.MultiLanguage.min.js"></script>
-    <script src="src/jquery.MultiLanguage.coffee"></script>
-
-    <script>
-                $(document).ready(function()
-                    {
-                    $.MultiLanguage('language.json');
-                    }
-                )
-    </script>
-
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
 
@@ -49,12 +68,12 @@
     <div class="brand">
       Capacity Sharing
     </div>
-    <div class="brand brand-bar" id="band">
-       
+    <div class="brand brand-bar" >
+        <?=$lang['band'];?>
     </div>
 
                 <?php 
-                    include("src/navbar.html");
+                    include("src/navbar.php");
                     //<!-- Script Cookie-->
                     include("src/cookie.html");
                     //<!-- Script Cookie-->
@@ -67,38 +86,40 @@
                 <div class="box">
                     <div class="col col-lg-12">
                             <h2 class="text-center" id="demo">
-                                
+                            <div id="cont">
+                                <p><?=$lang['index-welcome'];?></p>
+                             </div>
                             </h2>
                             <hr>
                         <div class="row">
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class="fas fa-chart-line icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4 id="k1"></h4>
+                                        <h4> <?=$lang['k1'];?> </h4>
                                         </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class="fas fa-globe icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4 id="k2"></h4>
+                                        <h4 > <?=$lang['k2'];?> </h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-4 col-sm-6">
                                     <div class="center">
                                         <i class=" fas fa-industry icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4 id="k3"></h4>
+                                        <h4> <?=$lang['k3'];?> </h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-6 col-sm-6">
                                     <div class="center">
                                         <i class="far fa-clock icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4 id="k4"></h4>
+                                        <h4> <?=$lang['k4'];?> </h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                                 <div class="col-md-6 col-sm-12">
                                     <div class="center">
                                         <i class="fas fa-landmark icon" style="font-size:60px;color:#52b6ec"></i>
-                                        <h4 id="k5" ></h4>
+                                        <h4 > <?=$lang['k5'];?> </h4>
                                     </div>
                                 </div><!--/.col-md-4-->
                             </div><!--/.row-->

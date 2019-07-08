@@ -5,6 +5,23 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
+.menu
+{
+   margin-top:15px !important;
+}
+
+.card-title
+{
+    text-align: center !important;
+    margin: auto;
+}
+
+#kep
+{
+    height: 300px !important;
+}
+
 ul 
 {
     list-style-type: none;

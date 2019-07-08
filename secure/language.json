@@ -1,0 +1,58 @@
+{
+  "config": 
+  {
+    "default": "hu"
+  },
+  "language": 
+  {
+    "en": {
+      "#nav1" : "Home",
+      "#nav2" : "Search",
+      "#nav3" : "BLANK",
+      "#nav4" : "Profile",
+      "#nav5" : "Log out",
+      "#nav6" : "Languages",
+      "#band" : "Make your company way better with our business stuff",
+      "#menu" : "Menu",
+      "#t1" : "Search for business",
+      "#t2" : "Upload your stuff",
+      "#t3" : "View your orders",
+      "#k1" : "Search for stuff your company needs",
+      "#k2" : "Upload your stuff for others for money" ,
+      "#k3" : "View every order you have bought"
+    },
+    "de": {
+      "#nav1": "Hause",
+      "#nav2": "Suche",
+      "#nav3": "BLANK",
+      "#nav4": "Profil",
+      "#nav5": "Abmelden",
+      "#nav6": "Sprachen",
+      "#band": "Fahren Sie mit Ihrem Unternehmen auf unserer einzigartigen Unternehmensseite",
+      "#menu": "Menu",
+      "#t1" : "Search for business",
+      "#t2" : "Upload your stuff",
+      "#t3" : "View your orders",
+      "#k1" : "Search for stuff your company needs",
+      "#k2" : "Upload your stuff for others for money" ,
+      "#k3" : "View every order you have bought"
+    },
+    "hu": {
+      "#nav1" : "Főoldal" ,
+      "#nav2" : "Keresés" ,
+      "#nav3" : "BLANK",
+      "#nav4" : "Profil",
+      "#nav5" : "Kijelentkezés" ,
+      "#nav6" : "Nyelvek",
+      "#band" : "Túrbózza fel vállalkozását egyedi üzleti oldalunkal",
+      "#menu" : "Menü",
+      "#t1" : "Keress",
+      "#t2" : "Tölts fel",
+      "#t3" : "Nézd meg a profilodat",
+      "#k1" : "Keress a cégednek megfelelő eszközöket kölcsönzésre",
+      "#k2" : "Töltsd fel a felesleges felszereléseidet, hogy profitot termeljenek" ,
+      "#k3" : "Nézd meg az eddigi vásárlásaidat"
+    
+    }
+  }
+}

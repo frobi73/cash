@@ -1,35 +1,42 @@
 <?php 
-session_start();
+    session_start();
 
-if(isset($_SESSION['lang']))
-{
-    switch($_SESSION['lang'])
+    if( $_SESSION['loggedin'] != TRUE)
     {
-        case "en":
-           require('lang/en.php');		
-       break;
-       
-       case "hu":
-           require('lang/hu.php');		
-       break;
-       
-       case "de":
-           require('lang/de.php');		
-       break;	
-       
-       default: 
-           require('lang/hu.php');		
+        session_unset();
+        session_destroy();
+        header('Location:'. base_url(TRUE));   
     }
-}
-else
-{
-    $_SESSION['lang'] = "hu";
-    header('Location:'.$_SERVER['PHP_SELF']);
-    exit();
-}
+
+    if(isset($_SESSION['lang']))
+    {
+        switch($_SESSION['lang'])
+        {
+            case "en":
+            require('lang/en.php');		
+        break;
+        
+        case "hu":
+            require('lang/hu.php');		
+        break;
+        
+        case "de":
+            require('lang/de.php');		
+        break;	
+        
+        default: 
+            require('lang/hu.php');		
+        }
+    }
+    else
+    {
+        $_SESSION['lang'] = "hu";
+        header('Location:'.$_SERVER['PHP_SELF']);
+        exit();
+    }
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="hu">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -59,7 +66,7 @@ else
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
-    <title>Capacity Sharing</title>
+    <title>Capacity Sharing - Home</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
 
   </head>
@@ -73,42 +80,36 @@ else
     </div>
 
                 <?php 
-                    include("src/navbar.php");
+                    include("src/sec_navbar.php");
                     //<!-- Script Cookie-->
                     include("src/cookie.html");
                     //<!-- Script Cookie-->
                     
                 ?>
 
-    <div class="container">
+<div class="container">
         <div class="jumbotron">
             <div class="row">
-                <div class="box">
-                    <div class="col col-lg-12">
-                      <div class="box">
-                        <div class="center gap">
-                                <h2 class="center" id="demo"></h2><hr>
-                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
-                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
-                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
-                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!</p>
-                            </div><!--/.center-->
-                        </div>
-                         
-                    </div><!-- col-->
-                </div><!-- box-->
-            </div>  <!-- row-->
-            <br>
-            <div class="row">
-               
-            </div>  <!-- row-->    
-        </div><!-- jumbotron-->     
+                    <div class="col col-lg-4">
+                        <div class="card">
+                                <h5 class="card-title menu" > <?=$lang['menu'];?> </h5>
+                                <hr>
+                            <div class="card-body">
+                                   
+                                    <p class="card-text" id="menu"></p>
+                            </div> <!-- card-body -->
+                        </div> <!-- card-->
+                    </div> <!-- col lg 4 --> 
 
+                    <div class="col col-lg-8">
+
+                    </div> <!-- col lg 8 --> 
+            </div> <!-- row--> 
+        </div><!-- jumbotron--> 
     </div><!-- Container-->
 
-    <?php include("src/footer.html"); ?>
+
+    <?php include("src/sec_footer.html"); ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
