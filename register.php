@@ -73,7 +73,7 @@ else
                     <div class="container">
                               <h1>Register</h1>
 
-                                <form action="first_register.php" method="post">
+                                <form action="src/first_register.php" method="post">
                                   
                                   <label for="firstname">
                                     <i class="fas fa-user"></i>
