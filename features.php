@@ -61,61 +61,7 @@ else
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
-    <title>Capacity Sharing</title>
-    <link rel="shortcut icon" href="src/images/ico/favicon.ico">
-   
-  </head>
-  <body>
-   
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
-
-                <?php 
-                    include("src/navbar.php");
-                    //<!-- Script Cookie-->
-                    include("src/cookie.html");
-                    //<!-- Script Cookie-->
-                    
-                ?>
-
-    <div class="container">
-        <div class="jumbotron">
-            <div class="row">
-                    <div class="col col-lg-12">
-                        <div class="center gap">
-                                <h2 class="center">
-                                    <?= $lang['demo'];?>
-                                </h2><hr>
-                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
-                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
-                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
-                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!</p>
-                        </div>  <!-- center gap-->
-                    </div><!-- col-->
-            </div>  <!-- row-->
-                <div class="feature">
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
-                             <label for="keres">
-                                <i class="fas fa-search"></i>
-                            </label>
-                            <input type="text" name="keres" placeholder="Keresés" id="keres" required>
-                            
-                            <div class="col col-lg-5">
-                                <div class="form-group">
-                                    <select class="form-control" id="select_country" onchange="test(this)"
-                                    name="orszag" placeholder="Ország">
-                                        <option selected disabled>Ország</option>
-                                        <option value="hu">Magyar</option>
-                                        <option value="de">Német</option>   
-                                        <option value="au">Osztrák</option>  
-                                    </select>
-                                    <script>
+    <script>
                                         function test(varos_id) 
                                         {
                                             var varos = (varos_id.value || varos_id.options[varos_id.selectedIndex].value);
@@ -178,49 +124,117 @@ else
                                             div.appendChild(frag);
                                         }
 
-                                        function getInputsByValue(value)
-                                        {
-                                            var y = document.getElementsByTagName("option")[0].getAttribute("value");
-                                            if(y=0)
-                                            {
-
-                                            } 
-                                        }
                                        
                                         </script>
-                                </div>  <!--from group-->
-                            </div>  <!--col col-lg-4-->
-                            <div class="col col-lg-5">
-                                <div id="some_div"></div>
-                                <div class="form-group" id="select_city">
-                                    <select class="form-control"  name="varos" id="placeholder">
-                                        <option>Város</option>
-                                    </select>
-                                </div>  <!--from group-->
-                            </div>  <!--col col-lg-4-->
-                            <div class="col col-lg-5">
-                                <div class="form-group">
-                                    <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
-                                        <option>Összes</option>
-                                        <option>Mezőgazdaság</option>
-                                        <option>Informatika</option>     
-                                    </select>
-                                </div>  <!--from group-->
-                            </div>  <!--col col-lg-4-->
-                            <div class="col col-lg-5">
-                                <div class="form-group">
-                                    <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
-                                        <option>Összes</option>
-                                        <option>Áram</option>
-                                        <option></option>     
-                                    </select>
-                                </div>  <!--from group-->
-                            </div>  <!--col col-lg-4-->
-                        <input type="submit" value="Keresés" name="search_btn">
 
-                    </form>
- 
-                    </div> <!-- feature-->
+    <title>Capacity Sharing</title>
+    <link rel="shortcut icon" href="src/images/ico/favicon.ico">
+   
+  </head>
+  <body>
+   
+    <div class="brand">
+      Capacity Sharing
+    </div>
+    <div class="brand brand-bar" >
+        <?=$lang['band'];?>
+    </div>
+
+                <?php 
+                    include("src/navbar.php");
+                    //<!-- Script Cookie-->
+                    include("src/cookie.html");
+                    //<!-- Script Cookie-->
+                    
+                ?>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                    <div class="col">
+                        <div class="center">
+                                <h2 class="center">
+                                    <?= $lang['demo'];?>
+                                </h2><hr>
+                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
+                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
+                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
+                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!
+                                </p>
+                        </div>  <!-- center-->
+                    </div><!-- col-->
+            </div><!-- row-->
+        </div><!-- jumbotron-->     
+    </div><!-- Container-->
+    <div class="container">
+        <div class="jumbotron">    
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
+                     <div class="card">
+                        <div class="card-body">
+                            <div class="input-group flex-nowrap">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text icon" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" name="keres" placeholder="Keresés" id="keres" aria-describedby="addon-wrapping">
+                            </div>  <!--input group-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="select_country">Ország</label>
+                                                <select class="form-control" id="select_country" onchange="test(this)"
+                                                    name="orszag" placeholder="Ország">
+                                                    <option selected disabled>Ország</option>
+                                                    <option value="hu">Magyar</option>
+                                                    <option value="de">Német</option>   
+                                                    <option value="au">Osztrák</option>  
+                                                </select>      
+                                </div> <!--form group-md-6-->
+                                <div class="form-group col-md-6">
+                                    <label for="placeholder">Város</label>
+                                        <div id="some_div">
+
+                                        </div> <!--some div-->
+                                        <div class="form-group" id="select_city">
+                                            <select class="form-control"  name="varos" id="placeholder">
+                                                <option selected disabled>Város</option>
+                                            </select>
+                                        </div>  <!--from group - select city -->
+                                </div><!--from group col-md-6-->
+                            </div> <!--from row--> 
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Iparag">Iparág</label>
+                                        <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
+                                                <option selected disabled>Iparág</option>
+                                                <option >Járműipar</option>
+                                                <option >Fém és nehéz ipar</option>
+                                                <option >Építőipar</option>
+                                                <option >Feldolgozóipar</option>
+                                        </select>
+                                </div> <!--form group-->
+                                <div class="form-group col-md-6">
+                                    <label for="Eroforras">Erőforrás Típusa</label>
+                                        <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
+                                        <option selected disabled>Erőforrás típusa</option>
+                                        <option>Emelőgép 1.</option>
+                                        <option>Emelőgép 2.</option>
+                                        <option>Földmunkagép kicsi</option>
+                                        <option>Földmunkagép nagy</option>
+                                        <option>CNC 1.</option>
+                                        <option>CNC 2.</option>
+                                        <option>Toronydarú 1.</option>
+                                        <option>Toronydarú 2.</option>
+                                        <option>Csomagoló gép 1.</option>
+                                        <option>Csomagoló gép 2.</option>
+                                        <option>Ipari robotgép</option>
+                                        </select>
+                                </div><!--form group-->
+                            </div>  <!--form row-->
+                            <input type="submit" value="Keresés" name="search_btn" class="btn btn-block btn-primary">
+                        </div><!-- card-body--> 
+                    </div><!-- card-->   
+                </form><!-- form-->          
         </div><!-- jumbotron-->     
     </div><!-- Container-->
 

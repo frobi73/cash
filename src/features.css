@@ -1,18 +1,15 @@
 * {
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
-    font-size: 16px;
+     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 body {
     background-color: #435165;
 }
-.feature {
-    width: 90%;
+.card {
     background-color: #ffffff;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
-    margin: 100px auto;
 }
 .feature h1 {
     text-align: center;
@@ -21,12 +18,11 @@ body {
     padding: 20px 0 20px 0;
 }
 .feature form {
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 20px;
 }
-.feature form label {
+.icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,16 +31,7 @@ body {
     background-color: #3274d6;
     color: #ffffff;
 }
-.feature form input[type="password"], .feature form input[type="text"] {
-    width: 80%;
-    height: 50px;
-    border: 1px solid #dee0e4;
-    margin-bottom: 20px;
-    padding: 0 15px;
-}
-.feature form input[type="email"]
-{
-    width: 310px;
+input[type="text"] {
     height: 50px;
     border: 1px solid #dee0e4;
     margin-bottom: 20px;
@@ -53,7 +40,7 @@ body {
 .feature form input[type="submit"] {
     width: 100%;
     padding: 15px;
-   margin-top: 20px;
+    margin-top: 20px;
     background-color: #3274d6;
     border: 0;
     cursor: pointer;
@@ -75,4 +62,8 @@ body {
 .center
 {
     margin-top:10px;
+}
+.keres
+{
+    margin-left:10px;
 }
