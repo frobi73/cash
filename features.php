@@ -202,8 +202,8 @@ else
                                 <div class="form-group">
                                     <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
                                         <option>Összes</option>
-                                        <option>Magyar</option>
-                                        <option>Külföldi</option>     
+                                        <option>Mezőgazdaság</option>
+                                        <option>Informatika</option>     
                                     </select>
                                 </div>  <!--from group-->
                             </div>  <!--col col-lg-4-->
@@ -211,8 +211,8 @@ else
                                 <div class="form-group">
                                     <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
                                         <option>Összes</option>
-                                        <option>Magyar</option>
-                                        <option>Külföldi</option>     
+                                        <option>Áram</option>
+                                        <option></option>     
                                     </select>
                                 </div>  <!--from group-->
                             </div>  <!--col col-lg-4-->
