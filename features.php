@@ -41,6 +41,8 @@ else
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
+        
+    <link rel="stylesheet" href="src\features.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -61,7 +63,7 @@ else
 
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
-
+   
   </head>
   <body>
    
@@ -83,29 +85,143 @@ else
     <div class="container">
         <div class="jumbotron">
             <div class="row">
-                <div class="box">
                     <div class="col col-lg-12">
-                      <div class="box">
                         <div class="center gap">
-                                <h2 class="center" id="demo"></h2><hr>
+                                <h2 class="center">
+                                    <?= $lang['demo'];?>
+                                </h2><hr>
                                 <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
                                     Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
                                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
                                     quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
                                     perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!</p>
-                            </div><!--/.center-->
-                        </div>
-                         
+                        </div>  <!-- center gap-->
                     </div><!-- col-->
-                </div><!-- box-->
             </div>  <!-- row-->
-            <br>
-            <div class="row">
-               
-            </div>  <!-- row-->    
-        </div><!-- jumbotron-->     
+                <div class="feature">
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
+                             <label for="keres">
+                                <i class="fas fa-search"></i>
+                            </label>
+                            <input type="text" name="keres" placeholder="Keresés" id="keres" required>
+                            
+                            <div class="col col-lg-5">
+                                <div class="form-group">
+                                    <select class="form-control" id="select_country" onchange="test(this)"
+                                    name="orszag" placeholder="Ország">
+                                        <option selected disabled>Ország</option>
+                                        <option value="hu">Magyar</option>
+                                        <option value="de">Német</option>   
+                                        <option value="au">Osztrák</option>  
+                                    </select>
+                                    <script>
+                                        function test(varos_id) 
+                                        {
+                                            var varos = (varos_id.value || varos_id.options[varos_id.selectedIndex].value);
+                                            var cities = ["Budapest","Győr","Pécs","Szeged","Debrecen",
+                                                    "Berlin","München","Hamburg","Frankfurt","Stuttgart",
+                                                    "Innsbruck","Salzburg","Wien","Graz","Linz"];
+                                        switch(varos) {
+                                            case "hu":
+                                            var div = document.querySelector("#select_city"),
+                                            frag = document.createDocumentFragment(),
+                                            select = document.createElement("select");
+                                            select.classList.add("form-control");
+                                            select.setAttribute("name","varos");
+                                            select.setAttribute("id","placeholder");
+                                            var element = document.getElementById("placeholder");
+                                            element.parentNode.removeChild(element);
+                                                var i;
+                                                for (i = 0; i < 5; i++) 
+                                                {
+                                                    select.options.add( new Option(cities[i],cities[i]) );
+                                                }
+                                                break;
 
+                                            case "de":
+                                            var div = document.querySelector("#select_city"),
+                                            frag = document.createDocumentFragment(),
+                                            select = document.createElement("select");
+                                            select.classList.add("form-control");
+                                            select.setAttribute("name","varos");
+                                            select.setAttribute("id","placeholder");
+                                            var element = document.getElementById("placeholder");
+                                            element.parentNode.removeChild(element);
+                                            var i;
+                                                for (i = 5; i < 10; i++) 
+                                                { 
+                                                    select.options.add( new Option(cities[i],cities[i]));
+                                                }
+                                                break;
+
+                                            case "au":
+                                            var div = document.querySelector("#select_city"),
+                                            frag = document.createDocumentFragment(),
+                                            select = document.createElement("select");
+                                            select.classList.add("form-control");
+                                            select.setAttribute("name","varos");
+                                            select.setAttribute("id","placeholder");
+
+                                            var element = document.getElementById("placeholder");
+                                            element.parentNode.removeChild(element);
+
+                                            var i;
+                                                for (i = 10; i < 15; i++) 
+                                                { 
+                                                    select.options.add( new Option(cities[i],cities[i]) );
+                                                }
+                                                break;
+                                            }
+                                        
+                                            frag.appendChild(select);
+                                            div.appendChild(frag);
+                                        }
+
+                                        function getInputsByValue(value)
+                                        {
+                                            var y = document.getElementsByTagName("option")[0].getAttribute("value");
+                                            if(y=0)
+                                            {
+
+                                            } 
+                                        }
+                                       
+                                        </script>
+                                </div>  <!--from group-->
+                            </div>  <!--col col-lg-4-->
+                            <div class="col col-lg-5">
+                                <div id="some_div"></div>
+                                <div class="form-group" id="select_city">
+                                    <select class="form-control"  name="varos" id="placeholder">
+                                        <option>Város</option>
+                                    </select>
+                                </div>  <!--from group-->
+                            </div>  <!--col col-lg-4-->
+                            <div class="col col-lg-5">
+                                <div class="form-group">
+                                    <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
+                                        <option>Összes</option>
+                                        <option>Magyar</option>
+                                        <option>Külföldi</option>     
+                                    </select>
+                                </div>  <!--from group-->
+                            </div>  <!--col col-lg-4-->
+                            <div class="col col-lg-5">
+                                <div class="form-group">
+                                    <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
+                                        <option>Összes</option>
+                                        <option>Magyar</option>
+                                        <option>Külföldi</option>     
+                                    </select>
+                                </div>  <!--from group-->
+                            </div>  <!--col col-lg-4-->
+                        <input type="submit" value="Keresés" name="search_btn">
+
+                    </form>
+ 
+                    </div> <!-- feature-->
+        </div><!-- jumbotron-->     
     </div><!-- Container-->
 
     <?php include("src/footer.html"); ?>
