@@ -4,3 +4,36 @@ Hostinger - pipa
 DB account kapcsolat -
 e-mail - 
 GitHub repo - pipa
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+
+    <script type="text/javascript" src="src/varos.js"></script>
+
+    <script type="text/javascript" src="src\datepicker\moment.min.js"></script>
+
+    <script type="text/javascript" src="src\datepicker\daterangepicker.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="src\datepicker\daterangepicker.css" />
+
+ <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for="daterange">Időszak</label>
+                                        
+                                        <input type="text" name="daterange" id="daterange" value="" />
+
+                                        <script>
+                                        $(function() {
+                                        $('input[name="daterange"]').daterangepicker({
+                                            opens: 'left'
+                                        }, function(start, end, label) {
+                                            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                                        });
+                                        });
+                                        </script>
+
+                                </div><!--form group-->
+                                <div class="form-group col-md-6">
+                                    
+                                </div><!--form group-->
+                            </div>  <!--form row-->

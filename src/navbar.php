@@ -35,7 +35,7 @@
                     </a>
                     <div id="langSelect">
                       <div class="dropdown-menu">
-                        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+                        <form action="<?=($_SERVER['PHP_SELF'])?>" method="post">
                           <button class="dropdown-item" type="submit" value="hu" name="lang_btn" > Magyar</button>
                           <button class="dropdown-item" type="submit" value="en" name="lang_btn" > English </button>
                           <button class="dropdown-item" type="submit" value="de" name="lang_btn" > Deutsch </button>
@@ -43,10 +43,10 @@
                         </div> <!-- dropwdown-menu-->
                     </div>	<!-- Langselect-->
                     <?php 
-                       if($_SERVER['REQUEST_METHOD'] == "POST")
+                       if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["lang_btn"]))
                        {
                           $_SESSION['lang'] = $_POST["lang_btn"]; 
-                          header('Location:'.$_SERVER['PHP_SELF']);
+                          echo' <script> location.replace("'.$_SERVER['PHP_SELF'].'"); </script>';
                        }
                     ?>
                 </div>  <!-- col-->

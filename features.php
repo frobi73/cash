@@ -7,18 +7,22 @@ if(isset($_SESSION['lang']))
     {
         case "en":
            require('lang/en.php');		
+
        break;
        
        case "hu":
-           require('lang/hu.php');		
+           require('lang/hu.php');	
+
        break;
        
        case "de":
            require('lang/de.php');		
+	
        break;	
        
        default: 
            require('lang/hu.php');		
+           
     }
 }
 else
@@ -44,6 +48,8 @@ else
         
     <link rel="stylesheet" href="src\features.css">
 
+    <link rel="stylesheet" type="text/css" href="src\datepicker\daterangepicker.css" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
    
@@ -61,71 +67,14 @@ else
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
-    <script>
-                                        function test(varos_id) 
-                                        {
-                                            var varos = (varos_id.value || varos_id.options[varos_id.selectedIndex].value);
-                                            var cities = ["Budapest","Győr","Pécs","Szeged","Debrecen",
-                                                    "Berlin","München","Hamburg","Frankfurt","Stuttgart",
-                                                    "Innsbruck","Salzburg","Wien","Graz","Linz"];
-                                        switch(varos) {
-                                            case "hu":
-                                            var div = document.querySelector("#select_city"),
-                                            frag = document.createDocumentFragment(),
-                                            select = document.createElement("select");
-                                            select.classList.add("form-control");
-                                            select.setAttribute("name","varos");
-                                            select.setAttribute("id","placeholder");
-                                            var element = document.getElementById("placeholder");
-                                            element.parentNode.removeChild(element);
-                                                var i;
-                                                for (i = 0; i < 5; i++) 
-                                                {
-                                                    select.options.add( new Option(cities[i],cities[i]) );
-                                                }
-                                                break;
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 
-                                            case "de":
-                                            var div = document.querySelector("#select_city"),
-                                            frag = document.createDocumentFragment(),
-                                            select = document.createElement("select");
-                                            select.classList.add("form-control");
-                                            select.setAttribute("name","varos");
-                                            select.setAttribute("id","placeholder");
-                                            var element = document.getElementById("placeholder");
-                                            element.parentNode.removeChild(element);
-                                            var i;
-                                                for (i = 5; i < 10; i++) 
-                                                { 
-                                                    select.options.add( new Option(cities[i],cities[i]));
-                                                }
-                                                break;
+    <script type="text/javascript" src="src/varos.js"></script>
 
-                                            case "au":
-                                            var div = document.querySelector("#select_city"),
-                                            frag = document.createDocumentFragment(),
-                                            select = document.createElement("select");
-                                            select.classList.add("form-control");
-                                            select.setAttribute("name","varos");
-                                            select.setAttribute("id","placeholder");
+    <script type="text/javascript" src="src\datepicker\moment.min.js"></script>
 
-                                            var element = document.getElementById("placeholder");
-                                            element.parentNode.removeChild(element);
-
-                                            var i;
-                                                for (i = 10; i < 15; i++) 
-                                                { 
-                                                    select.options.add( new Option(cities[i],cities[i]) );
-                                                }
-                                                break;
-                                            }
-                                        
-                                            frag.appendChild(select);
-                                            div.appendChild(frag);
-                                        }
-
-                                       
-                                        </script>
+    <script type="text/javascript" src="src\datepicker\daterangepicker.js"></script>
+    
 
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
@@ -183,7 +132,7 @@ else
                                 <div class="form-group col-md-6">
                                     <label for="select_country">Ország</label>
                                                 <select class="form-control" id="select_country" onchange="test(this)"
-                                                    name="orszag" placeholder="Ország">
+                                                    name="orszag" placeholder="Ország" require>
                                                     <option selected disabled>Ország</option>
                                                     <option value="hu">Magyar</option>
                                                     <option value="de">Német</option>   
@@ -195,7 +144,7 @@ else
                                         <div id="some_div">
 
                                         </div> <!--some div-->
-                                        <div class="form-group" id="select_city">
+                                        <div class="form-group" id="select_city" style="margin-bottom: 0px;">
                                             <select class="form-control"  name="varos" id="placeholder">
                                                 <option selected disabled>Város</option>
                                             </select>
@@ -206,35 +155,92 @@ else
                                 <div class="form-group col-md-6">
                                     <label for="Iparag">Iparág</label>
                                         <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
-                                                <option selected disabled>Iparág</option>
-                                                <option >Járműipar</option>
-                                                <option >Fém és nehéz ipar</option>
-                                                <option >Építőipar</option>
-                                                <option >Feldolgozóipar</option>
+                                                <option value="0" selected disabled>Iparág</option>
+                                                <option value="1" >Járműipar</option>
+                                                <option value="2" >Fém és nehéz ipar</option>
+                                                <option value="3" >Építőipar</option>
+                                                <option value="4" >Feldolgozóipar</option>
                                         </select>
                                 </div> <!--form group-->
                                 <div class="form-group col-md-6">
                                     <label for="Eroforras">Erőforrás Típusa</label>
                                         <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
-                                        <option selected disabled>Erőforrás típusa</option>
-                                        <option>Emelőgép 1.</option>
-                                        <option>Emelőgép 2.</option>
-                                        <option>Földmunkagép kicsi</option>
-                                        <option>Földmunkagép nagy</option>
-                                        <option>CNC 1.</option>
-                                        <option>CNC 2.</option>
-                                        <option>Toronydarú 1.</option>
-                                        <option>Toronydarú 2.</option>
-                                        <option>Csomagoló gép 1.</option>
-                                        <option>Csomagoló gép 2.</option>
-                                        <option>Ipari robotgép</option>
+                                        <option value="0"  selected disabled>Erőforrás típusa</option>
+                                        <option value="1" >Emelőgép 1.</option>
+                                        <option value="2" >Emelőgép 2.</option>
+                                        <option value="3" >Földmunkagép kicsi</option>
+                                        <option value="4" >Földmunkagép nagy</option>
+                                        <option value="5" >CNC 1.</option>
+                                        <option value="6" >CNC 2.</option>
+                                        <option value="7" >Toronydarú 1.</option>
+                                        <option value="8" >Toronydarú 2.</option>
+                                        <option value="9" >Csomagoló gép 1.</option>
+                                        <option value="10" >Csomagoló gép 2.</option>
+                                        <option value="11" >Ipari robotgép</option>
                                         </select>
+                                </div><!--form group-->
+                            </div>  <!--form row-->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for="daterange">Időszak</label>
+                                        
+                                        <input type="text" class="form-control" name="daterange" id="daterange" value="" style="text-align:right" />
+
+                                        <script>
+                                               var today = new Date();
+                                               var next_month = new Date();
+                                               var currentMonth = next_month.getMonth();
+                                               next_month.setMonth(currentMonth + 2);
+                                               $('#daterange').daterangepicker({
+                                                    "startDate": today,
+                                                    "endDate": today,
+                                                    "minDate": today,
+                                                    "maxDate": next_month,
+                                                    "opens": "center"
+                                                }, function(start, end, label) {
+                                                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+                                                });
+                                        </script>
+
+                                </div><!--form group-->
+                                <div class="form-group col-md-6">
+                                    <label for="p">Info</label>   
+                                    <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
                             <input type="submit" value="Keresés" name="search_btn" class="btn btn-block btn-primary">
                         </div><!-- card-body--> 
                     </div><!-- card-->   
-                </form><!-- form-->          
+                </form><!-- form-->         
+                <div class="kereses_eredmeny">
+                        <?php 
+                            
+                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
+                            {
+                                if(!isset($_POST['keres'])) { $text = ""; }
+                                else{ $text = $_POST['keres'];}
+
+                                if(!isset($_POST['orszag'])) { $Country = "hu"; }
+                                else{ $Country = $_POST['orszag'];}
+
+                                if(!isset($_POST['varos'])) {$City = "Budapest";}
+                                else{ $City = $_POST['varos'];}
+                                
+                                if(!isset($_POST['Iparag'])){ $Ipar = 0;}
+                                else{ $Ipar = $_POST['Iparag'];}
+
+                                if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
+                                else{ $Eroforras=$_POST['Eroforras'];}
+
+                                if(!isset($_POST['daterange'])) { $datum = date("d/m/Y") + ' - ' + date("d/m/Y");}
+                                else{ $datum=$_POST['daterange'];}
+
+                                echo $text, $Country,$City,$Ipar,$Eroforras, $datum;
+
+                                include("src/db_config.php");
+                            }
+                        ?>
+                </div>  <!-- div - kereses eredmeny-->   
         </div><!-- jumbotron-->     
     </div><!-- Container-->
 

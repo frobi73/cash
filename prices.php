@@ -85,7 +85,10 @@ else
 
                     <div class="box">
                     <div class="center gap">
-                            <h2 class="center" id="demo"></h2><hr>
+                            <h2 class="center">
+                            <?=$lang['demo'];?>
+
+                            </h2><hr>
                             <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
                                  Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
                                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
