@@ -82,12 +82,7 @@ else
   </head>
   <body>
    
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
+  
 
                 <?php 
                     include("src/navbar.php");
@@ -97,8 +92,8 @@ else
                     
                 ?>
 
-    <div class="container">
         <div class="jumbotron">
+        <div class="container">
             <div class="row">
                     <div class="col">
                         <div class="center">
@@ -115,10 +110,11 @@ else
                         </div>  <!-- center-->
                     </div><!-- col-->
             </div><!-- row-->
+            </div><!-- container-->     
         </div><!-- jumbotron-->     
-    </div><!-- Container-->
-    <div class="container">
+
         <div class="jumbotron">    
+            <div class="container">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
                      <div class="card">
                         <div class="card-body">
@@ -184,7 +180,8 @@ else
                                 <div class="form-group col-md-6">
                                         <label for="daterange">Időszak</label>
                                         
-                                        <input type="text" class="form-control" name="daterange" id="daterange" value="" style="text-align:right" />
+                                        <input type="text" class="form-control" name="daterange" id="daterange" 
+                                        value="<?php if(isset($datum)){echo $datum;}else{echo date("Y/m/d");}  ?>" style="text-align:right" />
 
                                         <script>
                                                var today = new Date();
@@ -192,11 +189,16 @@ else
                                                var currentMonth = next_month.getMonth();
                                                next_month.setMonth(currentMonth + 2);
                                                $('#daterange').daterangepicker({
+                                                    //"format": 'DD/MM/YYYY'
                                                     "startDate": today,
                                                     "endDate": today,
                                                     "minDate": today,
                                                     "maxDate": next_month,
-                                                    "opens": "center"
+                                                    "opens": "center",
+                                                    "locale": {
+                                                        "format": "YYYY/MM/DD",
+                                                        "separator": " - ",
+                                                    }
                                                 }, function(start, end, label) {
                                                 console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
                                                 });
@@ -208,13 +210,43 @@ else
                                     <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
-                            <input type="submit" value="Keresés" name="search_btn" class="btn btn-block btn-primary">
+                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
                         </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
+
+               
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>A keresés funkció csak regisztrált felhasználóknak működik.
+                                                <br>
+                                    Kattins ide, hogy regisztálj.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- Modal content-->
+
+                    </div><!-- Modal dialog-->
+                </div><!-- Modal-->
                 <div class="kereses_eredmeny">
                         <?php 
-                            
+                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
+                             {
+
+
+                             }
                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
                             {
                                 if(!isset($_POST['keres'])) { $text = ""; }
@@ -232,17 +264,38 @@ else
                                 if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
                                 else{ $Eroforras=$_POST['Eroforras'];}
 
-                                if(!isset($_POST['daterange'])) { $datum = date("d/m/Y") + ' - ' + date("d/m/Y");}
+                                if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
                                 else{ $datum=$_POST['daterange'];}
 
-                                echo $text, $Country,$City,$Ipar,$Eroforras, $datum;
+                                $dates = explode(" - ", $datum);
+                                $startdate = $dates[0];
+                                $enddate = $dates[1];
 
-                                include("src/db_config.php");
+                                $format = 'Y-m-d';
+                                $date = DateTime::createFromFormat($format, '2009-02-15');
+
+                                echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
+
+
+                                include("src/db_config_test.php");
+
+                                // keresés után regisztáljon
+                                //aznap legyel letiltva
+                                $sql='SELECT
+                                        rentals.Rental_ID,
+                                        products.Product_Name,
+                                        products.Description
+                                    FROM rentals
+                                        INNER JOIN products
+                                        ON rentals.Product_ID = products.Product_ID
+                                    WHERE rentals.Start_Date = 0
+                                    AND rentals.End_Date = 0;';
                             }
                         ?>
                 </div>  <!-- div - kereses eredmeny-->   
+                </div><!-- container-->     
         </div><!-- jumbotron-->     
-    </div><!-- Container-->
+
 
     <?php include("src/footer.html"); ?>
 

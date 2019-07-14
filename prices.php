@@ -66,19 +66,19 @@ else
   </head>
   <body>
    
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
-
                     <?php 
                         include("src/navbar.php");
                         //<!-- Script Cookie-->
                         include("src/cookie.html");
                         //<!-- Script Cookie-->
                     ?>
+
+<div class="brand">
+      Capacity Sharing
+    </div>
+    <div class="brand brand-bar" >
+        <?=$lang['band'];?>
+    </div>
 
             <div class="container">
                 <div class="jumbotron">

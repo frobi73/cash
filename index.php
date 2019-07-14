@@ -41,6 +41,8 @@ else
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
+    <link rel="stylesheet" href="src\carousel.css">
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -65,12 +67,7 @@ else
   </head>
   <body>
    
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
+  
 
                 <?php 
                     include("src/navbar.php");
@@ -80,8 +77,54 @@ else
                     
                 ?>
 
-    <div class="container">
+
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://bmamissions.org/wp-content/uploads/2019/04/architecture-buildings-factory-247763-e1555609735349-1200x480.jpg" alt="First slide">
+      <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>Capacity Sharing</h1>
+                <p><?=$lang['band'];?></p>
+                <p><a class="btn btn-lg btn-success" href="#" role="button">Regisztráljon még ma</a></p>
+              </div>
+        </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://www.tifast.com/wp-content/uploads/2019/04/IMG_20190213_145935-1200x480.jpg" alt="Second slide">
+      <div class="container">
+              <div class="carousel-caption">
+                <h1>Another example headline.</h1>
+                <p></p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              </div>
+            </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 center_img" src="src\images\sample_01.jpg" alt="Third slide">
+      <div class="container">
+              <div class="carousel-caption text-right">
+                <h1>One more for good measure.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              </div>
+            </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+ 
         <div class="jumbotron">
+        <div class="container">
             <div class="row">
                 <div class="box">
                     <div class="col col-lg-12">

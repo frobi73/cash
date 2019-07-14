@@ -1,7 +1,7 @@
 
-<nav class="navbar sticky-top navbar-expand-md bg-light navbar-light">
+<nav class="navbar sticky-top navbar-expand-md bg-light navbar-light" id="grad">
     <!-- Brand -->
-    <a class="navbar-brand" href="index.php">Capacity Sharing</a>
+    <a class="navbar-brand" href="index.php">Capacity Sharing logo </a>
   
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -15,23 +15,24 @@
           <a class="nav-link" href="index.php"> <?=$lang['nav1'];?> </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="prices.php" > <?=$lang['nav2'];?> </a>
+          <a class="nav-link" href="features.php" > <?=$lang['nav2'];?> </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="features.php"> <?=$lang['nav3'];?></a>
+            <a class="nav-link" href="work.php"> <?=$lang['nav3'];?></a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.php"> <?=$lang['nav4'];?> </a>
+          <a class="nav-link" href="search.php"> <?=$lang['nav4'];?> </a>
         </li> 
         <li class="nav-item">
-            <a class="nav-link" href="register.php"> <?=$lang['nav5'];?></a>
+            <a class="nav-link" href="prices.php"> <?=$lang['nav5'];?></a>
+        </li> 
+        <li class="nav-item">
+            <a class="nav-link" href="login.php"> <?=$lang['nav6'];?></a>
         </li> 
         <li class="nav-item dropdown" >
-            <div class="container">
-              <div class="row">
-                  <div class="col" style="padding-right:0px !important; padding-left:0px !important;">
+
                     <a class="nav-link dropdown-toggle" style="padding-right:0px !important; padding-left:0px !important;" href="#" id="navbardrop" data-toggle="dropdown" >
-                        <?=$lang['nav6'];?>  
+                        <?=$lang['nav7'];?>  
                     </a>
                     <div id="langSelect">
                       <div class="dropdown-menu">
@@ -49,9 +50,7 @@
                           echo' <script> location.replace("'.$_SERVER['PHP_SELF'].'"); </script>';
                        }
                     ?>
-                </div>  <!-- col-->
-              </div>  <!-- row-->
-            </div>   <!-- container-->
+
           </li>
       </ul>
     </div> <!-- collapse-->

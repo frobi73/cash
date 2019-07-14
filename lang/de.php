@@ -20,11 +20,12 @@ $lang['k4'] = 'Zeitaufwand für Verwaltung und Werbung, Kosten können gesenkt w
 $lang['k5'] = 'ernehmen kann langfristig als innovativer Arbeitgeber auf dem Arbeitsmarkt auftreten.';
 
 //nav
-$lang['nav1'] = 'Zuhause';
-$lang['nav2'] = 'Preise';
-$lang['nav3'] = 'Eigenschaften';
-$lang['nav4'] = 'Anmeldung';
-$lang['nav5'] = 'Registrieren';
-$lang['nav6'] = 'Sprachen';
+$lang['nav1'] = 'Hause';
+$lang['nav2'] = 'Eigenschaften';
+$lang['nav3'] = 'Wie Funktioniert Es';
+$lang['nav4'] = 'Suche';
+$lang['nav5'] = 'Preise';
+$lang['nav6'] = 'Einloggen / Registrieren';
+$lang['nav7'] = 'Sprachen';
 
 ?>

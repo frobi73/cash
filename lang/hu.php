@@ -21,11 +21,12 @@ $lang['k5'] =   'Cége hosszútávú innovatív munkaadóként jelenhet meg a mu
 
 //nav
 $lang['nav1'] = 'Főoldal';
-$lang['nav2'] = 'Áraink';
-$lang['nav3'] = 'Az oldal';
-$lang['nav4'] = 'Login';
-$lang['nav5'] = 'Register';
-$lang['nav6'] = 'Nyelvek';
+$lang['nav2'] = 'Jellemzők';
+$lang['nav3'] = 'Hogyan működik';
+$lang['nav4'] = 'Keresés';
+$lang['nav5'] = 'Árak';
+$lang['nav6'] = 'Bejelentkezés/Regisztáció';
+$lang['nav7'] = 'Nyelvek';
 
 
 

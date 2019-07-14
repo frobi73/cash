@@ -21,9 +21,10 @@ $lang['k5'] = 'You can make your company innovative and better on the labor mark
 
 //nav
 $lang['nav1'] = 'Home';
-$lang['nav2'] = 'Prices';
-$lang['nav3'] = 'Features';
-$lang['nav4'] = 'Login';
-$lang['nav5'] = 'Register';
-$lang['nav6'] = 'Language';
+$lang['nav2'] = 'Features';
+$lang['nav3'] = 'How does it work ?';
+$lang['nav4'] = 'Search';
+$lang['nav5'] = 'Prices';
+$lang['nav6'] = 'Login / Register';
+$lang['nav7'] = 'Language';
 ?>
