@@ -90,9 +90,8 @@
                     //<!-- Script Cookie-->
                     
                 ?>
-
-<div class="container">
-        <div class="jumbotron">    
+  <div class="jumbotron">    
+            <div class="container">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
                      <div class="card">
                         <div class="card-body">
@@ -106,7 +105,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="select_country">Ország</label>
                                                 <select class="form-control" id="select_country" onchange="test(this)"
-                                                    name="orszag" placeholder="Ország">
+                                                    name="orszag" placeholder="Ország" require>
                                                     <option selected disabled>Ország</option>
                                                     <option value="hu">Magyar</option>
                                                     <option value="de">Német</option>   
@@ -129,38 +128,150 @@
                                 <div class="form-group col-md-6">
                                     <label for="Iparag">Iparág</label>
                                         <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
-                                                <option selected disabled>Iparág</option>
-                                                <option >Járműipar</option>
-                                                <option >Fém és nehéz ipar</option>
-                                                <option >Építőipar</option>
-                                                <option >Feldolgozóipar</option>
+                                                <option value="0" selected disabled>Iparág</option>
+                                                <option value="1" >Járműipar</option>
+                                                <option value="2" >Fém és nehéz ipar</option>
+                                                <option value="3" >Építőipar</option>
+                                                <option value="4" >Feldolgozóipar</option>
                                         </select>
                                 </div> <!--form group-->
                                 <div class="form-group col-md-6">
                                     <label for="Eroforras">Erőforrás Típusa</label>
                                         <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
-                                        <option selected disabled>Erőforrás típusa</option>
-                                        <option>Emelőgép 1.</option>
-                                        <option>Emelőgép 2.</option>
-                                        <option>Földmunkagép kicsi</option>
-                                        <option>Földmunkagép nagy</option>
-                                        <option>CNC 1.</option>
-                                        <option>CNC 2.</option>
-                                        <option>Toronydarú 1.</option>
-                                        <option>Toronydarú 2.</option>
-                                        <option>Csomagoló gép 1.</option>
-                                        <option>Csomagoló gép 2.</option>
-                                        <option>Ipari robotgép</option>
+                                        <option value="0"  selected disabled>Erőforrás típusa</option>
+                                        <option value="1" >Emelőgép 1.</option>
+                                        <option value="2" >Emelőgép 2.</option>
+                                        <option value="3" >Földmunkagép kicsi</option>
+                                        <option value="4" >Földmunkagép nagy</option>
+                                        <option value="5" >CNC 1.</option>
+                                        <option value="6" >CNC 2.</option>
+                                        <option value="7" >Toronydarú 1.</option>
+                                        <option value="8" >Toronydarú 2.</option>
+                                        <option value="9" >Csomagoló gép 1.</option>
+                                        <option value="10" >Csomagoló gép 2.</option>
+                                        <option value="11" >Ipari robotgép</option>
                                         </select>
                                 </div><!--form group-->
                             </div>  <!--form row-->
-                            <input type="submit" value="Keresés" name="search_btn" class="btn btn-block btn-primary">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                        <label for="daterange">Időszak</label>
+                                        
+                                        <input type="text" class="form-control" name="daterange" id="daterange" 
+                                        value="<?php if(isset($datum)){echo $datum;}else{echo date("Y/m/d");}  ?>" style="text-align:right" />
+
+                                        <script>
+                                               var today = new Date();
+                                               var next_month = new Date();
+                                               var currentMonth = next_month.getMonth();
+                                               next_month.setMonth(currentMonth + 2);
+                                               $('#daterange').daterangepicker({
+                                                    //"format": 'DD/MM/YYYY'
+                                                    "startDate": today,
+                                                    "endDate": today,
+                                                    "minDate": today,
+                                                    "maxDate": next_month,
+                                                    "opens": "center",
+                                                    "locale": {
+                                                        "format": "YYYY/MM/DD",
+                                                        "separator": " - ",
+                                                    }
+                                                }, function(start, end, label) {
+                                                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+                                                });
+                                        </script>
+
+                                </div><!--form group-->
+                                <div class="form-group col-md-6">
+                                    <label for="p">Info</label>   
+                                    <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
+                                </div><!--form group-->
+                            </div>  <!--form row-->
+                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
                         </div><!-- card-body--> 
                     </div><!-- card-->   
-                </form><!-- form-->          
-        </div><!-- jumbotron-->     
-    </div><!-- Container-->
+                </form><!-- form-->         
 
+               
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>A keresés funkció csak regisztrált felhasználóknak működik.
+                                                <br>
+                                    Kattins ide, hogy regisztálj.
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div><!-- Modal content-->
+
+                    </div><!-- Modal dialog-->
+                </div><!-- Modal-->
+                <div class="kereses_eredmeny">
+                        <?php 
+                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
+                             {
+
+
+                             }
+                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
+                            {
+                                if(!isset($_POST['keres'])) { $text = ""; }
+                                else{ $text = $_POST['keres'];}
+
+                                if(!isset($_POST['orszag'])) { $Country = "hu"; }
+                                else{ $Country = $_POST['orszag'];}
+
+                                if(!isset($_POST['varos'])) {$City = "Budapest";}
+                                else{ $City = $_POST['varos'];}
+                                
+                                if(!isset($_POST['Iparag'])){ $Ipar = 0;}
+                                else{ $Ipar = $_POST['Iparag'];}
+
+                                if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
+                                else{ $Eroforras=$_POST['Eroforras'];}
+
+                                if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
+                                else{ $datum=$_POST['daterange'];}
+
+                                $dates = explode(" - ", $datum);
+                                $startdate = $dates[0];
+                                $enddate = $dates[1];
+
+                                $format = 'Y-m-d';
+                                $date = DateTime::createFromFormat($format, '2009-02-15');
+
+                                echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
+
+
+                                include("src/db_config_test.php");
+
+                                // keresés után regisztáljon
+                                //aznap legyel letiltva
+                                $sql='SELECT
+                                        rentals.Rental_ID,
+                                        products.Product_Name,
+                                        products.Description
+                                    FROM rentals
+                                        INNER JOIN products
+                                        ON rentals.Product_ID = products.Product_ID
+                                    WHERE rentals.Start_Date = 0
+                                    AND rentals.End_Date = 0;';
+                            }
+                        ?>
+                </div>  <!-- div - kereses eredmeny-->   
+                </div><!-- container-->     
+        </div><!-- jumbotron-->     
     <?php include("src/sec_footer.html"); ?>
 
     <!-- Optional JavaScript -->

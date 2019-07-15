@@ -29,5 +29,7 @@ $lang['nav6'] = 'Bejelentkezés/Regisztáció';
 $lang['nav7'] = 'Nyelvek';
 
 
+$lang['reg'] = "Regisztráljon még ma";
+
 
 ?>

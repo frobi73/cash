@@ -27,4 +27,8 @@ $lang['nav4'] = 'Search';
 $lang['nav5'] = 'Prices';
 $lang['nav6'] = 'Login / Register';
 $lang['nav7'] = 'Language';
+
+
+
+$lang['reg'] = "Register today";
 ?>

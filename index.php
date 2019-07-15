@@ -87,7 +87,7 @@ else
               <div class="carousel-caption text-left">
                 <h1>Capacity Sharing</h1>
                 <p><?=$lang['band'];?></p>
-                <p><a class="btn btn-lg btn-success" href="#" role="button">Regisztráljon még ma</a></p>
+                <p><a class="btn btn-lg btn-success" href="login.php" role="button"><?=$lang['reg'];?></a></p>
               </div>
         </div>
     </div>

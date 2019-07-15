@@ -28,4 +28,8 @@ $lang['nav5'] = 'Preise';
 $lang['nav6'] = 'Einloggen / Registrieren';
 $lang['nav7'] = 'Sprachen';
 
+
+
+$lang['reg'] = "Melde dich noch heute an";
+
 ?>

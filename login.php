@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 
 if(isset($_SESSION['lang']))
@@ -44,10 +45,15 @@ else
     
     <link rel="stylesheet" href="src\login.css">
 
+    <link rel="stylesheet" href="src\catchpa.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
    
     <!-- Scripts-->
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
@@ -69,100 +75,214 @@ else
 <body>
 
 
-                <div class="login">
-                    <div class="container">
-                     
-                              <h1>Login</h1>
+<?php 
+    include("src/navbar.php");
+    include("src/cookie.html");
+    //<!-- Script Cookie-->
+?>
+  
+<div class="jumbotron">
+                <div class="container">
+                
+                <div class="card-deck">
+                  <div class="card">
+                          <div class="card-header">Login</div>
+                          <div class="card-body">
+                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
-                                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-                                  <label for="username">
-                                    <i class="fas fa-user"></i>
-                                  </label>
-                                  <input type="text" name="username" placeholder="Username" id="username" required>
-                                  <label for="password">
-                                    <i class="fas fa-lock"></i>
-                                  </label>
-                                  <input type="password" name="password" placeholder="Password" id="password" required>
-                                  <input type="submit" value="Login" name="login_user">
-                                </form>
+                            <div class="input-group">
+                              <label for="username">
+                                        <i class="fas fa-user"></i>
+                              </label>
+                                <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+                            </div>
+                            <div class="input-group">
+                              <label for="password">
+                                        <i class="fas fa-lock"></i>
+                                      </label>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
 
-                                <div class="row">
-                                  <div class="col col-lg-6 center">
-                                    <a href="index.php"> 
-                                      <i class="fas fa-arrow-alt-circle-left"></i>
-                                      Go back 
-                                    </a> 
-                                  </div> <!-- col-->
-                                <div class="col col-lg-6 center">
-                                    <a href="forgotPassword.php">Forgot password 
-                                    <i class="fas fa-unlock-alt"></i>
-                                    </a> 
-                                </div> <!-- col-->
-                          
-                          <div class="container error center">
-                          
-                            <?php
+                            <div class="input-group">
+                                <input type="submit" value="Login" name="login_user" class="btn btn-block btn-success"> 
+                            </div>
+                            <div class="input-group">
+                                  <div class="container error center">
+                                    <?php
+                                        if(isset($_POST['login_user'])) 
+                                        {
+                                          include('src/db_config.php');
 
-                                if(isset($_POST['login_user'])) 
-                                {
-                                  include('src/db_config.php');
+                                          //session_start();
 
-                                  session_start();
+                                          // Now we check if the data from the login form was submitted, isset() will check if the data exists.
+                                            if ( !isset($_POST['username'], $_POST['password']) ) 
+                                            {
+                                              // Could not get the data that should have been sent.
+                                              die ('Please fill both the username and password field!');
+                                            }
 
-                                  // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-                                    if ( !isset($_POST['username'], $_POST['password']) ) 
-                                    {
-                                      // Could not get the data that should have been sent.
-                                      die ('Please fill both the username and password field!');
-                                    }
+                                          // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+                                            if ($stmt = $con->prepare('SELECT account_ID, password FROM accounts WHERE username = ?')) 
+                                            {
+                                              // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+                                              $stmt->bind_param('s', $_POST['username']);
+                                              $stmt->execute();
+                                              // Store the result so we can check if the account exists in the database.
+                                              $stmt->store_result();
+                                              
+                                            }
 
-                                  // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-                                    if ($stmt = $con->prepare('SELECT account_ID, password FROM accounts WHERE username = ?')) 
-                                    {
-                                      // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-                                      $stmt->bind_param('s', $_POST['username']);
-                                      $stmt->execute();
-                                      // Store the result so we can check if the account exists in the database.
-                                      $stmt->store_result();
+                                            if ($stmt->num_rows > 0) 
+                                            {
+                                              $stmt->bind_result($id, $password);
+                                              $stmt->fetch();
+
+                                              // Account exists, now we verify the password.
+                                              if (password_verify($_POST['password'], $password)) 
+                                              {
+                                                // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
+                                                session_regenerate_id();
+                                                $_SESSION['loggedin'] = TRUE;
+                                                $_SESSION['name'] = $_POST['username'];
+                                                $_SESSION['id'] = $id;
+                                                //echo 'Welcome ' . $_SESSION['name'] . '!';
+                                                header('Location: secure/home.php');
+                                                $message = "";
+                                              } 
+                                              else 
+                                              {
+                                                $message = 'Incorrect username or password!';
+                                              }
+                                            } 
+                                            else 
+                                            {
+                                              $message = 'Incorrect username or password!';
+                                            }
+                                            echo "<div class=\"error\">";
+                                              echo $message;
+                                            echo "</div>";
+
+                                          $stmt->close();
+                                        }
+                                      ?>
+                                  </div> <!-- error -->      
                                       
-                                    }
+                              </div> <!-- input group -->   
+                    </form>
+                          </div>  <!--card body-->
+                          <div class="card-footer">Footer</div>
+                  </div> <!-- card-->
 
-                                    if ($stmt->num_rows > 0) 
-                                    {
-                                      $stmt->bind_result($id, $password);
-                                      $stmt->fetch();
+                  <div class="card">
+                          <div class="card-header">Register</div>
+                          <div class="card-body">
+                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
-                                      // Account exists, now we verify the password.
-                                      if (password_verify($_POST['password'], $password)) 
-                                      {
-                                        // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
-                                        session_regenerate_id();
-                                        $_SESSION['loggedin'] = TRUE;
-                                        $_SESSION['name'] = $_POST['username'];
-                                        $_SESSION['id'] = $id;
-                                        //echo 'Welcome ' . $_SESSION['name'] . '!';
-                                        header('Location: secure/home.php');
-                                      } 
-                                      else 
-                                      {
-                                        $message = 'Incorrect username or password!';
-                                      }
-                                    } 
-                                    else 
-                                    {
-                                      $message = 'Incorrect username or password!';
-                                    }
-                                    echo "<div class=\"error\">";
-                                      echo $message;
-                                    echo "</div>";
+                            <div class="input-group">
+                              <label for="username">
+                                        <i class="fas fa-user"></i>
+                              </label>
+                                <input id="username" type="text" class="form-control" name="username" placeholder="Név" Required>
+                            </div>
+                            <div class="input-group">
+                              <label for="email">
+                                        <i class="fas fa-at"></i>
+                              </label>
+                                <input id="email" type="email" class="form-control" name="email" placeholder="E-mail" Required>
+                            </div>
+                            <div class="input-group">
+                              <label for="password">
+                                        <i class="fas fa-lock"></i>
+                                      </label>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" Required>
+                            </div>
+                            <div class="input-group">
+                              <label for="password_again">
+                                        <i class="fas fa-unlock"></i>
+                                      </label>
+                                <input id="password" type="password" class="form-control" name="password_again" placeholder="Password again" Required>
+                            </div>
 
-                                  $stmt->close();
-                                }
-                              ?>
-                          </div> <!-- error -->
-                        </div> <!-- row-->
-                    </div> <!-- container-->
-                </div> <!-- login-->
+                            <div class="input-group">
+
+                               <div style="padding-left:15px"> A <a href="user_agreements"> felhasználási feltételeket</a> elolvastam </div>
+                                    
+                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="check" value="agree" Required>
+                            </div>
+
+                            <div class="input-group">                            
+                                <div class="g-recaptcha center " data-sitekey="6Lepw60UAAAAAKW5PrIq_oZTn6Xp2GzKo1NBUGV1"></div>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="submit" value="Register" name="reg_user" class="btn btn-block btn-success"> 
+                            </div>
+                            <div class="input-group">
+                                  <div class="container error center">
+                                    <?php
+                                     $message = "";
+                                        if(isset($_POST['reg_user'])) 
+                                        {
+                                            include('src/db_config.php');
+                                          if (!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['password_again'])) // ha valamit nem töltött ki
+                                          {
+                                              // Could not get the data that should have been sent.
+                                              $message =  'Please fill every field and accept the user agreements';
+                                          } // isset
+                                          else // ha minden kitöltött, és megnyomta a checkboxot is
+                                          {
+                                            if($_POST['password'] != $_POST['password_again']) // ha a jelszavak nem egyeznek
+                                            {
+                                                $message = 'The passwords do not match!';
+                                            } // pwd egyezés
+                                            else // ha a jelszvaka megegyeznek
+                                            {
+                                              if ($stmt = $con->prepare('SELECT email FROM accounts WHERE email = ?'))  // e-mail lekérdezés
+                                              {
+                                                $stmt->bind_param('s', $_POST['email']);
+                                                $stmt->execute();
+                                                $stmt->store_result();
+                                                  if ($stmt->num_rows == 0)  // ha nincs ilyen e-mail, akkor be is regisztrálja
+                                                  {
+                                                    $username = $_POST['username'];
+                                                    $email = $_POST['email'];
+                                                    //$password_1 = $_POST['password'];
+                                                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                                                    echo $username,$email,$password ; echo "<br>";
+                                                    $sql =  "CALL REG_USER('$username', '$email', '$password');";
+                                                    $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
+                                                  } // stmt- num rows - email check
+                                                  else // ha van ilyen e-mail
+                                                  {
+                                                    $message = "ilyen e-mail már van";
+                                                  } 
+                                              } // else stmt - email check - email lekérdezés
+                                            } // leszvaka egyzése if - else
+                                          } // ha minden stimmel, és ki van töltve
+                                        } // reg user meg van nyomva
+                                          
+                                          echo "<div class=\"error\">";
+                                          echo $message;
+                                          echo "</div>";
+
+                                       // $stmt->close();
+                                      ?>
+                                  </div> <!-- error -->      
+                                      
+                              </div> <!-- input group -->   
+                    </form>
+                          </div>  <!--card body-->
+                          <div class="card-footer">Footer</div>
+                  </div> <!-- card-->
+
+                </div> <!-- card deck-->
+
+
+                </div> <!-- container--> 
+ </div> <!-- jumbotron-->
+ <?php include("src/footer.html"); ?>
+
   
 </body>
 </html>
