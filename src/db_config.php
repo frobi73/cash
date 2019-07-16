@@ -1,10 +1,10 @@
 <?php
 
         $servername = "localhost";
-        //$username = "root";
-        $username = "u410658578_cash";
-        //$password = "";
-        $password = "Hostinger_73";
+        $username = "root";
+        //$username = "u410658578_cash";
+        $password = "";
+        //$password = "Hostinger_73";
         $dbname = "u410658578_cash";
         $con = new mysqli($servername, $username, $password, $dbname);
         mysqli_set_charset($con,"utf8");

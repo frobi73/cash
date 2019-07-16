@@ -1,42 +1,39 @@
 <?php 
-    session_start();
+session_start();
 
-    if( $_SESSION['loggedin'] != TRUE)
+if(isset($_SESSION['lang']))
+{
+    switch($_SESSION['lang'])
     {
-        session_unset();
-        session_destroy();
-        header('Location:'. base_url(TRUE));   
-    }
+        case "en":
+           require('lang/en.php');		
 
-    if(isset($_SESSION['lang']))
-    {
-        switch($_SESSION['lang'])
-        {
-            case "en":
-            require('lang/en.php');		
-        break;
-        
-        case "hu":
-            require('lang/hu.php');		
-        break;
-        
-        case "de":
-            require('lang/de.php');		
-        break;	
-        
-        default: 
-            require('lang/hu.php');		
-        }
+       break;
+       
+       case "hu":
+           require('lang/hu.php');	
+
+       break;
+       
+       case "de":
+           require('lang/de.php');		
+	
+       break;	
+       
+       default: 
+           require('lang/hu.php');		
+           
     }
-    else
-    {
-        $_SESSION['lang'] = "hu";
-        header('Location:'.$_SERVER['PHP_SELF']);
-        exit();
-    }
+}
+else
+{
+    $_SESSION['lang'] = "hu";
+    header('Location:'.$_SERVER['PHP_SELF']);
+    exit();
+}
 ?>
 <!doctype html>
-<html lang="hu">
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -48,11 +45,13 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
+        
+    <link rel="stylesheet" href="src\features.css">
+
+    <link rel="stylesheet" type="text/css" href="src\datepicker\daterangepicker.css" />
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-   
-    <link rel="stylesheet" href="src\features.css">
    
     <!-- Scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -68,20 +67,22 @@
     
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+
     <script type="text/javascript" src="src/varos.js"></script>
 
-    <title>Capacity Sharing - Home</title>
-    <link rel="shortcut icon" href="src/images/ico/favicon.ico">
+    <script type="text/javascript" src="src\datepicker\moment.min.js"></script>
 
+    <script type="text/javascript" src="src\datepicker\daterangepicker.js"></script>
+    
+
+    <title>Capacity Sharing</title>
+    <link rel="shortcut icon" href="src/images/ico/favicon.ico">
+   
   </head>
   <body>
    
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
+  
 
                 <?php 
                     include("src/sec_navbar.php");
@@ -90,7 +91,29 @@
                     //<!-- Script Cookie-->
                     
                 ?>
-  <div class="jumbotron">    
+
+        <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                    <div class="col">
+                        <div class="center">
+                                <h2 class="center">
+                                    <?= $lang['demo'];?>
+                                </h2><hr>
+                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
+                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
+                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
+                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!
+                                </p>
+                        </div>  <!-- center-->
+                    </div><!-- col-->
+            </div><!-- row-->
+            </div><!-- container-->     
+        </div><!-- jumbotron-->     
+
+        <div class="jumbotron">    
             <div class="container">
                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
                      <div class="card">
@@ -187,8 +210,22 @@
                                     <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
-                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
-                        </div><!-- card-body--> 
+                            <?php 
+                                if($_SESSION['username'] == "előfizetve")
+                                {
+                                    // akkor a keresés gombot rakja ki neki
+                                    echo '  <button type="submit" class="btn btn-block btn-success">Keresés</button>
+                                    ';
+                                }
+                                else
+                                {
+                                    // ha nincs előfizetve, akkor a modal-t nyitja meg.
+                                    echo '  <button type="button" class="btn btn-block btn-success" 
+                                    data-toggle="modal" data-target="#myModal">Keresés</button>
+                                    ';
+                                }
+                            ?>
+                            </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
 
@@ -272,6 +309,8 @@
                 </div>  <!-- div - kereses eredmeny-->   
                 </div><!-- container-->     
         </div><!-- jumbotron-->     
+
+
     <?php include("src/sec_footer.html"); ?>
 
     <!-- Optional JavaScript -->

@@ -71,24 +71,15 @@
 
   </head>
   <body>
-   
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
-
                 <?php 
                     include("src/sec_navbar.php");
                     //<!-- Script Cookie-->
                     include("src/cookie.html");
                     //<!-- Script Cookie-->
-                    
                 ?>
 
-<div class="container">
         <div class="jumbotron">
+        <div class="container">
             <div class="row">
                     <div class="col col-lg-4">
                         <div class="card">

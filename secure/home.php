@@ -48,6 +48,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
+    <link rel="stylesheet" href="src\carousel.css">
+
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -72,13 +74,7 @@
   </head>
   <body>
    
-    <div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
-
+    
                 <?php 
                     include("src/sec_navbar.php");
                     //<!-- Script Cookie-->
@@ -87,8 +83,9 @@
                     
                 ?>
 
-<div class="container">
+
         <div class="jumbotron">
+            <div class="container">
                 <div class="card-deck">
                             <div class="card">
                                 <img class="card-img-top" id="kep" src="https://lh3.googleusercontent.com/cWya94a6c4wHBHh-cRL7j0-ZyKojkayvlgVw6YJYvkzYnXgHHb2woDLAT7nEuYLQ7Ua3SJS7RxCYlYqiJ1JcfYS8=w640-h480-p" alt="01 img">
@@ -114,8 +111,9 @@
                                 </div>
                             </div><!-- card-->
                 </div> <!-- card deck-->
+            </div><!-- Container-->
         </div><!-- jumbotron--> 
-    </div><!-- Container-->
+
 
     <?php include("src/sec_footer.html"); ?>
 
