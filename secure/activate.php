@@ -41,7 +41,6 @@ else
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
-    <link rel="stylesheet" href="src\carousel.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
@@ -72,11 +71,13 @@ else
         <div class="jumbotron">
             <div class="container">
                 <div class="row">
+                    <div class="card center" style="text-align:center;">
+                    
                     <?php
                         include('src/db_config.php');
                         $email = htmlspecialchars($_GET['email']);
                         $code = htmlspecialchars($_GET['code']);
-                        echo $email,$code;
+                        //echo $email,$code;
                         // First we check if the email and code exists...
                         if (isset($_GET['email'], $_GET['code'])) {
                             if ($stmt = $con->prepare('SELECT * FROM accounts WHERE email = ? AND activation_code = ?')) {
@@ -106,6 +107,7 @@ else
                             }
                         }
                     ?>
+                    </div>
                 </div>  <!-- row-->            
             </div><!-- Container--> 
         </div><!-- jumbotron-->     
