@@ -211,8 +211,41 @@ else
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="check" value="agree" Required>
                             </div>
 
-                            <div class="input-group">                            
-                                <div class="g-recaptcha center " data-sitekey="6Lepw60UAAAAAKW5PrIq_oZTn6Xp2GzKo1NBUGV1"></div>
+                            <div >  
+
+                                    <script>
+                                    // Resize reCAPTCHA to fit a specific size. We're scaling using CSS3 transforms ||| captchaScale = containerWidth / elementWidth
+
+                                    function scaleCaptcha(elementWidth) {
+                                      // Width of the reCAPTCHA element | 640 
+                                      var reCaptchaWidth = 340;
+                                      // Get the containing element's width
+                                      var containerWidth = $('.container').width();
+                                      
+                                      // Only scale the reCAPTCHA if it won't fit inside the container
+                                      if(reCaptchaWidth > containerWidth) {
+                                        // Calculate the scale
+                                        var captchaScale = containerWidth / reCaptchaWidth;
+                                        // Apply the transformation
+                                        $('.g-recaptcha').css({
+                                          'transform':'scale('+captchaScale+')'
+                                        });
+                                      }
+                                    }
+
+                                    $(function() { 
+                                    
+                                      // Initialize scaling
+                                      scaleCaptcha();
+                                      
+                                      // Update scaling on window resize
+                                      // Uses jQuery throttle plugin to limit strain on the browser
+                                      $(window).resize( $.throttle( 100, scaleCaptcha ) );  
+                                    });
+                                    </script>
+                                <div class="g-recaptcha center " data-sitekey="6Lepw60UAAAAAKW5PrIq_oZTn6Xp2GzKo1NBUGV1"
+                                 
+                                ></div>
                             </div>
 
                             <div class="input-group">
@@ -224,42 +257,67 @@ else
                                      $message = "";
                                         if(isset($_POST['reg_user'])) 
                                         {
-                                            include('src/db_config.php');
-                                          if (!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['password_again'])) // ha valamit nem töltött ki
+                                          if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
                                           {
-                                              // Could not get the data that should have been sent.
-                                              $message =  'Please fill every field and accept the user agreements';
-                                          } // isset
-                                          else // ha minden kitöltött, és megnyomta a checkboxot is
-                                          {
-                                            if($_POST['password'] != $_POST['password_again']) // ha a jelszavak nem egyeznek
-                                            {
-                                                $message = 'The passwords do not match!';
-                                            } // pwd egyezés
-                                            else // ha a jelszvaka megegyeznek
-                                            {
-                                              if ($stmt = $con->prepare('SELECT email FROM accounts WHERE email = ?'))  // e-mail lekérdezés
-                                              {
-                                                $stmt->bind_param('s', $_POST['email']);
-                                                $stmt->execute();
-                                                $stmt->store_result();
-                                                  if ($stmt->num_rows == 0)  // ha nincs ilyen e-mail, akkor be is regisztrálja
-                                                  {
-                                                    $username = $_POST['username'];
-                                                    $email = $_POST['email'];
-                                                    //$password_1 = $_POST['password'];
-                                                    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                                                    echo $username,$email,$password ; echo "<br>";
-                                                    $sql =  "CALL REG_USER('$username', '$email', '$password');";
-                                                    $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
-                                                  } // stmt- num rows - email check
-                                                  else // ha van ilyen e-mail
-                                                  {
-                                                    $message = "ilyen e-mail már van";
-                                                  } 
-                                              } // else stmt - email check - email lekérdezés
-                                            } // leszvaka egyzése if - else
-                                          } // ha minden stimmel, és ki van töltve
+                                                $secret = '6Lepw60UAAAAAAviBRWVpMQEMVYcZyIdrVv5ZE6T';
+                                                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+                                                $responseData = json_decode($verifyResponse);
+                                                if($responseData->success)
+                                                {
+                                                    $succMsg = 'Your contact request have submitted successfully.';
+
+                                                    include('src/db_config.php');
+                                                    if (!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['password_again'])) // ha valamit nem töltött ki
+                                                    {
+                                                        // Could not get the data that should have been sent.
+                                                        $message =  'Please fill every field and accept the user agreements';
+                                                    } // isset
+                                                    else // ha minden kitöltött, és megnyomta a checkboxot is
+                                                    {
+                                                      if($_POST['password'] != $_POST['password_again']) // ha a jelszavak nem egyeznek
+                                                      {
+                                                          $message = 'The passwords do not match!';
+                                                      } // pwd egyezés
+                                                      else // ha a jelszvaka megegyeznek
+                                                      {
+                                                        if ($stmt = $con->prepare('SELECT email FROM accounts WHERE email = ?'))  // e-mail lekérdezés
+                                                        {
+                                                          $stmt->bind_param('s', $_POST['email']);
+                                                          $stmt->execute();
+                                                          $stmt->store_result();
+                                                            if ($stmt->num_rows == 0)  // ha nincs ilyen e-mail, akkor be is regisztrálja
+                                                            {
+                                                              $username = $_POST['username'];
+                                                              $email = $_POST['email'];
+                                                              //$password_1 = $_POST['password'];
+                                                              $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                                                              $uniqid = uniqid();
+                                                              echo $username,$email,$password ; echo "<br>";
+                                                              $sql =  "CALL REG_USER('$username', '$email', '$password','$uniqid');";
+                                                              $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
+
+                                                              $activate_link = 'fr-demo.xyz/cash/secure/activate.php?email=' . $email . '&code=' . $uniqid; 
+                                                              $subject = "Capacity Sharing Aktiválás";
+                                                              $headers = "";
+                                                              $message = '<p>Please click the following link or give this in your browser to activate your account:</p> ' . '<p><a href="' . $activate_link . '">' . Aktiválás . '</a></p>';
+                                                                mail($email, $subject, $message, $headers);
+                                                                echo 'Please check your email to activate your account!'; //. PHP_EOL or . "\r\n"
+
+                                                            } // stmt- num rows - email check
+                                                            else // ha van ilyen e-mail
+                                                            {
+                                                              $message = "ilyen e-mail már van";
+                                                            } 
+                                                        } // else stmt - email check - email lekérdezés
+                                                      } // leszvaka egyzése if - else
+                                                    } // ha minden stimmel, és ki van töltve
+                                                }
+                                                else
+                                                {
+                                                    $message = 'Robot verification failed, please try again.';
+                                                }
+                                          }
+                                           
                                         } // reg user meg van nyomva
                                           
                                           echo "<div class=\"error\">";
