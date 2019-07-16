@@ -5,7 +5,7 @@
     $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . 
     "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 
-    $message = '
+    $content = '
     <html>
 <head>
   <title>Capacity Sharing</title>
@@ -23,7 +23,7 @@
 </body>
 </html> ';
 
-     $success =mail($email, $subject, $message, $headers);
+     $success =mail($email, $subject, $content, $headers);
 
         if (!$success) {
             $message = error_get_last()['message'];
