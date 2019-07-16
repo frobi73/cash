@@ -73,16 +73,9 @@ else
                         //<!-- Script Cookie-->
                     ?>
 
-<div class="brand">
-      Capacity Sharing
-    </div>
-    <div class="brand brand-bar" >
-        <?=$lang['band'];?>
-    </div>
-
-            <div class="container">
+            
                 <div class="jumbotron">
-
+                    <div class="container">
                     <div class="box">
                     <div class="center gap">
                             <h2 class="center">

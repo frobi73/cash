@@ -111,7 +111,7 @@ else
                                     <?php
                                         if(isset($_POST['login_user'])) 
                                         {
-                                          include('src/db_config.php');
+                                          include('secure/src/db_config.php');
 
                                           //session_start();
 
@@ -171,7 +171,7 @@ else
                               </div> <!-- input group -->   
                     </form>
                           </div>  <!--card body-->
-                          <div class="card-footer">Footer</div>
+                          <div class="card-footer"> <a href="forgot_password.php">Forgot Password ?</a></div>
                   </div> <!-- card-->
 
                   <div class="card">
@@ -266,7 +266,7 @@ else
                                                 {
                                                     $succMsg = 'Your contact request have submitted successfully.';
 
-                                                    include('src/db_config.php');
+                                                    include('secure/src/db_config.php');
                                                     if (!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['password_again'])) // ha valamit nem töltött ki
                                                     {
                                                         // Could not get the data that should have been sent.

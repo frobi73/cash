@@ -28,7 +28,7 @@ $lang['nav5'] = 'Prices';
 $lang['nav6'] = 'Login / Register';
 $lang['nav7'] = 'Language';
 
-
+$lang['reset_pwd_msg'] = "An e-mail has been sent to reset the password.";
 
 $lang['reg'] = "Register today";
 ?>

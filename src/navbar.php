@@ -24,14 +24,11 @@
           <a class="nav-link" href="search.php"> <?=$lang['nav4'];?> </a>
         </li> 
         <li class="nav-item">
-            <a class="nav-link" href="prices.php"> <?=$lang['nav5'];?></a>
-        </li> 
-        <li class="nav-item">
             <a class="nav-link" href="login.php"> <?=$lang['nav6'];?></a>
         </li> 
         <li class="nav-item dropdown" >
 
-                    <a class="nav-link dropdown-toggle" style="padding-right:0px !important; padding-left:0px !important;" href="#" id="navbardrop" data-toggle="dropdown" >
+                    <a class="nav-link dropdown-toggle"href="#" id="navbardrop" data-toggle="dropdown" >
                         <?=$lang['nav7'];?>  
                     </a>
                     <div id="langSelect">

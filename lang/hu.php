@@ -28,6 +28,7 @@ $lang['nav5'] = 'Árak';
 $lang['nav6'] = 'Bejelentkezés/Regisztáció';
 $lang['nav7'] = 'Nyelvek';
 
+$lang['reset_pwd_msg'] = "E-mail küldés sikeres";
 
 $lang['reg'] = "Regisztráljon még ma";
 

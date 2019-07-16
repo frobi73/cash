@@ -28,7 +28,7 @@ $lang['nav5'] = 'Preise';
 $lang['nav6'] = 'Einloggen / Registrieren';
 $lang['nav7'] = 'Sprachen';
 
-
+$lang['reset_pwd_msg'] = "PWD RESET";
 
 $lang['reg'] = "Melde dich noch heute an";
 
