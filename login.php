@@ -296,13 +296,8 @@ else
                                                               $sql =  "CALL REG_USER('$username', '$email', '$password','$uniqid');";
                                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
                                                           
-                                                              $from    = 'noreply@hostinger.hu';
-                                                              $subject = 'Capacity Sharing Aktiválás';
-                                                              $activate_link = 'fr-demo.xyz/cash/secure/activate.php?email=' . $email . '&code=' . $uniqid; 
-                                                              $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
-                                                              $message = '<p>Please click the following link or give this in your browser to activate your account:</p> ' . '<p><a href="' . $activate_link . '">' . Aktiválás . '</a></p>';
-                                                                mail($email, $subject, $message, $headers);
-                                                                echo 'Please check your email to activate your account!'; //. PHP_EOL or . "\r\n"
+                                                              include("send_email.php");
+                                                             
 
                                                             } // stmt- num rows - email check
                                                             else // ha van ilyen e-mail

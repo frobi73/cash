@@ -1,21 +1,32 @@
 <?php
-	header('Content-type: application/json');
-	$status = array(
-		'type'=>'success',
-		'message'=>'Email sent!'
-	);
+    $from    = 'noreply@hostinger.hu';
+    $subject = 'Capacity Sharing Aktiválás';
+    $activate_link = 'fr-demo.xyz/cash/secure/activate.php?email=' . $email . '&code=' . $uniqid; 
+    $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . 
+    "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 
-    $name = @trim(stripslashes($_POST['name'])); 
-    $email = @trim(stripslashes($_POST['email'])); 
-    $subject = @trim(stripslashes($_POST['subject'])); 
-    $message = @trim(stripslashes($_POST['message'])); 
+    $message = '
+    <html>
+<head>
+  <title>Capacity Sharing</title>
+</head>
+<body>
+  <p>Aktiválás</p>
+    
+  <p>
+  Please click the following link or give this in your browser to activate your account:
+  </p>
+  <p>
+    <a href="' . $activate_link . '">  Aktiválás </a>
+  </p>
 
-    $email_from = $email;
-    $email_to = 'email@gmail.com';
+</body>
+</html> ';
 
-    $body = 'Name: ' . $name . "\n\n" . 'Email: ' . $email . "\n\n" . 'Subject: ' . $subject . "\n\n" . 'Message: ' . $message;
+     $success =mail($email, $subject, $message, $headers);
 
-    $success = @mail($email_to, $subject, $body, 'From: <'.$email_from.'>');
-
-    echo json_encode($status);
-    die; 
+        if (!$success) {
+            $message = error_get_last()['message'];
+        }
+?>
+?>
