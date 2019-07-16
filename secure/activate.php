@@ -1,5 +1,5 @@
 <?php
-include('db_config.php');
+include('src/db_config.php');
 $email = htmlspecialchars($_GET['email']);
 $code = htmlspecialchars($_GET['code']);
 // First we check if the email and code exists...
