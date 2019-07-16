@@ -28,5 +28,8 @@
         if (!$success) {
             $message = error_get_last()['message'];
         }
-?>
+        else
+        {
+            echo "Siker";
+        }
 ?>
