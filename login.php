@@ -296,7 +296,7 @@ else
                                                               $sql =  "CALL REG_USER('$username', '$email', '$password','$uniqid');";
                                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
                                                           
-                                                              include("send_email.php");
+                                                              include("src/send_email.php");
                                                              
 
                                                             } // stmt- num rows - email check
