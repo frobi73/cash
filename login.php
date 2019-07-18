@@ -137,8 +137,8 @@ else
                                             {
                                               $stmt->bind_result($id, $password);
                                               $stmt->fetch();
-
-                                              $sql =  "SELECT activation_code FROM accounts WHERE email = ". $_POST['login_email'] .";";
+                                              $email = $_POST['login_email'];
+                                              $sql =  "CALL ACT_CODE('$email');";
                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
 
                                               if($result["activation_code"] != "activated") 
