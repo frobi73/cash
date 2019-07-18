@@ -78,7 +78,7 @@ else
         	<div class="container">
 					<form  action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" > 
 
-                            <?php
+                                <?php
 
                                     include('secure/src/db_config.php');
 
@@ -97,12 +97,12 @@ else
 
                                                         <div class="input-group">
                                                             <label for="reset-password"><i class="fas fa-lock"></i></label>
-                                                            <input type="password" class="form-control" name="reset-password" placeholder="New password" id="reset-password" Required>
+                                                            <input type="password" class="form-control" name="reset-password" placeholder="New password"  Required>
                                                         </div> <!-- input group -->
                             
                                                         <div class="input-group">
                                                             <label for="reset-password"><i class="fas fa-lock"></i></label>
-                                                            <input type="password" class="form-control name="confirm-password" placeholder="Confirm new password" id="confirm-password" Required>
+                                                            <input type="password" class="form-control name="confirm-password" placeholder="Confirm new password" Required>
                                                         
                                                         </div><!-- input group -->
                                                         
@@ -115,43 +115,45 @@ else
                                             }
                                         }
                                     }
-
-                                    //This code runs if the form has been submitted
-                                    if (isset($_POST['submit-password']) && $_SERVER['REQUEST_METHOD'] == 'POST' )
-                                    {
-                                        if($_POST['reset-password'] != $_POST['confirm-password']) 
-                                        {
-                                            echo "Password and Confirm Password doesn't match";
-                                        }
-                                        else
-                                        {
-                                                $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", password = ? WHERE email = ?');
-                                                Echo 'SQL Command: ' . $sql;
-                                                if ($stmt = $con->prepare($sql)) 
-                                                {
-                                                    //Echo "Update SQL with stmt was prepared";
-                                                    // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-                                                $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
-                                                // $email = 'cash@fr-demo.xyz'; //$_POST["email"];
-                                                    //Echo "Before bind_param";
-                                                $stmt->bind_param('ss', $password,$email);
-                                                // $stmt->bind_param('ss', 'frdemo', 'cash@fr-demo.xyz');
-                                                Echo "After bind_param";
-                                                    $stmt->execute();
-
-                                                    echo 'New password created!';
-                                                    $stmt->close();
-                                                } 
-                                                else 
-                                                {
-                                                Echo "Else Statement Running";
-                                                }   
-                                        }
-                                    }
-                                    else{echo "hiba";}
                                     ?>
+                                  
+                            
                             <div class="error">
+  
+                                    <?php
+                                        //This code runs if the form has been submitted
+                                        if (isset($_POST['submit-password']) && $_SERVER['REQUEST_METHOD'] == 'POST' )
+                                        {
+                                            $pwd1 = $_POST['reset-password'];
+                                            $pwd2 = $_POST['confirm-password'];
+                                            echo $pwd1,$pwd2;
+                                            if( $pwd1 != $pwd2) 
+                                            {
+                                                echo "Password and Confirm Password doesn't match";
+                                            }
+                                            else
+                                            {
+                                                    $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", password = ? WHERE email = ?');
+                                                    Echo 'SQL Command: ' . $sql;
+                                                    if ($stmt = $con->prepare($sql)) 
+                                                    {
+                                                        $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
+                                                        $stmt->bind_param('ss', $password,$email);
+                                                    
+                                                        Echo "After bind_param";
+                                                        $stmt->execute();
 
+                                                        echo 'New password created!';
+                                                        $stmt->close();
+                                                    } 
+                                                    else 
+                                                    {
+                                                    Echo "Else Statement Running";
+                                                    }   
+                                            }
+                                        }
+                                        else{echo "hiba";}
+                                    ?>
                             </div></div> <!-- error -->
 					</form> <!-- input form -->
     		</div><!-- Container-->
