@@ -94,19 +94,19 @@ else
 						<div class="error">
 										<?php
 										$error_message = "";
-										if($_SERVER['REQUEST_METHOD'] == 'POST') 
+										if(isset($_POST["btn-forgot"])) 
 										{
 											include('secure/src/db_config.php');
 										
 											$email = $_POST["email"];
-											$sql = 'SELECT username,email FROM accounts WHERE email = \'' . $email .'\'; ';
+											$sql = 'SELECT email FROM accounts WHERE email = \'' . $email .'\'; ';
 											$result = $con->query($sql);
 											
 											if ($result->num_rows >= 0) 
 											{
 												echo $email;
 													//require("password_recovery_mail.php");
-													$sql = ('UPDATE accounts SET pwd_reset_token = ? WHERE email = ?');
+													$sql = 'UPDATE accounts SET pwd_reset_token = ? WHERE email = ?';
 													if ($stmt = $con->prepare($sql)) 
 													{
 														$uniqid = uniqid();
@@ -143,6 +143,7 @@ else
 														mail($email, $subject, $content, $headers);
 														echo "<script type='text/javascript'>alert('". $lang['reset_pwd_msg']. "');</script>";
 														$stmt->close();
+														echo '<script> window.location.replace("login.php") </script>';
 													} 
 													else 
 													{

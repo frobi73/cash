@@ -77,7 +77,25 @@ else
         <div class="jumbotron">
         	<div class="container">
 					<form  action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" > 
+                    <h1>Reset password</h1>
 
+                        <div class="input-group">
+
+                            <label for="reset-password"><i class="fas fa-lock"></i></label>
+                            <input type="password" class="form-control" name="reset-password" placeholder="New password"  Required>
+
+                            </div> <!-- input group -->
+
+                        <div class="input-group">
+
+                            <label for="confirm-password"><i class="fas fa-lock"></i></label>
+                            <input type="password" class="form-control" name="confirm-password" placeholder="Confirm new password" Required>
+
+                        </div><!-- input group -->
+
+                        <div class="input-group">
+                                <input type="submit" name="submit-password" id="forgot-password" value="Elküld" class="btn btn-success btn-block">
+                        </div> <!-- input grup -->
                                 <?php
 
                                     include('secure/src/db_config.php');
@@ -93,28 +111,13 @@ else
                                             $stmt->store_result();
                                             if ($stmt->num_rows > 0) 
                                             {
-                                                echo '<h1>Reset password</h1>
-
-                                                        <div class="input-group">
-
-                                                            <label for="reset-password"><i class="fas fa-lock"></i></label>
-                                                            <input type="password" class="form-control" name="reset-password" placeholder="New password"  Required>
-                                                        
-                                                            </div> <!-- input group -->
-                            
-                                                        <div class="input-group">
-
-                                                            <label for="confirm-password"><i class="fas fa-lock"></i></label>
-                                                            <input type="password" class="form-control" name="confirm-password" placeholder="Confirm new password" Required>
-                                                        
-                                                        </div><!-- input group -->
-                                                        
-                                                        <div class="input-group">
-                                                                <input type="submit" name="submit-password" id="forgot-password" value="Elküld" class="btn btn-success btn-block">
-                                                        </div> <!-- input grup -->';
+                                                echo "Siker";
+                                                
                                             }
                                             else {
                                                 echo 'This account does not exist';
+                                                echo "<script type='text/javascript'>alert('Rossz döntés');</script>";
+                                                echo '<script> window.location.replace("login.php") </script>';
                                             }
                                         }
                                     }
@@ -139,6 +142,14 @@ else
                                                 $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
                                                 $sql =  "CALL RESET_PWD('$password', '$email');";
                                                 $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
+
+                                                if ($stmt = $con->prepare('CALL RESET_PWD(?,?)')) 
+                                                {
+                                                  $stmt->bind_param('ss',$password,$email);
+                                                  $stmt->execute();
+                                                  $stmt->store_result();
+                                                }
+    
 
                                             }
                                         }
