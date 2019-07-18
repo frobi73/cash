@@ -107,7 +107,7 @@ else
                                                         </div><!-- input group -->
                                                         
                                                         <div class="input-group">
-                                                                <input type="submit" name="btn-forgot" id="forgot-password" value="Elküld" class="btn btn-success btn-block">
+                                                                <input type="submit" name="submit-password" id="forgot-password" value="Elküld" class="btn btn-success btn-block">
                                                         </div> <!-- input grup -->';
                                             }
                                             else {
@@ -119,41 +119,36 @@ else
                                     //This code runs if the form has been submitted
                                     if (isset($_POST['submit-password']) && $_SERVER['REQUEST_METHOD'] == 'POST' )
                                     {
-                                        if($_POST['reset-password'] != $_POST['confirm-password']) {
-                                            die("Password and Confirm Password doesn't match");
+                                        if($_POST['reset-password'] != $_POST['confirm-password']) 
+                                        {
+                                            echo "Password and Confirm Password doesn't match";
                                         }
-                                        
-                                    // if(!empty($_POST["submit-password"])) { // && (!empty($_POST["reset-password"]) && (!empty($_POST["confirm-password"]))) { 
-                                        //&& $_POST['password'] == $_POST['confirm'])) {
+                                        else
+                                        {
+                                                $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", password = ? WHERE email = ?');
+                                                Echo 'SQL Command: ' . $sql;
+                                                if ($stmt = $con->prepare($sql)) 
+                                                {
+                                                    //Echo "Update SQL with stmt was prepared";
+                                                    // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+                                                $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
+                                                // $email = 'cash@fr-demo.xyz'; //$_POST["email"];
+                                                    //Echo "Before bind_param";
+                                                $stmt->bind_param('ss', $password,$email);
+                                                // $stmt->bind_param('ss', 'frdemo', 'cash@fr-demo.xyz');
+                                                Echo "After bind_param";
+                                                    $stmt->execute();
 
-                                            //$sql = $mysqli->query("UPDATE users SET password='$pass' WHERE email = '$email'");
-                                            
-                                            //$sql = ('UPDATE accounts SET password = ?, pwd_reset_token = ' . 'reseted' . 'WHERE email = ?');
-                                        // $sql = ('UPDATE accounts SET password = ? WHERE email = ?');
-                                        $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", password = ? WHERE email = ?');
-                                            Echo 'SQL Command: ' . $sql;
-                                            if ($stmt = $con->prepare($sql)) {
-                                                //Echo "Update SQL with stmt was prepared";
-                                                // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-                                            $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
-                                            // $email = 'cash@fr-demo.xyz'; //$_POST["email"];
-                                                //Echo "Before bind_param";
-                                            $stmt->bind_param('ss', $password,$email);
-                                            // $stmt->bind_param('ss', 'frdemo', 'cash@fr-demo.xyz');
-                                            Echo "After bind_param";
-                                                $stmt->execute();
-                                                
-                                                /* $sql = 'SELECT * FROM accounts ' . $condition;
-                                                $result = mysqli_query($con,$sql);
-                                                $user = mysqli_fetch_array($result); */
-                                                
-                                                echo 'New password created!';
-                                                $stmt->close();
-                                            } 
-                                            else {
+                                                    echo 'New password created!';
+                                                    $stmt->close();
+                                                } 
+                                                else 
+                                                {
                                                 Echo "Else Statement Running";
-                                            }   
+                                                }   
+                                        }
                                     }
+                                    else{echo "hiba";}
                                     ?>
                             <div class="error">
 
