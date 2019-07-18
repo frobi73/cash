@@ -105,7 +105,7 @@ else
                                                         <div class="input-group">
 
                                                             <label for="confirm-password"><i class="fas fa-lock"></i></label>
-                                                            <input type="password" class="form-control name="confirm-password" placeholder="Confirm new password" Required>
+                                                            <input type="password" class="form-control" name="confirm-password" placeholder="Confirm new password" Required>
                                                         
                                                         </div><!-- input group -->
                                                         
