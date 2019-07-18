@@ -114,14 +114,6 @@ else
                                           include('secure/src/db_config.php');
 
                                           //session_start();
-
-                                          // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-                                            if ( !isset($_POST['login_email'], $_POST['login_password']) ) 
-                                            {
-                                              // Could not get the data that should have been sent.
-                                              die ('Please fill both the username and password field!');
-                                            }
-
                                           // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
                                             if ($stmt = $con->prepare('SELECT account_ID, password, activation_code FROM accounts WHERE email = ?')) 
                                             {
@@ -138,12 +130,12 @@ else
                                               $stmt->bind_result($id, $password);
                                               $stmt->fetch();
                                               $email = $_POST['login_email'];
-                                              $sql =  "CALL ACT_CODE('$email');";
+                                              $sql =  "CALL ACT_CODE($email);";
                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
 
                                               if($result["activation_code"] != "activated") 
                                               {
-                                                  echo "User is not activated";
+                                                  $message = "User is not activated";
                                               }  
                                               else
                                               {
