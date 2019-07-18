@@ -133,16 +133,17 @@ else
                                               echo $email;
                                               $sql =  "CALL ACT_CODE('$email');";
                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
-
                                               if($result["activation_code"] != "activated") 
                                               {
                                                   $message = "User is not activated";
                                               }  
                                               else
                                               {
+                                                echo "1";
                                                   // Account exists, now we verify the password.
                                                   if (password_verify($_POST['login_password'], $password)) 
                                                   {
+                                                    echo "2";
                                                     // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
                                                     session_regenerate_id();
                                                     $_SESSION['loggedin'] = TRUE;
