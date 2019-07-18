@@ -40,9 +40,9 @@ else
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="src\style.css">
+	<link rel="stylesheet" href="src\css\style.css">
 	
-	<link rel="stylesheet" href="src\login.css">
+	<link rel="stylesheet" href="src\css\login.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
@@ -120,7 +120,7 @@ else
 														$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . 
 														"\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 														
-														$activate_link = 'fr-demo.xyz/cash/reset_password.php?email=' . $_POST['email'] . '&code=' . $uniqid; 
+														$activate_link = 'fr-demo.xyz/cash/src/reset_password.php?email=' . $_POST['email'] . '&code=' . $uniqid; 
 														
 														$content = '
 														<html>
