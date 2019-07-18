@@ -96,12 +96,15 @@ else
                                                 echo '<h1>Reset password</h1>
 
                                                         <div class="input-group">
+
                                                             <label for="reset-password"><i class="fas fa-lock"></i></label>
                                                             <input type="password" class="form-control" name="reset-password" placeholder="New password"  Required>
-                                                        </div> <!-- input group -->
+                                                        
+                                                            </div> <!-- input group -->
                             
                                                         <div class="input-group">
-                                                            <label for="reset-password"><i class="fas fa-lock"></i></label>
+
+                                                            <label for="confirm-password"><i class="fas fa-lock"></i></label>
                                                             <input type="password" class="form-control name="confirm-password" placeholder="Confirm new password" Required>
                                                         
                                                         </div><!-- input group -->
