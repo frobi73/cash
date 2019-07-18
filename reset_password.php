@@ -136,8 +136,7 @@ else
                                             }
                                             else
                                             {
-                                                    $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", password = ? WHERE email = ?');
-                                                    Echo 'SQL Command: ' . $sql;
+                                                    $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", at_rested = CURDATE(), password = ? WHERE email = ?');
                                                     if ($stmt = $con->prepare($sql)) 
                                                     {
                                                         $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
