@@ -120,7 +120,7 @@ else
 														$headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . 
 														"\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 														
-														$activate_link = 'fr-demo.xyz/cash/reset_password.php?email=' . $_POST['email'] . '&code=' . $uniqid; 
+														$activate_link = 'fr-demo.xyz/cash/reset_Password.php?email=' . $_POST['email'] . '&code=' . $uniqid; 
 														
 														$content = '
 														<html>
