@@ -91,16 +91,16 @@ else
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
                             <div class="input-group">
-                              <label for="username">
+                              <label for="login_email">
                                         <i class="fas fa-user"></i>
                               </label>
-                                <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+                                <input id="login_email" type="text" class="form-control" name="login_email" placeholder="E-mail Cím" required>
                             </div>
                             <div class="input-group">
-                              <label for="password">
+                              <label for="login_password">
                                         <i class="fas fa-lock"></i>
                                       </label>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                                <input id="login_password" type="password" class="form-control" name="login_password" placeholder="Password" required>
                             </div>
 
                             <div class="input-group">
@@ -116,17 +116,17 @@ else
                                           //session_start();
 
                                           // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-                                            if ( !isset($_POST['username'], $_POST['password']) ) 
+                                            if ( !isset($_POST['login_email'], $_POST['login_password']) ) 
                                             {
                                               // Could not get the data that should have been sent.
                                               die ('Please fill both the username and password field!');
                                             }
 
                                           // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-                                            if ($stmt = $con->prepare('SELECT account_ID, password FROM accounts WHERE username = ?')) 
+                                            if ($stmt = $con->prepare('SELECT account_ID, password, activation_code FROM accounts WHERE email = ?')) 
                                             {
                                               // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-                                              $stmt->bind_param('s', $_POST['username']);
+                                              $stmt->bind_param('s', $_POST['login_email']);
                                               $stmt->execute();
                                               // Store the result so we can check if the account exists in the database.
                                               $stmt->store_result();
@@ -138,26 +138,36 @@ else
                                               $stmt->bind_result($id, $password);
                                               $stmt->fetch();
 
-                                              // Account exists, now we verify the password.
-                                              if (password_verify($_POST['password'], $password)) 
+                                              $sql =  "SELECT activation_code FROM accounts WHERE email = ". $_POST['login_email'] .";";
+                                              $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
+
+                                              if($result["activation_code"] != "activated") 
                                               {
-                                                // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
-                                                session_regenerate_id();
-                                                $_SESSION['loggedin'] = TRUE;
-                                                $_SESSION['name'] = $_POST['username'];
-                                                $_SESSION['id'] = $id;
-                                                //echo 'Welcome ' . $_SESSION['name'] . '!';
-                                                header('Location: secure/home.php');
-                                                $message = "";
-                                              } 
-                                              else 
+                                                  echo "User is not activated";
+                                              }  
+                                              else
                                               {
-                                                $message = 'Incorrect username or password!';
+                                                  // Account exists, now we verify the password.
+                                                  if (password_verify($_POST['login_password'], $password)) 
+                                                  {
+                                                    // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
+                                                    session_regenerate_id();
+                                                    $_SESSION['loggedin'] = TRUE;
+                                                    $_SESSION['name'] = $_POST['login_email'];
+                                                    $_SESSION['id'] = $id;
+                                                    //echo 'Welcome ' . $_SESSION['name'] . '!';
+                                                    header('Location: secure/home.php');
+                                                    $message = "Siker";
+                                                  } 
+                                                  else 
+                                                  {
+                                                    $message = 'Incorrect email or password!';
+                                                  }
                                               }
                                             } 
                                             else 
                                             {
-                                              $message = 'Incorrect username or password!';
+                                              $message = 'Incorrect email or password!';
                                             }
                                             echo "<div class=\"error\">";
                                               echo $message;
@@ -180,38 +190,32 @@ else
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
                             <div class="input-group">
-                              <label for="username">
-                                        <i class="fas fa-user"></i>
-                              </label>
-                                <input id="username" type="text" class="form-control" name="username" placeholder="Név" Required>
-                            </div>
-                            <div class="input-group">
-                              <label for="email">
+                              <label for="reg_email">
                                         <i class="fas fa-at"></i>
                               </label>
-                                <input id="email" type="email" class="form-control" name="email" placeholder="E-mail" Required>
+                                <input id="reg_email" type="email" class="form-control" name="reg_email" placeholder="E-mail" Required>
                             </div>
                             <div class="input-group">
-                              <label for="password">
+                              <label for="reg_password">
                                         <i class="fas fa-lock"></i>
                                       </label>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" Required>
+                                <input id="reg_password" type="password" class="form-control" name="reg_password" placeholder="Password" Required>
                             </div>
                             <div class="input-group">
-                              <label for="password_again">
+                              <label for="reg_password_again">
                                         <i class="fas fa-unlock"></i>
                                       </label>
-                                <input id="password" type="password" class="form-control" name="password_again" placeholder="Password again" Required>
+                                <input id="reg_password_again" type="password" class="form-control" name="reg_password_again" placeholder="Password again" Required>
                             </div>
 
                             <div class="input-group">
 
-                               <div style="padding-left:15px"> A <a href="user_agreements"> felhasználási feltételeket</a> elolvastam </div>
+                               <div style="padding-left:15px"> A <a href="user_agreements"> felhasználási feltételeket</a> elolvastam, és elfogadom </div>
                                     
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="check" value="agree" Required>
                             </div>
 
-                            <div >  
+                            <div>  
 
                                     <script>
                                     // Resize reCAPTCHA to fit a specific size. We're scaling using CSS3 transforms ||| captchaScale = containerWidth / elementWidth
@@ -267,14 +271,14 @@ else
                                                     $succMsg = 'Your contact request have submitted successfully.';
 
                                                     include('secure/src/db_config.php');
-                                                    if (!isset($_POST['username'],$_POST['email'],$_POST['password'],$_POST['password_again'])) // ha valamit nem töltött ki
+                                                    if (!isset($_POST['reg_email'],$_POST['reg_password'],$_POST['reg_password_again'])) // ha valamit nem töltött ki
                                                     {
                                                         // Could not get the data that should have been sent.
                                                         $message =  'Please fill every field and accept the user agreements';
                                                     } // isset
                                                     else // ha minden kitöltött, és megnyomta a checkboxot is
                                                     {
-                                                      if($_POST['password'] != $_POST['password_again']) // ha a jelszavak nem egyeznek
+                                                      if($_POST['reg_password'] != $_POST['reg_password_again']) // ha a jelszavak nem egyeznek
                                                       {
                                                           $message = 'The passwords do not match!';
                                                       } // pwd egyezés
@@ -282,18 +286,17 @@ else
                                                       {
                                                         if ($stmt = $con->prepare('SELECT email FROM accounts WHERE email = ?'))  // e-mail lekérdezés
                                                         {
-                                                          $stmt->bind_param('s', $_POST['email']);
+                                                          $stmt->bind_param('s', $_POST['reg_email']);
                                                           $stmt->execute();
                                                           $stmt->store_result();
                                                             if ($stmt->num_rows == 0)  // ha nincs ilyen e-mail, akkor be is regisztrálja
                                                             {
-                                                              $username = $_POST['username'];
-                                                              $email = $_POST['email'];
+                                                              $email = $_POST['reg_email'];
                                                               //$password_1 = $_POST['password'];
-                                                              $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                                                              $password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
                                                               $uniqid = uniqid();
-                                                              echo $username,$email,$password ; echo "<br>";
-                                                              $sql =  "CALL REG_USER('$username', '$email', '$password','$uniqid');";
+                                                              echo $email,$password ; echo "<br>";
+                                                              $sql =  "CALL REG_USER('$email', '$password','$uniqid');";
                                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
                                                           
                                                               include("src/send_email.php");

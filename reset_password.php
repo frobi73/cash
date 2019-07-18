@@ -132,31 +132,15 @@ else
                                             echo $pwd1,$pwd2;
                                             if( $pwd1 != $pwd2) 
                                             {
-                                                echo "Password and Confirm Password doesn't match";
+                                                echo "Passwords do not match";
                                             }
                                             else
                                             {
-                                                    $sql = ('UPDATE accounts SET pwd_reset_token = "reseted", at_reseted = CURDATE(), password = ? WHERE email = ?');
-                                                    if ($stmt = $con->prepare($sql)) 
-                                                    {
-                                                        $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
-                                                        $stmt->bind_param('ss', $password,$email);
-                                                    
-                                                        Echo "After bind_param";
-                                                        $stmt->execute();
+                                                $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
+                                                $sql =  "CALL RESET_PWD('$password', '$email');";
+                                                $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
 
-                                                        echo 'New password created!';
-                                                        $stmt->close();
-                                                    } 
-                                                    else 
-                                                    {
-                                                    Echo "Else Statement Running";
-                                                    }   
                                             }
-                                        }
-                                        else
-                                        {
-                                            echo "hiba";
                                         }
                                     ?>
                             </div></div> <!-- error -->
