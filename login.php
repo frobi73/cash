@@ -115,7 +115,7 @@ else
 
                                           //session_start();
                                           // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-                                            if ($stmt = $con->prepare('SELECT account_ID, password FROM accounts WHERE email = ?')) 
+                                            if ($stmt = $con->prepare('SELECT account_ID, password, activation_code FROM accounts WHERE email = ?')) 
                                             {
                                               // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
                                               $stmt->bind_param('s', $_POST['login_email']);
@@ -127,13 +127,10 @@ else
 
                                             if ($stmt->num_rows > 0) 
                                             {
-                                              $stmt->bind_result($id, $password);
+                                              $stmt->bind_result($id, $password,$activation_code);
                                               $stmt->fetch();
-                                              $email = $_POST['login_email'];
-                                              echo $email;
-                                              $sql =  "CALL ACT_CODE('$email');";
-                                              $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
-                                              if($result["activation_code"] != "activated") 
+
+                                              if($activation_code != "activated") 
                                               {
                                                   $message = "User is not activated";
                                               }  
