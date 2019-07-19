@@ -100,10 +100,13 @@ else
 
                                     include('secure/src/db_config.php');
 
-                                    $email = htmlspecialchars($_GET['email']);
-                                    $code = htmlspecialchars($_GET['code']);
+                                    //$email = htmlspecialchars($_GET['email']);
+                                    //$code = htmlspecialchars($_GET['code']);
 
                                     if (isset($_GET['email'], $_GET['code'])) {
+                                        $email = htmlspecialchars($_GET['email']);
+                                        $code = htmlspecialchars($_GET['code']);
+                                        $_SESSION["email"] = $email;
                                         if ($stmt = $con->prepare('SELECT * FROM accounts WHERE email = ? AND pwd_reset_token = ?')) 
                                         {
                                             $stmt->bind_param('ss', $_GET['email'], $_GET['code']);
@@ -130,28 +133,36 @@ else
                                         //This code runs if the form has been submitted
                                         if (isset($_POST['submit-password']) && $_SERVER['REQUEST_METHOD'] == 'POST' )
                                         {
-                                            $pwd1 = $_POST['reset-password'];
-                                            $pwd2 = $_POST['confirm-password'];
-                                            echo $pwd1,$pwd2;
-                                            if( $pwd1 != $pwd2) 
+                                            //$email = $_SESSION['email'];
+                                            if (isset($_SESSION['email']))
                                             {
-                                                echo "Passwords do not match";
+                                                $email = $_SESSION['email'];
+                                                $pwd1 = $_POST['reset-password'];
+                                                $pwd2 = $_POST['confirm-password'];
+                                                echo $pwd1,$pwd2;
+                                                if( $pwd1 != $pwd2) 
+                                                {
+                                                    echo "Passwords do not match";
+                                                }
+                                                else
+                                                {
+                                                    $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
+                                                    $sql =  "CALL RESET_PWD('$password', '$email');";
+                                                    $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
+    
+                                                    if ($stmt = $con->prepare('CALL RESET_PWD(?,?)')) 
+                                                    {
+                                                      $stmt->bind_param('ss',$password,$email);
+                                                      $stmt->execute();
+                                                      $stmt->store_result();
+                                                    }
+                                                }
                                             }
                                             else
                                             {
-                                                $password = password_hash($_POST['reset-password'], PASSWORD_DEFAULT);
-                                                $sql =  "CALL RESET_PWD('$password', '$email');";
-                                                $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
-
-                                                if ($stmt = $con->prepare('CALL RESET_PWD(?,?)')) 
-                                                {
-                                                  $stmt->bind_param('ss',$password,$email);
-                                                  $stmt->execute();
-                                                  $stmt->store_result();
-                                                }
-    
-
+                                               
                                             }
+                                           
                                         }
                                     ?>
                             </div></div> <!-- error -->
