@@ -31,11 +31,27 @@ ul
     background-color: rgb(0, 204, 0);
 }
 
+.card-img-top
+{
+    height: 100%;
+    max-height: 300px;
+}
 .icon 
 {
     font-size: 60px;
     color: #52b6ec;
     margin-bottom: 15px;
+}
+
+.navbar-user-icon {
+    color: rgba(0,0,0,.5);
+    border-color: rgba(0,0,0,.1);
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
 }
 
 .center 

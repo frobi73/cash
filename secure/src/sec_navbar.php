@@ -3,33 +3,40 @@
     <a class="navbar-brand" href="index.php">Capacity Sharing logo </a>
   
     <!-- Toggler/collapsibe Button -->
+    <div class="d-block d-sm-none" >
+      <a href="profil.php" class="navbar-user-icon" >
+            <i class="fas fa-user"></i>
+      </a> 
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
+   
+
   
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav justify-content-center">
       <li class="nav-item">
-          <a class="nav-link" href="home.php"> <?=$lang['nav1'];?> </a>
+          <a class="nav-link" href="home.php"><i class="fas fa-home"></i> <?=$lang['nav1'];?> </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search.php" > <?=$lang['nav2'];?> </a>
+          <a class="nav-link" href="search.php" >  <i class="fas fa-search"></i><?=$lang['nav2'];?> </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="blank.php"> <?=$lang['nav3'];?></a>
+            <a class="nav-link" href="prices.php"> <i class="fas fa-euro-sign"></i> <?=$lang['nav3'];?></a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="profil.php"> <?=$lang['nav4'];?> </a>
+          <a class="nav-link" href="profil.php" name="profil"><i class="fas fa-user"></i> <?=$lang['nav4'];?> </a>
         </li> 
         <li class="nav-item">
-            <a class="nav-link" href="logout.php"> <?=$lang['nav5'];?></a>
+            <a class="nav-link" href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?></a>
         </li> 
 
         <li class="nav-item dropdown" >
 
-                    <a class="nav-link dropdown-toggle" style="padding-right:0px !important; padding-left:0px !important;" href="#" id="navbardrop" data-toggle="dropdown" >
-                        <?=$lang['nav6'];?>  
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
+                    <i class="fas fa-language"></i>    <?=$lang['nav6'];?>  
                     </a>
                     <div id="langSelect">
                       <div class="dropdown-menu">

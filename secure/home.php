@@ -92,6 +92,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"> <?=$lang['t1'];?> </h5>
                                     <p class="card-text" >  <?=$lang['d1'];?> </p>
+                                    <a href="upload.php" class="btn btn-primary btn-block"> Keress </a>
                                 </div>
                             </div> <!-- card-->
                             <div class="card">
@@ -107,6 +108,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?=$lang['t3'];?> </h5>
                                     <p class="card-text">  <?=$lang['d3'];?> </p>
+                                    <a href="prices.php" class="btn btn-primary btn-block"> Upload </a>
                                     
                                 </div>
                             </div><!-- card-->

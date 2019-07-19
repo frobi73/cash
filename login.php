@@ -188,13 +188,17 @@ else
                               <label for="reg_password">
                                         <i class="fas fa-lock"></i>
                                       </label>
-                                <input id="reg_password" type="password" class="form-control" name="reg_password" placeholder="Password" Required>
+                                <input id="reg_password" type="password" class="form-control" name="reg_password" placeholder="Password" 
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" Required >
                             </div>
                             <div class="input-group">
                               <label for="reg_password_again">
                                         <i class="fas fa-unlock"></i>
                                       </label>
-                                <input id="reg_password_again" type="password" class="form-control" name="reg_password_again" placeholder="Password again" Required>
+                                <input id="reg_password_again" type="password" class="form-control" name="reg_password_again" placeholder="Password again"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" Required>
                             </div>
 
                             <div class="input-group">

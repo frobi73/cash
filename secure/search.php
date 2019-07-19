@@ -92,7 +92,7 @@ else
                     
                 ?>
 
-        <div class="jumbotron">
+<div class="jumbotron">
         <div class="container">
             <div class="row">
                     <div class="col">
@@ -198,6 +198,13 @@ else
                                                     "locale": {
                                                         "format": "YYYY/MM/DD",
                                                         "separator": " - ",
+                                                        "firstDay": 1
+                                                    },
+                                                    "isInvalidDate": function(date) 
+                                                    {
+                                                        if (date.format('YYYY-MM-DD') == '2019-08-12') {
+                                                            return true; 
+                                                        }
                                                     }
                                                 }, function(start, end, label) {
                                                 console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
@@ -210,22 +217,8 @@ else
                                     <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
-                            <?php 
-                                if($_SESSION['username'] == "előfizetve")
-                                {
-                                    // akkor a keresés gombot rakja ki neki
-                                    echo '  <button type="submit" class="btn btn-block btn-success">Keresés</button>
-                                    ';
-                                }
-                                else
-                                {
-                                    // ha nincs előfizetve, akkor a modal-t nyitja meg.
-                                    echo '  <button type="button" class="btn btn-block btn-success" 
-                                    data-toggle="modal" data-target="#myModal">Keresés</button>
-                                    ';
-                                }
-                            ?>
-                            </div><!-- card-body--> 
+                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
+                        </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
 
