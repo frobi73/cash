@@ -1,6 +1,6 @@
   <nav class="navbar sticky-top navbar-expand-md bg-light navbar-light" id="grad">
     <!-- Brand -->
-    <a class="navbar-brand" href="index.php">Capacity Sharing logo </a>
+    <a class="navbar-brand" href="home.php">Capacity Sharing logo </a>
   
     <!-- Toggler/collapsibe Button -->
     <div class="d-block d-sm-none" >
@@ -16,7 +16,7 @@
   
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav justify-content-center">
+      <ul class="navbar-nav">
       <li class="nav-item">
           <a class="nav-link" href="home.php"><i class="fas fa-home"></i> <?=$lang['nav1'];?> </a>
         </li>
@@ -28,9 +28,6 @@
           </li>
         <li class="nav-item">
           <a class="nav-link" href="profil.php" name="profil"><i class="fas fa-user"></i> <?=$lang['nav4'];?> </a>
-        </li> 
-        <li class="nav-item">
-            <a class="nav-link" href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?></a>
         </li> 
 
         <li class="nav-item dropdown" >
@@ -56,6 +53,11 @@
                     ?>
 
           </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" >
+          <li class="nav-item " >
+            <a class="nav-link" href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?></a>
+        </li> 
       </ul>
     </div> <!-- collapse-->
   </nav>

@@ -24,7 +24,7 @@ $lang['d3'] = 'Sima leírás';
 //nav
 $lang['nav1'] = 'Home';
 $lang['nav2'] = 'Search';
-$lang['nav3'] = 'BLANK';
+$lang['nav3'] = 'Prices';
 $lang['nav4'] = 'Profile';
 $lang['nav5'] = 'Log out';
 $lang['nav6'] = 'Language';
