@@ -115,7 +115,7 @@ else
 
         <div class="jumbotron">    
             <div class="container">
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
+                <form action="search.php" method="post">     
                      <div class="card">
                         <div class="card-body">
                             <div class="input-group flex-nowrap">
@@ -240,59 +240,7 @@ else
 
                     </div><!-- Modal dialog-->
                 </div><!-- Modal-->
-                <div class="kereses_eredmeny">
-                        <?php 
-                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
-                             {
 
-
-                             }
-                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
-                            {
-                                if(!isset($_POST['keres'])) { $text = ""; }
-                                else{ $text = $_POST['keres'];}
-
-                                if(!isset($_POST['orszag'])) { $Country = "hu"; }
-                                else{ $Country = $_POST['orszag'];}
-
-                                if(!isset($_POST['varos'])) {$City = "Budapest";}
-                                else{ $City = $_POST['varos'];}
-                                
-                                if(!isset($_POST['Iparag'])){ $Ipar = 0;}
-                                else{ $Ipar = $_POST['Iparag'];}
-
-                                if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
-                                else{ $Eroforras=$_POST['Eroforras'];}
-
-                                if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
-                                else{ $datum=$_POST['daterange'];}
-
-                                $dates = explode(" - ", $datum);
-                                $startdate = $dates[0];
-                                $enddate = $dates[1];
-
-                                $format = 'Y-m-d';
-                                $date = DateTime::createFromFormat($format, '2009-02-15');
-
-                                echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
-
-
-                                include("src/db_config_test.php");
-
-                                // keresés után regisztáljon
-                                //aznap legyel letiltva
-                                $sql='SELECT
-                                        rentals.Rental_ID,
-                                        products.Product_Name,
-                                        products.Description
-                                    FROM rentals
-                                        INNER JOIN products
-                                        ON rentals.Product_ID = products.Product_ID
-                                    WHERE rentals.Start_Date = 0
-                                    AND rentals.End_Date = 0;';
-                            }
-                        ?>
-                </div>  <!-- div - kereses eredmeny-->   
                 </div><!-- container-->     
         </div><!-- jumbotron-->     
 

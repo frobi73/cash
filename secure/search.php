@@ -130,9 +130,9 @@ else
                                                 <select class="form-control" id="select_country" onchange="test(this)"
                                                     name="orszag" placeholder="Ország" require>
                                                     <option selected disabled>Ország</option>
-                                                    <option value="hu">Magyar</option>
-                                                    <option value="de">Német</option>   
-                                                    <option value="au">Osztrák</option>  
+                                                    <option value="Ungarn">Magyar</option>
+                                                    <option value="Deutschland">Német</option>   
+                                                    <option value="Osterreich">Osztrák</option>  
                                                 </select>      
                                 </div> <!--form group-md-6-->
                                 <div class="form-group col-md-6">
@@ -166,7 +166,8 @@ else
                                         <option value="2" >Emelőgép 2.</option>
                                         <option value="3" >Földmunkagép kicsi</option>
                                         <option value="4" >Földmunkagép nagy</option>
-                                        <option value="5" >CNC 1.</option>
+                                        <option value="5" >3D nyomtató</option>
+                                        <option value="12" >CNC 1.</option>
                                         <option value="6" >CNC 2.</option>
                                         <option value="7" >Toronydarú 1.</option>
                                         <option value="8" >Toronydarú 2.</option>
@@ -217,7 +218,8 @@ else
                                     <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
-                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
+                            <!--<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>-->
+                            <input type="submit" class="btn btn-block btn-success" value ="Keresés">
                         </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
@@ -249,12 +251,7 @@ else
                 </div><!-- Modal-->
                 <div class="kereses_eredmeny">
                         <?php 
-                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
-                             {
-
-
-                             }
-                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
+                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['keres']))
                             {
                                 if(!isset($_POST['keres'])) { $text = ""; }
                                 else{ $text = $_POST['keres'];}
@@ -281,22 +278,32 @@ else
                                 $format = 'Y-m-d';
                                 $date = DateTime::createFromFormat($format, '2009-02-15');
 
-                                echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
+                                //echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
 
 
-                                include("src/db_config_test.php");
+                                include("../src/db_config_test.php");
 
                                 // keresés után regisztáljon
                                 //aznap legyel letiltva
-                                $sql='SELECT
-                                        rentals.Rental_ID,
-                                        products.Product_Name,
-                                        products.Description
-                                    FROM rentals
-                                        INNER JOIN products
-                                        ON rentals.Product_ID = products.Product_ID
-                                    WHERE rentals.Start_Date = 0
-                                    AND rentals.End_Date = 0;';
+                                //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
+                               $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$City','$Eroforras')";
+                                $result = $con->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    echo "<table>";
+                                    echo "<tr><th>Name</th><th>CompanyName</th></tr>";
+                                    // output data of each row
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>".$row["product_name"]. "</td>";
+                                        echo "<td>".$row["company_name"]. "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</table>";
+                                } else {
+                                    echo "Nincs találat.";
+                                }
+                                $con->close();
                             }
                         ?>
                 </div>  <!-- div - kereses eredmeny-->   

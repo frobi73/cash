@@ -67,9 +67,9 @@ else
   <body>
    
                     <?php 
-                        include("src/navbar.php");
+                        include("../src/navbar.php");
                         //<!-- Script Cookie-->
-                        include("src/cookie.html");
+                        include("../src/cookie.html");
                         //<!-- Script Cookie-->
                     ?>
 
@@ -147,7 +147,7 @@ else
 
 
 
-            <?php include("src/footer.html"); ?>
+            <?php include("../src/footer.html"); ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

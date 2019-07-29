@@ -256,11 +256,11 @@ else
                                         {
                                           if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
                                           {
-                                                $secret = '6Lepw60UAAAAAAviBRWVpMQEMVYcZyIdrVv5ZE6T';
-                                                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
-                                                $responseData = json_decode($verifyResponse);
-                                                if($responseData->success)
-                                                {
+                                                //$secret = '6Lepw60UAAAAAAviBRWVpMQEMVYcZyIdrVv5ZE6T';
+                                                //$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+                                                //$responseData = json_decode($verifyResponse);
+                                                //if($responseData->success)
+                                                //{
                                                     $succMsg = 'Your contact request have submitted successfully.';
 
                                                     include('secure/src/db_config.php');
@@ -290,6 +290,7 @@ else
                                                               $uniqid = uniqid();
                                                               echo $email,$password ; echo "<br>";
                                                               $sql =  "CALL REG_USER('$email', '$password','$uniqid');";
+                                                              //$sql = "INSERT INTO accounts (email, password, activation_code) VALUES ('$email', '$password','$uniqid');";
                                                               $result = mysqli_query($con,$sql) or die("Query fail: " . mysqli_error($con));
                                                           
                                                               include("src/send_email.php");
@@ -303,11 +304,11 @@ else
                                                         } // else stmt - email check - email lekérdezés
                                                       } // leszvaka egyzése if - else
                                                     } // ha minden stimmel, és ki van töltve
-                                                }
-                                                else
-                                                {
-                                                    $message = 'Robot verification failed, please try again.';
-                                                }
+                                                //}
+                                               // else
+                                               // {
+                                                //    $message = 'Robot verification failed, please try again.';
+                                               // }
                                           }
                                            
                                         } // reg user meg van nyomva

@@ -3,10 +3,10 @@ function test(varos_id)
 {
     var varos = (varos_id.value || varos_id.options[varos_id.selectedIndex].value);
     var cities = ["Budapest","Győr","Pécs","Szeged","Debrecen",
-            "Berlin","München","Hamburg","Frankfurt","Stuttgart",
+            "Berlin","Nünberg","München","Hamburg","Frankfurt","Stuttgart",
             "Innsbruck","Salzburg","Wien","Graz","Linz"];
 switch(varos) {
-    case "hu":
+    case "Ungarn":
     var div = document.querySelector("#select_city"),
     frag = document.createDocumentFragment(),
     select = document.createElement("select");
@@ -22,7 +22,7 @@ switch(varos) {
         }
         break;
 
-    case "de":
+    case "Deutschland":
     var div = document.querySelector("#select_city"),
     frag = document.createDocumentFragment(),
     select = document.createElement("select");
@@ -32,13 +32,13 @@ switch(varos) {
     var element = document.getElementById("placeholder");
     element.parentNode.removeChild(element);
     var i;
-        for (i = 5; i < 10; i++) 
+        for (i = 5; i < 11; i++) 
         { 
             select.options.add( new Option(cities[i],cities[i]));
         }
         break;
 
-    case "au":
+    case "Osterreich":
     var div = document.querySelector("#select_city"),
     frag = document.createDocumentFragment(),
     select = document.createElement("select");
@@ -50,7 +50,7 @@ switch(varos) {
     element.parentNode.removeChild(element);
 
     var i;
-        for (i = 10; i < 15; i++) 
+        for (i = 11; i < 16; i++) 
         { 
             select.options.add( new Option(cities[i],cities[i]) );
         }
