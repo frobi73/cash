@@ -134,7 +134,6 @@ else
                                               }  
                                               else
                                               {
-                                                echo "1";
                                                   // Account exists, now we verify the password.
                                                   if (password_verify($_POST['login_password'], $password)) 
                                                   {

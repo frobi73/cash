@@ -120,7 +120,7 @@ else
                         <div class="card-body">
                             <div class="input-group flex-nowrap">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text icon" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                                    <span class="input-group-text icon" id="grad" id="addon-wrapping"><i  class="fas fa-search"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="keres" placeholder="Keresés" id="keres" aria-describedby="addon-wrapping">
                             </div>  <!--input group-->
@@ -219,37 +219,12 @@ else
                                 </div><!--form group-->
                             </div>  <!--form row-->
                             <!--<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>-->
-                            <input type="submit" class="btn btn-block btn-success" value ="Keresés">
+                            <input type="submit" class="btn btn-block btn-success" id="grad" value ="Keresés">
                         </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
 
-               
-
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>A keresés funkció csak regisztrált felhasználóknak működik.
-                                                <br>
-                                    Kattins ide, hogy regisztálj.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div><!-- Modal content-->
-
-                    </div><!-- Modal dialog-->
-                </div><!-- Modal-->
-                <div class="kereses_eredmeny">
+                <div class="kereses_eredmeny jumbotron">
                         <?php 
                             if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['keres']))
                             {
@@ -290,18 +265,19 @@ else
                                 $result = $con->query($sql);
 
                                 if ($result->num_rows > 0) {
-                                    echo "<table>";
-                                    echo "<tr><th>Name</th><th>CompanyName</th></tr>";
                                     // output data of each row
                                     while($row = $result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td>".$row["product_name"]. "</td>";
-                                        echo "<td>".$row["company_name"]. "</td>";
-                                        echo "</tr>";
+                                        echo '
+                                        <form action="product.php" method="POST">
+                                            <button type="submit" class="button" > '. $row["product_name"] . '</button>
+                                            <input type="hidden" value="' . $row["product_ID"] . '" name="atadott_ID">
+                                        </form>
+                                        <hr>'
+                                        
+                                        ;
                                     }
-                                    echo "</table>";
                                 } else {
-                                    echo "Nincs találat.";
+                                    echo "A beírt adatokra nincs találat.";
                                 }
                                 $con->close();
                             }

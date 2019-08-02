@@ -79,24 +79,62 @@
                 ?>
 
         <div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                    <div class="col col-lg-4">
-                        <div class="card">
-                                <h5 class="card-title menu" > <?=$lang['menu'];?> </h5>
-                                <hr>
-                            <div class="card-body">
-                                   
-                                    <p class="card-text" id="menu"></p>
-                            </div> <!-- card-body -->
-                        </div> <!-- card-->
-                    </div> <!-- col lg 4 --> 
+            <div class="container" style="margin-top:30px">
+                <div class="row">
+                   
+                    <?php 
+                        $useragent=$_SERVER['HTTP_USER_AGENT'];
 
-                    <div class="col col-lg-8">
+                        function isMobile() {
+                            return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+                        }
+                        if(!isMobile()){
+                            include("src/menu.php");
+                        }      
+                        if(isset( $_GET["cur_tab"]))
+                        {
+                            $menupont = $_GET["cur_tab"];
+                        }
+                        else{
+                            $menupont="data";
+                        }
+                    
+                        switch ($menupont) {
+                            case "data":
+                                    include("src/user_data.php");
+                                break;
+                            case "new_resource":
+                                    include("src/new_resource.php");
+                                break;
+                            case "my_dates":
+                                    include("src/my_dates.php");
+                                break;
+                            case "delete_resource":
+                                    include("src/delete_resource.php");
+                                break;
+                            case "my_bookings":
+                                    include("src/my_bookings.php");
+                                break;
+                            case "my_resources":
+                                    include("src/my_resources.php");
+                                break;
+                            case "subscriptions":
+                                    include("src/subscriptions.php");
+                                break;
+                            case "favourites":
+                                    include("src/favourites.php");
+                                break;
+                            case "invite_member":
+                                include("src/invite_member.php");
+                            break;
+                            
+                            default:
+                                include("src/user_data.php");
+                        }
+                    ?>
 
-                    </div> <!-- col lg 8 --> 
-            </div> <!-- row--> 
-        </div><!-- jumbotron--> 
+            </div>
+        </div>
     </div><!-- Container-->
 
 
