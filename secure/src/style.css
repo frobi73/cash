@@ -14,9 +14,15 @@ ul
 {
     list-style-type: none;
 }
+
 .container .jumbotron {
     border-radius: 16px ;
 }
+.dropdown-item:hover
+{
+    background-color: lightgreen;
+}
+
 #grad {
     background-image: linear-gradient(to right,rgb(0, 204, 0), yellow) !important;
   }
@@ -38,6 +44,12 @@ ul
     color: #ffffff;
 }
 input[type="password"],input[type="text"],input[type="email"]{
+    height: 50px;
+    border: 1px solid #dee0e4;
+    padding: 0 15px;
+}
+.img-upload
+{
     height: 50px;
     border: 1px solid #dee0e4;
     padding: 0 15px;
@@ -125,4 +137,8 @@ input[type="password"],input[type="text"],input[type="email"]{
     border-bottom: 0;
 }
 
+.btn-danger
+{
+    float:right;
+}
   

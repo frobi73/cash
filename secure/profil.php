@@ -61,6 +61,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <script src="src/dropzone.js"></script>
 
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     
@@ -127,7 +129,7 @@
                             case "invite_member":
                                 include("src/invite_member.php");
                             break;
-                            
+
                             default:
                                 include("src/user_data.php");
                         }

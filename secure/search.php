@@ -256,7 +256,7 @@ else
                                 //echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
 
 
-                                include("../src/db_config_test.php");
+                                include("src/db_config.php");
 
                                 // keresés után regisztáljon
                                 //aznap legyel letiltva
