@@ -261,7 +261,7 @@ else
                                 // keresés után regisztáljon
                                 //aznap legyel letiltva
                                 //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
-                               $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$City','$Eroforras')";
+                                $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$City','$Eroforras')";
                                 $result = $con->query($sql);
 
                                 if ($result->num_rows > 0) {
@@ -269,8 +269,7 @@ else
                                     while($row = $result->fetch_assoc()) {
                                         echo '
                                         <form action="product.php" method="POST">
-                                            <button type="submit" class="button" > '. $row["product_name"] . '</button>
-                                            <input type="hidden" value="' . $row["product_ID"] . '" name="atadott_ID">
+                                            <a type="submit" class="button btn" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate. '"> '. $row["product_name"] . '</a>
                                         </form>
                                         <hr>'
                                         
