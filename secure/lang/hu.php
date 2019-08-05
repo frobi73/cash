@@ -28,6 +28,7 @@ $lang['nav3'] = 'Árak';
 $lang['nav4'] = 'Profil';
 $lang['nav5'] = 'Kijelentkezés';
 $lang['nav6'] = 'Nyelvek';
+$lang['nav8'] = 'Hogyan működik ?';
 
 //profil
 $lang['menu'] = 'Menü';

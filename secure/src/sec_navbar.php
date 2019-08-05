@@ -27,8 +27,12 @@
             <a class="nav-link" href="prices.php"> <i class="fas fa-euro-sign"></i> <?=$lang['nav3'];?></a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="profil.php" name="profil"><i class="fas fa-user"></i> <?=$lang['nav4'];?> </a>
-        </li> 
+            <a class="nav-link" href="work.php"> <i class="fas fa-question-circle"></i><?=$lang['nav8'];?></a>
+        </li>
+           
+         
+
+        
 
         <li class="nav-item dropdown" >
 
@@ -55,9 +59,27 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto" >
-          <li class="nav-item " >
-            <a class="nav-link" href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?></a>
-        </li> 
+        <li class="nav-item dropleft" >
+            <form action="profil.php" method="GET">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
+              <i class="fas fa-user"></i> <?=$lang['nav4'];?>  
+              </a>
+                <div class="dropdown-menu">
+
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="data"  href="profil.php"> Profil adatok</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="new_resource" href="profil.php"> Új Erőforrás Feltöltése</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_dates" href="profil.php"> Eszközeim időadatainak beállítása</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="delete_resource" href="profil.php"> Erőforrásaim törlése</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_bookings" href="profil.php"> Foglalásaim bérlőként</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_resources" href="profil.php"> Foglalásaim bérbeadóként</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="subscriptions" href="profil.php"> Előfizetéseim</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="favourites" href="profil.php"> Kedvencek</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="invite_member" href="profil.php"> Ismerősök meghívása</button>
+                    <a class="dropdown-item"  href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?> </a>
+                  </div> <!-- dropwdown-menu-->
+              </form>
+          </li>
+     
       </ul>
     </div> <!-- collapse-->
   </nav>

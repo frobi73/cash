@@ -86,34 +86,77 @@
 
         <div class="jumbotron">
             <div class="container">
-                <div class="card-deck">
-                            <div class="card">
-                                <img class="card-img-top" id="kep" src="https://lh3.googleusercontent.com/cWya94a6c4wHBHh-cRL7j0-ZyKojkayvlgVw6YJYvkzYnXgHHb2woDLAT7nEuYLQ7Ua3SJS7RxCYlYqiJ1JcfYS8=w640-h480-p" alt="01 img">
-                                <div class="card-body">
-                                    <h5 class="card-title"> <?=$lang['t1'];?> </h5>
-                                    <p class="card-text" >  <?=$lang['d1'];?> </p>
-                                    <a href="upload.php" class="btn btn-primary btn-block"> Keress </a>
+
+                <!--Projects section v.4-->
+                        <section>
+
+                        <!--Section heading-->
+                        <h2 class="h1-responsive font-weight-bold text-center my-5"> </h2>
+                        <!-- Section description -->
+                        <p class="grey-text text-center w-responsive mx-auto mb-5"> </p>
+
+                        <!--Grid row-->
+                        <div class="row mx-1">
+
+                            <!--Grid column-->
+                            <div class="col-md-12 mb-4">
+                                <div class="card card-image" id="kep" style="background-image: url(https://momentumdevelopments.ca/wp-content/uploads/2018/07/andrew-seaman-552850-unsplash.jpg);">
+                                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                                        <div>
+                                            <h1><i class="fas fa-search"></i><strong>  <?=$lang['t1'];?> </strong></h1>
+                                            <h3 class="card-title py-3 font-weight-bold"><strong><?=$lang['d1'];?> </strong></h3>
+                                            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                                                Odit sed qui, dolorum!</p>
+                                            <a class="btn btn-success btn-rounded " href="search.php" id="grad"><i class="far fa-clone left"></i> Keresés </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> <!-- card-->
-                            <div class="card">
-                                <img class="card-img-top" id="kep" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/W_50_L_Blau.jpg/280px-W_50_L_Blau.jpg" alt="02 img">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?=$lang['t2'];?> </h5>
-                                    <p class="card-text">  <?=$lang['d2'];?> </p>
-                                  <a href="upload.php" class="btn btn-primary btn-block"> Upload </a>
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-4">
+                                <div class="card card-image"id="kep" style="background-image: url(https://cdn.pixabay.com/photo/2015/05/21/03/10/lights-776457_960_720.jpg);">
+                                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                                        <div>
+                                            <h6 class="pink-text"><i class="fas fa-upload"></i><strong> <?=$lang['t2'];?></strong></h6>
+                                            <h3 class="card-title py-3 font-weight-bold"><strong><?=$lang['d2'];?></strong></h3>
+                                            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                                                Odit sed qui, dolorum!</p>
+                                            <a class="btn btn-success btn-rounded"  href="profil.php?cur_tab=new_resource" id="grad"><i class="far fa-clone left"></i> Feltöltés</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div><!-- card-->
-                            <div class="card">
-                                <img class="card-img-top" id="kep" src="https://cdn-images-1.medium.com/max/814/1*pempph-OAqpRKG5v1-yisg@2x.png" alt="03 img">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?=$lang['t3'];?> </h5>
-                                    <p class="card-text">  <?=$lang['d3'];?> </p>
-                                    <a href="prices.php" class="btn btn-primary btn-block"> Upload </a>
-                                    
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-4">
+                                <div class="card card-image" id="kep" style="background-image: url(https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200);">
+                                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                                        <div>
+                                            <h6 class="green-text"><i class="far fa-eye"></i><strong><?=$lang['t3'];?></strong></h6>
+                                            <h3 class="card-title py-3 font-weight-bold"><strong><?=$lang['d3'];?> </strong></h3>
+                                            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                                                Odit sed qui, dolorum!</p>
+                                            <a class="btn btn-success btn-rounded" id="grad"><i class="far fa-clone left"></i> Előfizetés</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div><!-- card-->
-                </div> <!-- card deck-->
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        </section>
+                        <!--Projects section v.4-->
             </div><!-- Container-->
+
+            
         </div><!-- jumbotron--> 
 
 

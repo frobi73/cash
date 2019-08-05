@@ -67,7 +67,7 @@ else
   <body>
    
                     <?php 
-                        include("../src/navbar.php");
+                        include("src/sec_navbar.php");
                         //<!-- Script Cookie-->
                         include("../src/cookie.html");
                         //<!-- Script Cookie-->
@@ -103,7 +103,7 @@ else
                                             <li>Lorem</li>
                                             <li>Ipsum</li>
                                             <li>meg ami kell</li>
-                                            <li class="plan-action"><a href="register.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
+                                            <li class="plan-action"><a href="checkout.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
                                          </ul>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@ else
                                             <li>Lorem</li>
                                             <li>Ipsum</li>
                                             <li>meg ami kell</li>
-                                            <li class="plan-action"><a href="register.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
+                                            <li class="plan-action"><a href="checkout.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
                                          </ul>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@ else
                                             <li>Lorem</li>
                                             <li>Ipsum</li>
                                             <li>meg ami kell</li>
-                                            <li class="plan-action"><a href="register.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
+                                            <li class="plan-action"><a href="checkout.php" class="btn btn-primary btn-lg">Előfizetés</a></li>
                                          </ul>
                                 </div>
                             </div>

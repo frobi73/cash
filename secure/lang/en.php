@@ -28,6 +28,7 @@ $lang['nav3'] = 'Prices';
 $lang['nav4'] = 'Profile';
 $lang['nav5'] = 'Log out';
 $lang['nav6'] = 'Language';
+$lang['nav8'] = 'How does it work ?';
 
 //profil
 $lang['menu'] = 'Menu';
