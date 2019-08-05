@@ -256,10 +256,10 @@ else
                                 if(!isset($_POST['keres'])) { $text = ""; }
                                 else{ $text = $_POST['keres'];}
 
-                                if(!isset($_POST['orszag'])) { $Country = "hu"; }
+                                if(!isset($_POST['orszag'])) { $Country = ""; }
                                 else{ $Country = $_POST['orszag'];}
 
-                                if(!isset($_POST['varos'])) {$City = "Budapest";}
+                                if(!isset($_POST['varos'])) {$City = "";}
                                 else{ $City = $_POST['varos'];}
                                 
                                 if(!isset($_POST['Iparag'])){ $Ipar = 0;}
@@ -286,7 +286,7 @@ else
                                 // keresés után regisztáljon
                                 //aznap legyel letiltva
                                 //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
-                               $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$City','$Eroforras')";
+                               $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$Country','$City',$Eroforras,$Ipar)";
                                 $result = $con->query($sql);
 
                                 if ($result->num_rows > 0) {
