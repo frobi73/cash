@@ -268,7 +268,7 @@ else
                                     // output data of each row
                                     while($row = $result->fetch_assoc()) {
                                         echo '
-                                        <form action="product.php" method="POST">
+                                        <form action="product.php" method="GET">
                                             <a type="submit" class="button btn" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate. '"> '. $row["product_name"] . '</a>
                                         </form>
                                         <hr>'

@@ -190,16 +190,6 @@
                                         value="<?php echo $def_start, $def_end;?>" style="text-align:right" />
 
                                         <script>
-
-                                            var array = ["2019-08-14","2019-08-20","2013-08-21"]
-
-                                            $('#daterange').daterangepicker({
-                                                beforeShowDay: function(date){
-                                                    var string = jQuery.daterangepicker.date.format('YYYY-MM-DD', date);
-                                                    return [ array.indexOf(string) == -1 ]
-                                                }
-                                            });
-
                                                var today = new Date();
                                                var next_month = new Date();
                                                var currentMonth = next_month.getMonth();
@@ -249,6 +239,7 @@
                        
                         
                         <div class="">
+                            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST"> 
                             <?php
                                 echo '
                                     <div>
@@ -257,7 +248,81 @@
 
                                     </div>
                                     ';
-                            ?>
+                                      
+                                    include("src/db_config.php");
+
+                                    if ($stmt = $con->prepare('CALL WISHLIST_CHECK(?,?);')) 
+                                            {
+                                                $stmt->bind_param('ii', $_ID, $product_ID);
+                                                $stmt->execute();
+                                                $stmt->store_result(); 
+                                            }
+                                            if ($stmt->num_rows > 0) 
+                                            {
+                                                    $stmt->bind_result( $result);
+                                                    $stmt->fetch();
+                                            }
+                                            else 
+                                            {
+                                                printf("Query failed:", $con->error);
+                                            }
+                                        if($result == 1)
+                                        {
+                                            echo '<button type="submit" class="btn btn-success btn-block" name="btn_delete" > 
+                                                        Delete from Wishlist
+                                                    </button>';
+                                        }
+                                        else
+                                        {
+                                            echo '<button type="submit" class="btn btn-success btn-block" name="btn_wish" > 
+                                                    Add to Wishlist
+                                                    </button>';
+                                        }
+
+                                    if($_SERVER['REQUEST_METHOD'] == 'POST') 
+                                    {
+                                        if (isset($_POST['btn_wish']))
+                                        {
+                                            $_ID = $_SESSION["id"];
+                                            echo $_ID,$product_ID;
+                                            if ($stmt = $con->prepare('CALL WISHLIST_INSERT(?,?)')) 
+                                            {
+                                                $stmt->bind_param('ii', $_ID, $product_ID);
+                                                $stmt->execute();
+                                                $stmt->store_result(); 
+                                            }
+                                            else 
+                                            {
+                                                printf("Query failed:", $con->error);
+                                            }
+                                        }
+                                        if (isset($_POST['btn_delete']))
+                                        {
+                                            $_ID = $_SESSION["id"];
+                                            echo $_ID,$product_ID;
+                                            if ($stmt = $con->prepare('CALL WISHLIST_DEL(?,?);')) 
+                                            {
+                                                $stmt->bind_param('ii', $_ID, $product_ID);
+                                                $stmt->execute();
+                                                $stmt->store_result(); 
+                                            }
+                                            else 
+                                            {
+                                                printf("Query failed:", $con->error);
+                                            }
+                                        }
+                                    }                            
+                                ?>
+
+
+                                </form>
+                                    <hr>
+                                <button type="submit" class="btn btn-warning btn-block" name="btn_wish" > 
+                                     Tovább
+                                </button>
+
+
+
                         </div>
 
                     </div>

@@ -115,55 +115,7 @@ else
 
         <div class="jumbotron">    
             <div class="container">      
-                <div class="kereses_eredmeny">
-                        <?php 
-                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["search_btn"]))
-                            {
-                                if(!isset($_POST['keres'])) { $text = ""; }
-                                else{ $text = $_POST['keres'];}
-
-                                if(!isset($_POST['orszag'])) { $Country = "hu"; }
-                                else{ $Country = $_POST['orszag'];}
-
-                                if(!isset($_POST['varos'])) {$City = "Budapest";}
-                                else{ $City = $_POST['varos'];}
-                                
-                                if(!isset($_POST['Iparag'])){ $Ipar = 0;}
-                                else{ $Ipar = $_POST['Iparag'];}
-
-                                if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
-                                else{ $Eroforras=$_POST['Eroforras'];}
-
-                                if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
-                                else{ $datum=$_POST['daterange'];}
-
-                                $dates = explode(" - ", $datum);
-                                $startdate = $dates[0];
-                                $enddate = $dates[1];
-
-
-                                echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " - ", $enddate;
-
-
-                                include("src/db_config_test.php");
-
-                                // keresés után regisztáljon
-                                //aznap legyel letiltva
-                                $sql="SELECT * FROM products WHERE products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
-                                $result = $con->query($sql);
-
-                                if ($result->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $result->fetch_assoc()) {
-                                        echo $row["product_name"]. "<br>";
-                                    }
-                                } else {
-                                    echo "0 results";
-                                }
-                                $con->close();
-                            }
-                        ?>
-                </div>  <!-- div - kereses eredmeny-->   
+  
                 </div><!-- container-->     
         </div><!-- jumbotron-->     
 
