@@ -225,62 +225,108 @@ else
                 </form><!-- form-->         
 
                 <div class="kereses_eredmeny jumbotron">
-                        <?php 
-                            if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['keres']))
-                            {
-                                if(!isset($_POST['keres'])) { $text = ""; }
-                                else{ $text = $_POST['keres'];}
 
-                                if(!isset($_POST['orszag'])) { $Country = ""; }
-                                else{ $Country = $_POST['orszag'];}
+                    <table id="search_table" class="display responsive no-wrap"  style="width:100% !important;" >
+                        <thead>
+                            <th>Kép</th>
+                            <th>Iparág</th>
+                            <th>Típus</th>
+                            <th>Név</th>
+                            <th>Ország</th>
+                            <th>Telephely</th>
+                            <th>Cég</th>
+                            <th>Rating</th>
+                            
+                        </thead>
+                        <tbody>
+                            <?php 
+                                if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['keres']))
+                                {
+                                    if(!isset($_POST['keres'])) { $text = ""; }
+                                    else{ $text = $_POST['keres'];}
 
-                                if(!isset($_POST['varos'])) {$City = "";}
-                                else{ $City = $_POST['varos'];}
-                                
-                                if(!isset($_POST['Iparag'])){ $Ipar = 0;}
-                                else{ $Ipar = $_POST['Iparag'];}
+                                    if(!isset($_POST['orszag'])) { $Country = ""; }
+                                    else{ $Country = $_POST['orszag'];}
 
-                                if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
-                                else{ $Eroforras=$_POST['Eroforras'];}
+                                    if(!isset($_POST['varos'])) {$City = "";}
+                                    else{ $City = $_POST['varos'];}
+                                    
+                                    if(!isset($_POST['Iparag'])){ $Ipar = 0;}
+                                    else{ $Ipar = $_POST['Iparag'];}
 
-                                if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
-                                else{ $datum=$_POST['daterange'];}
+                                    if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
+                                    else{ $Eroforras=$_POST['Eroforras'];}
 
-                                $dates = explode(" - ", $datum);
-                                $startdate = $dates[0];
-                                $enddate = $dates[1];
+                                    if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
+                                    else{ $datum=$_POST['daterange'];}
 
-                                $format = 'Y-m-d';
-                                $date = DateTime::createFromFormat($format, '2009-02-15');
+                                    $dates = explode(" - ", $datum);
+                                    $startdate = $dates[0];
+                                    $enddate = $dates[1];
 
-                                //echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
+                                    $format = 'Y-m-d';
+                                    $date = DateTime::createFromFormat($format, '2009-02-15');
+
+                                    //echo $text, $Country,$City,$Ipar,$Eroforras, $startdate, " asd ", $enddate;
 
 
-                                include("src/db_config.php");
+                                    include("src/db_config.php");
 
-                                // keresés után regisztáljon
-                                //aznap legyel letiltva
-                                //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
-                                $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$Country','$City',$Eroforras,$Ipar)";
-                                $result = $con->query($sql);
+                                    // keresés után regisztáljon
+                                    //aznap legyel letiltva
+                                    //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
+                                    $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$Country','$City',$Eroforras,$Ipar)";
+                                    $result = $con->query($sql);
 
-                                if ($result->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $result->fetch_assoc()) {
-                                        echo '
-                                        <form action="product.php" method="GET">
-                                            <a type="submit" class="button btn" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate. '"> '. $row["product_name"] . '</a>
-                                        </form>
-                                        <hr>'
-                                        
-                                        ;
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+
+
+                                            echo "<tr>";
+                                            echo "<td>"; 
+                                                echo $row["images"];
+                                            echo "</td>";
+                                            echo "<td>"; 
+                                                echo $row["industry"];
+                                            echo "</td>";
+
+                                            echo "<td>"; 
+                                                echo $row["product_type_name"];
+                                            echo "</td>";
+                                            echo "<td>"; 
+                                                echo    '<form action="product.php" method="GET">
+                                                            <a class="button btn" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate. '"> '. $row["product_name"] . '</a>
+                                                        </form>';
+                                            echo "</td>";
+                                            echo "<td>"; 
+                                                echo $row["orszagnev"];
+                                            echo "</td>";
+                                                echo "<td>"; 
+                                                    echo $row["Telephely"];
+                                                echo "</td>";
+                                            echo "<td>"; 
+                                                echo $row["company_name"];
+                                            echo "</td>";
+                                           
+                                            echo "<td>"; 
+                                                echo $row["rating"];
+                                            echo "</td>";
+                                        echo "</tr>";
+                                            
+                                            ;
+                                        }
+                                    } else {
+                                        echo "A beírt adatokra nincs találat.";
                                     }
-                                } else {
-                                    echo "A beírt adatokra nincs találat.";
+                                    $con->close();
                                 }
-                                $con->close();
-                            }
                         ?>
+
+                        </tbody>
+                </table>
+
+                        
                 </div>  <!-- div - kereses eredmeny-->   
                 </div><!-- container-->     
         </div><!-- jumbotron-->     
@@ -292,3 +338,37 @@ else
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </body>
 </html>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+ <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+ 
+<script>
+    
+    $(document).ready(function() {
+        $('#search_table').DataTable();
+    } );
+
+    $('#search_table').DataTable( {
+        language: 
+        {
+                processing:     "DOlgozok rajta",
+                search:         "Keresés&nbsp;:",
+                lengthMenu:    "Megjelenítés: _MENU_  eszköz",
+                info:           "Megjelenítve _END_ a _TOTAL_ -ből",
+                infoEmpty:      "Nem található elem",
+                infoFiltered:   "( Összesen : _MAX_ elemből)",
+                infoPostFix:    "",
+                loadingRecords: "Betöltés alatt",
+                zeroRecords:    "Nincs találat",
+                emptyTable:     "Először Keress",
+                paginate: {
+                    first:      "Első",
+                    previous:   "Előző",
+                    next:       "Következő",
+                    last:       "Utolsó"
+                }
+        },
+        responsive: true
+} );
+</script>

@@ -327,7 +327,7 @@ DELIMITER $$
 --
 -- Create procedure `GetAvailableResources`
 --
-CREATE DEFINER = 'root'@'localhost'
+CREATE DEFINER = 'u410658578_cash'@'88.87.233.59'
 PROCEDURE GetAvailableResources(IN IName VARCHAR(255), IN IStartDate DATE, IN IEndDate DATE, IN ICountry VARCHAR(255), IN ITown VARCHAR(255), IN IProductTypeID INT, IN IIndustryTypeID INT)
 BEGIN
 SELECT
