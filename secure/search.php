@@ -115,7 +115,7 @@ else
 
         <div class="jumbotron">    
             <div class="container">
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">     
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="GET">     
                      <div class="card">
                         <div class="card-body">
                             <div class="input-group flex-nowrap">
@@ -123,12 +123,12 @@ else
                                     <span class="input-group-text icon" id="grad" id="addon-wrapping"><i  class="fas fa-search"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="keres" placeholder="Keresés" id="keres" aria-describedby="addon-wrapping">
-                            </div>  <!--input group-->
+                            </div>  <!--input group //TODO: valuek átírása--> 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="select_country">Ország</label>
                                                 <select class="form-control" id="select_country" onchange="test(this)"
-                                                    name="orszag" placeholder="Ország" require>
+                                                    name="orszag" placeholder="Ország" required>
                                                     <option selected disabled>Ország</option>
                                                     <option value="Ungarn">Magyar</option>
                                                     <option value="Deutschland">Német</option>   
@@ -226,39 +226,39 @@ else
 
                 <div class="kereses_eredmeny jumbotron">
 
-                    <table id="search_table" class="display responsive no-wrap"  style="width:100% !important;" >
+                    <table id="search_table" class="table dt-responsive nowrap"  style="width:100% !important;" >
                         <thead>
-                            <th>Kép</th>
+                            <th data-class-name="priority" class="priority">Név</th>
                             <th>Iparág</th>
-                            <th>Típus</th>
-                            <th>Név</th>
+                            <th >Típus</th>
                             <th>Ország</th>
                             <th>Telephely</th>
                             <th>Cég</th>
                             <th>Rating</th>
+                            <th>Kép</th>
                             
                         </thead>
                         <tbody>
                             <?php 
-                                if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['keres']))
+                                if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['keres']))
                                 {
-                                    if(!isset($_POST['keres'])) { $text = ""; }
-                                    else{ $text = $_POST['keres'];}
+                                    if(!isset($_GET['keres'])) { $text = ""; }
+                                    else{ $text = $_GET['keres'];}
 
-                                    if(!isset($_POST['orszag'])) { $Country = ""; }
-                                    else{ $Country = $_POST['orszag'];}
+                                    if(!isset($_GET['orszag'])) { $Country = ""; }
+                                    else{ $Country = $_GET['orszag'];}
 
-                                    if(!isset($_POST['varos'])) {$City = "";}
-                                    else{ $City = $_POST['varos'];}
+                                    if(!isset($_GET['varos'])) {$City = "";}
+                                    else{ $City = $_GET['varos'];}
                                     
-                                    if(!isset($_POST['Iparag'])){ $Ipar = 0;}
-                                    else{ $Ipar = $_POST['Iparag'];}
+                                    if(!isset($_GET['Iparag'])){ $Ipar = 0;}
+                                    else{ $Ipar = $_GET['Iparag'];}
 
-                                    if(!isset($_POST['Eroforras'])) { $Eroforras = 0;}
-                                    else{ $Eroforras=$_POST['Eroforras'];}
+                                    if(!isset($_GET['Eroforras'])) { $Eroforras = 0;}
+                                    else{ $Eroforras=$_GET['Eroforras'];}
 
-                                    if(!isset($_POST['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
-                                    else{ $datum=$_POST['daterange'];}
+                                    if(!isset($_GET['daterange'])) { $datum = date("Y/m/d") + ' - ' + date("Y/m/d");}
+                                    else{ $datum=$_GET['daterange'];}
 
                                     $dates = explode(" - ", $datum);
                                     $startdate = $dates[0];
@@ -283,38 +283,44 @@ else
                                         while($row = $result->fetch_assoc()) {
 
 
-                                            echo "<tr>";
-                                            echo "<td>"; 
-                                                echo $row["images"];
-                                            echo "</td>";
-                                            echo "<td>"; 
-                                                echo $row["industry"];
-                                            echo "</td>";
+                                            echo '<tr>';
+                                                    echo "<td>";
+                                                    echo'<form action="product.php" method="GET">
+                                                                <a class="btn btn-block" id="btn-fav-link" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '">'.  $row["product_name"]  . '</a>
+                                                            </form>' ;
+                                                    echo "</td>";
 
-                                            echo "<td>"; 
-                                                echo $row["product_type_name"];
-                                            echo "</td>";
-                                            echo "<td>"; 
-                                                echo    '<form action="product.php" method="GET">
-                                                            <a class="button btn" href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate. '"> '. $row["product_name"] . '</a>
-                                                        </form>';
-                                            echo "</td>";
-                                            echo "<td>"; 
-                                                echo $row["orszagnev"];
-                                            echo "</td>";
-                                                echo "<td>"; 
-                                                    echo $row["Telephely"];
-                                                echo "</td>";
-                                            echo "<td>"; 
-                                                echo $row["company_name"];
-                                            echo "</td>";
-                                           
-                                            echo "<td>"; 
-                                                echo $row["rating"];
-                                            echo "</td>";
-                                        echo "</tr>";
+                                                    echo "<td>"; 
+                                                        echo $row["industry"];
+                                                    echo "</td>";
+
+                                                    echo "<td>"; 
+                                                        echo $row["product_type_name"];
+                                                    echo "</td>";
+                                                
+                                                    echo "<td>"; 
+                                                        echo $row["orszagnev"];
+                                                    echo "</td>";
+
+                                                    echo "<td>"; 
+                                                        echo $row["Telephely"];
+                                                    echo "</td>";
+
+                                                    echo "<td>"; 
+                                                        echo $row["company_name"];
+                                                    echo "</td>";
+                                                
+                                                    echo "<td>"; 
+                                                        echo $row["rating"] . "/5 &#9733;";
+                                                    echo "</td>";
+
+                                                    echo "<td>"; 
+                                                        echo '<img height="50" width="50" id="' . $row["product_name"] . '" data-toggle="modal" data-target="#myModal" src="src/images/product/' . $row["company_name"] . $row["product_name"] .'_01.jpg"  />';
+                                                    echo "</td>";
+                                            echo "</tr>";
+
                                             
-                                            ;
+                                            
                                         }
                                     } else {
                                         echo "A beírt adatokra nincs találat.";
@@ -339,8 +345,20 @@ else
 </body>
 </html>
 
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+ 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"/>
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
  
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
  
 <script>
@@ -353,7 +371,7 @@ else
         language: 
         {
                 processing:     "DOlgozok rajta",
-                search:         "Keresés&nbsp;:",
+                search:         "Szűrés&nbsp;:",
                 lengthMenu:    "Megjelenítés: _MENU_  eszköz",
                 info:           "Megjelenítve _END_ a _TOTAL_ -ből",
                 infoEmpty:      "Nem található elem",
@@ -371,4 +389,6 @@ else
         },
         responsive: true
 } );
+
+
 </script>
