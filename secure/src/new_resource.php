@@ -1,4 +1,4 @@
-<div class="col-md-8 order-md-1 card">
+<div class="col-md-8 order-md-1 card" style="padding-bottom:20px !important;">
     <h2 style="margin-bottom:10px !important;margin-top:10px !important">Új erőforrás feltöltése</h2>
 
     
@@ -104,7 +104,7 @@
                         <label for="name" id="at_label">
                         <i class="fas fa-folder-open"></i>
                         </label>
-                <input id="name" type="text" class="form-control" name="name" placeholder="Erőforrás neve" required>
+                <input id="name" type="text" class="form-control" name="product_name" placeholder="Erőforrás neve" required>
                 </div><!-- input group -->
             </div><!--cold md 6 mb 3 -->
 
@@ -191,51 +191,82 @@
                 <button type="submit" class="btn btn-success btn-block" id="new_res" value="Szerkesztés" name="new_res">Feltöltés</button>
       
         <?php 
+
             if($_SERVER['REQUEST_METHOD'] == 'POST') 
             {
                 if (isset($_POST['new_res']))
                 {
+                  $img_name= uniqid(); // a kép neve lesz_plusz a sorszáma
+                  $imgnumb = 0; // a képek száma az adott termékhez, hogy könnyítse a megjelenítést 
+
                   if(isset($_POST["image1"]))
                   {
-                    img_upload();
+                    img_upload($img_name,0);
+                    $imgnumb = 1;
                   }
+
                   if(isset($_POST["image2"]))
                   {
-                    
+                    img_upload($img_name,1);
+                    $imgnumb = 2;
                   }
+
                   if(isset($_POST["image3"]))
                   {
-                    
+                    img_upload($img_name,2);
+                    $imgnumb = 3;
                   }
+
                   if(isset($_POST["image4"]))
                   {
-                    
+                    img_upload($img_name,3);
+                    $imgnumb = 4;
                   }
+
+                  if(isset($_POST["product_name"]))
+                  {
+                    $product_name = $_POST["product_name"];
+                  }
+
+                  if(isset($_POST["product_Type"]))
+                  {
+                    $product_name = $_POST["product_name"];
+                  }
+
+                  if(isset($_POST["year"]))
+                  {
+                    $build_year = $_POST["year"];
+                  }
+
+                  if(isset($_POST["repair"]))
+                  {
+                    $repair_year = $_POST["repair"];
+                  }
+
+                  if(isset($_POST["condition"]))
+                  {
+                    $condition = $_POST["condition"];
+                  }
+
+                  if(isset($_POST["price"]))
+                  {
+                    $price = $_POST["price"];
+                  }
+                  
+
+
+
+
                 }
               }
-                  function img_upload() 
+
+                  function img_upload($img_name,$numb) 
                   {
-                    $fileToUpload = $_FILES['fileToUpload']['name'];
+                    //$fileToUpload = $_FILES['fileToUpload']['name'];
                     $target_dir = "src/images/";
                     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                    $uploadOk = 1;
                     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            
-                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                        if($check !== false) {
-                            echo "File is an image - " . $check["mime"] . ".";
-                            $uploadOk = 1;
-                        } else {
-                            echo "File is not an image.";
-                            $uploadOk = 0;
-                        }
-            
-                      if ($uploadOk == 0) {
-                          echo "Sorry, your file was not uploaded.";
-                      } 
-                      else 
-                      {
-                          // a fájl nevét deklarálni kell -> a szerveren így lesz tárolva - $newfilename = $_SESSION["username"] . '.' . $imageFileType;
+                    $newfilename =  $img_name . '_'. $numb . '.' . $imageFileType;
                           if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir .$newfilename )) {
             
                               echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
@@ -246,7 +277,6 @@
                           }
             
                       }
-                }
 
 
      

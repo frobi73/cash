@@ -53,7 +53,7 @@
                             <label for="Contact_name" id="at_label">
                                 <i class="far fa-user"></i>
                             </label>
-                        <input type="text" class="form-control" id="Contact_name" name="Contact_name" placeholder="" value="<?php echo $contact_name; ?>"required >
+                        <input type="text" class="form-control" id="Contact_name" name="Contact_name" placeholder="Contact Name" value="<?php echo $contact_name; ?>"required >
                     </div><!-- input group -->
                 </div><!--col md 6 mb 3 -->
                 <div class="col-md-6 mb-3">
@@ -62,7 +62,7 @@
                             <label for="contact_phone" id="at_label">
                                 <i class="fas fa-briefcase"></i>
                             </label>
-                        <input type="text" class="form-control" id="contact_phone"  name="contact_phone" placeholder="" value="<?php echo $contact_phone; ?>"required >
+                        <input type="text" class="form-control" id="contact_phone"  name="contact_phone" placeholder="Contact Phone" value="<?php echo $contact_phone; ?>"required >
                     </div><!-- input group -->
                 </div><!--cold md 6 mb 3 -->
         </div><!-- row -->
@@ -75,7 +75,7 @@
                             <label for="Contact_email" id="at_label">
                                 <i class="fas fa-at"></i>
                             </label>
-                        <input type="email" class="form-control" id="Contact_email" name="Contact_email" placeholder="" value="<?php echo $account_email; ?>" required>
+                        <input type="email" class="form-control" id="Contact_email" name="Contact_email" placeholder="Contact Email" value="<?php echo $account_email; ?>" required>
                     </div><!-- input group -->
                 </div><!--col md 6 mb 3 -->
 
@@ -85,7 +85,7 @@
                             <label for="Company_phone" id="at_label">
                                 <i class="fas fa-phone"></i>
                             </label>
-                        <input type="text" class="form-control" id="Company_phone"  name="Company_phone" placeholder="Példa Kft."  value="<?php echo $company_phone; ?>" required >
+                        <input type="text" class="form-control" id="Company_phone"  name="Company_phone" placeholder="Company Phone"  value="<?php echo $company_phone; ?>" required >
                     </div><!-- input group -->
                 </div><!--cold md 6 mb 3 -->
         </div><!-- row -->
@@ -109,7 +109,7 @@
                             <label for="Company_email" id="at_label">
                             <i class="fas fa-at"></i>
                             </label>
-                        <input type="email" class="form-control" id="Company_email" name="Company_email" placeholder="" value="<?php echo $company_email; ?>"required >
+                        <input type="email" class="form-control" id="Company_email" name="Company_email" placeholder="Példa_Kft@példa.com" value="<?php echo $company_email; ?>"required >
                     </div><!-- input group -->
                 </div><!--col md 6 mb 3 -->
                 
@@ -178,7 +178,7 @@
                     $contact_phone = $_POST['contact_phone'];
                 }
                 if(isset($_POST['Contact_email'])) 
-                { 
+                {
                     $Contact_email = $_POST['Contact_email'];
                 }
                 if(isset($_POST['Company_phone'])) 
@@ -211,14 +211,14 @@
                     $street = $_POST['Street_Name'];
                 }
 
-                if( $street == "asd")
+                if(is_company_Set()== true)
                 {
                     $sql = "INSERT INTO companies (company_name,email,country,town_id,street,contact_name,contact_phone,tax_number,company_phone)
                     VALUES (". $company_Name .",". $company_email .",". $Country_Id .",". $town_id .",". $street .",".$contact_name .",". $contact_phone .",". $tax_number .",".$company_phone .");" ;
                 }
                 else
                 {
-                    
+                    $sql = "UPDATE companies";
                 }
                 echo $Country_Id;
                 echo  $company_ID,$company_Name,$company_email,  $company_phone,
