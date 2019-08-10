@@ -1,6 +1,6 @@
 <?php 
 
-        include("src/db_config.php");
+        include("db_config.php");
         $_ID = $_SESSION["id"];
         $sql = 'SELECT
                     town.Town_Name,
