@@ -110,8 +110,8 @@
 
           <div class="col-md-6 mb-3">
               <div class="form-group ">
-                                    <label for="Eroforras">Erőforrás Típusa</label>
-                                        <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa" required>
+                                    <label for="product_type">Erőforrás Típusa</label>
+                                        <select class="form-control" id="selection" name="product_type" placeholder="Erőforrás Típusa" required>
                                             <option value="0"  selected disabled hidden>Erőforrás típusa</option>
                                             <option value="1" >Emelőgép</option>
                                             <option value="2" >Földmunkagép</option>
@@ -156,7 +156,13 @@
                           <label for="condition" id="at_label">
                             <i class="fas fa-tools"></i>
                           </label>
-                  <input id="condition" type="text" class="form-control" name="condition" placeholder="Állapot" required>
+                          <select class="form-control" id="condition" name="product_type" placeholder="Erőforrás Típusa" required>
+                                            <option value="0"  selected disabled hidden>Állapot</option>
+                                            <option value="1" >Új</option>
+                                            <option value="2" >Kitűnő</option>
+                                            <option value="3" >Megkímélt</option>
+                                            <option value="4" >Normál</option>
+                                        </select>
                   </div><!-- input group -->
               </div><!--cold md 6 mb 3 -->
 
@@ -230,7 +236,7 @@
 
                   if(isset($_POST["product_Type"]))
                   {
-                    $product_name = $_POST["product_name"];
+                    $product_type = $_POST["product_type"];
                   }
 
                   if(isset($_POST["year"]))
@@ -253,7 +259,7 @@
                     $price = $_POST["price"];
                   }
                   
-
+                  $sql= "INSERT INTO ";
 
 
 
