@@ -92,7 +92,7 @@
 </script>
             
             </div><!-- row -->
-            A képek maximális mérete 4 MB. Megengedett képformátumok: .jpg, .png
+            A képek maximális mérete 2 MB. Megengedett képformátumok: .jpg, .png
         <hr>
 
         <h4 style="margin-bottom:10px !important;margin-top:10px !important">Eszköz adatok:</h4>
@@ -180,13 +180,13 @@
 
                 <div class="form-group green-border-focus">
                     <label for="info">Leírás *</label>
-                    <textarea class="form-control" id="info" rows="3" maxlength="500" ></textarea>
+                    <textarea class="form-control" id="info" rows="3" maxlength="500" name ="info"></textarea>
                     Hátralevő karakterek: <span id='count'> </span>
                 </div>
 
                 <div class="form-group green-border-focus">
                     <label for="info">Egyéb információ *</label>
-                    <textarea class="form-control" id="info" rows="3" > 
+                    <textarea class="form-control" id="info" rows="3" name="booking" > 
                           Az eszköz elérhető a foglalás napjától reggel 8:00-tól, és a 
                           foglalás utolsó napján 18:00-ig vissza kell szállítani! Szállításban segíteni nem tudok! 
                           Az eszközhöz értő embert tudok biztosítani 1100 Ft/órás munkabér mellett
@@ -200,10 +200,6 @@
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') 
             {
-              if(isset($_POST["product_name"]))
-              {
-                $product_name = $_POST["product_name"];
-              }
                 if (isset($_POST['new_res']))
                 {
 
@@ -241,7 +237,7 @@
 
                  
 
-                  if(isset($_POST["product_Type"]))
+                  if(isset($_POST["product_type"]))
                   {
                     $product_type = $_POST["product_type"];
                   }
@@ -277,7 +273,7 @@
                   }
 
                   $_ID = $_SESSION["id"];
-
+                  include("db_config.php");
                   $company= "SELECT accounts.company_ID FROM accounts
                               WHERE accounts.account_ID = ?";
 
@@ -297,13 +293,15 @@
                       printf("Query failed: %s\n", $con->error);
                   }
 
+                  echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
+
                   $sql = "CALL NEW_RESOURCE(?,?,?,?,?,?,?,?);";
                   $company_ID = 1;
-                 
+               
                   /*  in_product_name,in_product_type_id, in_info,in_booking_info,in_price,in_company_id,in_images,in_image_num*/
                   if ($stmt = $con->prepare($sql)) 
                   {
-                      $stmt->bind_param('sissiisi',$product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID);
+                      $stmt->bind_param('sissiisi',$product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb);
                       $stmt->execute();
                       $stmt->store_result(); 
                   }
@@ -317,20 +315,26 @@
                   function img_upload($img_name,$numb) 
                   {
                     //$fileToUpload = $_FILES['fileToUpload']['name'];
-                    $target_dir = "src/images/";
-                    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                    $newfilename =  $img_name . '_'. $numb . '.' . $imageFileType;
-                          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir .$newfilename )) {
-            
-                              echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-                          } 
-                          else 
-                          {
-                              echo "Sorry, there was an error uploading your file.";
-                          }
-            
-                      }
+                    $e_numb = "image" . ($numb+1);
+                    if(isset($_FILES[$e_numb]['name']))
+                    {
+                      $target_dir = "src/images/product/";
+                    
+                      $target_file = $target_dir . basename($_FILES[$e_numb]["name"]);
+                      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                      $newfilename =  $img_name . '_'. $numb . '.' . $imageFileType;
+                            if (move_uploaded_file($_FILES[$e_numb]["tmp_name"], $target_dir . $newfilename )) 
+                            {
+              
+                                echo "The file ". basename( $_FILES[$e_numb]["name"]). " has been uploaded.";
+                            } 
+                            else 
+                            {
+                                echo "Sorry, there was an error uploading your file.";
+                            }
+                    }
+                   
+                  }
 
 
      
