@@ -60,7 +60,7 @@
                     if ($con->query($sql) === TRUE) {
                         /*echo "Sikeres mentés.";*/
                     } else {
-                        echo "Hiba: " . $conn->error;
+                        echo "Hiba: " . $con->error;
                     }
             }
         }

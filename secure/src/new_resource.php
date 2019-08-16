@@ -200,9 +200,19 @@
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') 
             {
+              if(isset($_POST["product_name"]))
+              {
+                $product_name = $_POST["product_name"];
+              }
                 if (isset($_POST['new_res']))
                 {
-                  $img_name= uniqid(); // a kép neve lesz_plusz a sorszáma
+
+                  if(isset($_POST["product_name"]))
+                  {
+                    $product_name = $_POST["product_name"];
+                  }
+
+                  $img_name = $product_name . "_" . uniqid();;
                   $imgnumb = 0; // a képek száma az adott termékhez, hogy könnyítse a megjelenítést 
 
                   if(isset($_POST["image1"]))
@@ -229,10 +239,7 @@
                     $imgnumb = 4;
                   }
 
-                  if(isset($_POST["product_name"]))
-                  {
-                    $product_name = $_POST["product_name"];
-                  }
+                 
 
                   if(isset($_POST["product_Type"]))
                   {
@@ -258,11 +265,52 @@
                   {
                     $price = $_POST["price"];
                   }
-                  
-                  $sql= "INSERT INTO ";
 
+                  if(isset($_POST["info"]))
+                  {
+                    $info = $_POST["info"];
+                  }
 
+                  if(isset($_POST["booking"]))
+                  {
+                    $booking = $_POST["booking"];
+                  }
 
+                  $_ID = $_SESSION["id"];
+
+                  $company= "SELECT accounts.company_ID FROM accounts
+                              WHERE accounts.account_ID = ?";
+
+                  if ($stmt = $con->prepare($company)) 
+                  {
+                      $stmt->bind_param('i', $_ID);
+                      $stmt->execute();
+                      $stmt->store_result(); 
+                  }
+                  if ($stmt->num_rows > 0) 
+                  {
+                      $stmt->bind_result($company_ID);
+                      $stmt->fetch();
+                  }
+                  else 
+                  {
+                      printf("Query failed: %s\n", $con->error);
+                  }
+
+                  $sql = "CALL NEW_RESOURCE(?,?,?,?,?,?,?,?);";
+                  $company_ID = 1;
+                 
+                  /*  in_product_name,in_product_type_id, in_info,in_booking_info,in_price,in_company_id,in_images,in_image_num*/
+                  if ($stmt = $con->prepare($sql)) 
+                  {
+                      $stmt->bind_param('sissiisi',$product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID);
+                      $stmt->execute();
+                      $stmt->store_result(); 
+                  }
+                  else 
+                  {
+                      printf("Query failed: %s\n", $con->error);
+                  }
                 }
               }
 
