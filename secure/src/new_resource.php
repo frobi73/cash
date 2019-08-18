@@ -235,9 +235,6 @@
                     $imgnumb = 4;
 
                   }
-
-                 
-
                   if(isset($_POST["product_type"]))
                   {
                     $product_type = $_POST["product_type"];
