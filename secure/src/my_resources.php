@@ -1,34 +1,48 @@
 <div class="col-md-8 order-md-1 card" style="padding-bottom:20px">
 
-    <h4 style="margin-bottom:10px !important;margin-top:10px !important">Elmentett eszközök:</h4>
+    <h4 style="margin-bottom:10px !important;margin-top:10px !important">Eszközeim, amelyekek bérbe adtam:</h4>
     <hr>
             <?php
-                require_once('db_config.php');
-                
-                $sql = "SELECT wishlist.ProductId FROM wishlist WHERE wishlist.UserId = ?";
+
                 $_ID = $_SESSION["id"];
-                $arr_type = [];
-                $arr_id = [];
-                $arr_name = [];
-                $sql = "SELECT
-                            products.product_ID,
-                            products.product_name,
-                            product_types.product_type_name
-                        FROM products
-                            INNER JOIN product_types
-                                ON products.product_type_id = product_types.product_type_ID
-                        WHERE products.company_ID = ?";
-                if ($stmt = $con->prepare($sql))
+                include("db_config.php");
+                $company= "SELECT
+                accounts.company_ID
+              FROM accounts
+              WHERE accounts.account_ID = ?";
+
+                if ($stmt = $con->prepare($company)) 
                 {
                     $stmt->bind_param('i', $_ID);
                     $stmt->execute();
-                    $stmt->bind_result($fav_product_ID,$fav_product_name, $fav_product_type_name);
-                    $i = 0;
+                    $stmt->store_result(); 
+                }
+                if ($stmt->num_rows > 0) 
+                {
+                    $stmt->bind_result($company_ID);
+                    $stmt->fetch();
+                }
+                else 
+                {
+                    printf("Query nem sikerült: ", $con->error);
+                }
+                $arr_name = [];
+                $arr_id = [];
+                $sql = "SELECT
+                        products.product_ID,
+                        products.product_name
+                    FROM products
+                    WHERE products.company_id = ?";
+                if ($stmt = $con->prepare($sql))
+                {
+                    $stmt->bind_param('i', $company_ID);
+                    $stmt->execute();
+                    $stmt->bind_result($my_product_ID,$my_product_name);
+
                     while ($stmt->fetch()) {
                         
-                        array_push($arr_id,$fav_product_ID,); 
-                        array_push($arr_name,$fav_product_name); 
-                        array_push($arr_type,$fav_product_type_name);   
+                        array_push($arr_id,$my_product_ID,); 
+                        array_push($arr_name,$my_product_name); 
                     }
                     //print_r($arr_fav);
                 }
@@ -43,28 +57,25 @@
             ?>
             <table id="wishlist_table" class="display responsive no-wrap"  style="width:100% !important;" >
                     <thead>
-                        <th>Típus</th>
                         <th>Név</th>
-                        <th>Kép</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <?php 
-                            if(!empty($arr_type))
+                            if(!empty($arr_name))
                             {
 
-                                for($x = 0; $x < count($arr_type); $x++) 
+                                for($x = 0; $x < count($arr_name); $x++) 
                                 {
                                     echo "<tr>";
                                         echo "<td>"; 
-                                            echo $arr_type[$x];
+                                            echo  $arr_name[$x];
                                         echo "</td>";
+
                                         echo "<td>"; 
                                             echo '<form action="product.php" method="GET">
-                                                <a class="btn btn-block" id="btn-fav-link" href="product.php?_ID=' .  $arr_id[$x] . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '">'.  $arr_name[$x] . '</a>
-                                                </form>';
-                                        echo "</td>";
-                                        echo "<td>"; 
-                                            //echo $arr_id[$x]; 
+                                                    <a class="btn btn-danger btn-block" href="delete_product.php?_ID=' .  $arr_id[$x] . '"> Törlés </a>
+                                                    </form>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -89,7 +100,7 @@
     $('#wishlist_table').DataTable( {
         language: 
         {
-                processing:     "DOlgozok rajta",
+                processing:     "Dolgozok rajta",
                 search:         "Keresés&nbsp;:",
                 lengthMenu:    "Megjelenítés: _MENU_  eszköz",
                 info:           "Megjelenítve _END_ a _TOTAL_ -ből",
@@ -98,7 +109,7 @@
                 infoPostFix:    "",
                 loadingRecords: "Betöltés alatt",
                 zeroRecords:    "Nincs találat",
-                emptyTable:     "Nincs még elmentve egy sem",
+                emptyTable:     "Nincs még egy eszközöd sem",
                 paginate: {
                     first:      "Első",
                     previous:   "Előző",
