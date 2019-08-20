@@ -293,23 +293,12 @@
 
                   echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
 
-                  $sql = "CALL NEW_RESOURCE(?,?,?,?,?,?,?,?);";
-                  $company_ID = 1;
-
-                  if ($stmt = $con->prepare($sql)) 
+                  $Sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`) VALUES ('$product_name',$product_Type,'$info',$CompanyId,,$price,,$imgnumb);";
+                  if ($stmt = $con->prepare($sql))
                   {
-                      $stmt->bind_param('sissiisi',$product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb);
                       $stmt->execute();
-                      $stmt->store_result(); 
                   }
-                  if ($stmt->num_rows > 0) 
-                  {
-                      $stmt->fetch();
-                  }
-                  else 
-                  {
-                      printf("Query failed: %s\n", $con->error);
-                  }
+
                 }
               }
 
