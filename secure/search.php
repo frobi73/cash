@@ -92,26 +92,6 @@ else
                     
                 ?>
 
-<div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                    <div class="col">
-                        <div class="center">
-                                <h2 class="center">
-                                    <?= $lang['demo'];?>
-                                </h2><hr>
-                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
-                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
-                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
-                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!
-                                </p>
-                        </div>  <!-- center-->
-                    </div><!-- col-->
-            </div><!-- row-->
-            </div><!-- container-->     
-        </div><!-- jumbotron-->     
 
         <div class="jumbotron">    
             <div class="container">
@@ -164,16 +144,9 @@ else
                                         <option value="0"  selected disabled>Erőforrás típusa</option>
                                         <option value="1" >Emelőgép 1.</option>
                                         <option value="2" >Emelőgép 2.</option>
-                                        <option value="3" >Földmunkagép kicsi</option>
+                                        <option value="3" > CNC</option>
                                         <option value="4" >Földmunkagép nagy</option>
                                         <option value="5" >3D nyomtató</option>
-                                        <option value="12" >CNC 1.</option>
-                                        <option value="6" >CNC 2.</option>
-                                        <option value="7" >Toronydarú 1.</option>
-                                        <option value="8" >Toronydarú 2.</option>
-                                        <option value="9" >Csomagoló gép 1.</option>
-                                        <option value="10" >Csomagoló gép 2.</option>
-                                        <option value="11" >Ipari robotgép</option>
                                         </select>
                                 </div><!--form group-->
                             </div>  <!--form row-->
@@ -214,8 +187,8 @@ else
 
                                 </div><!--form group-->
                                 <div class="form-group col-md-6">
-                                    <label for="p">Info</label>   
-                                    <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
+                                    <label for="p"></label>   
+                                    <p name="p"><i><i></p>
                                 </div><!--form group-->
                             </div>  <!--form row-->
                             <!--<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>-->
@@ -277,7 +250,7 @@ else
                                     //$sql="SELECT * FROM products INNER JOIN companies ON products.company_id = companies.company_ID WHERE companies.country = products.product_name = '$text' AND products.product_id NOT IN (SELECT products.product_id FROM not_available INNER JOIN products ON products.product_id = not_available.product_id WHERE products.product_name = '$text' AND not_available.product_id = products.product_id AND '$startdate'<= not_available.end_date AND '$enddate' >= not_available.start_date);";
                                     $sql = "CALL GetAvailableResources('$text','$startdate','$enddate','$Country','$City',$Eroforras,$Ipar)";
                                     $result = $con->query($sql);
-
+                                    // product_ID, product_name, industries.Name AS Industry_name, product_type_name, countries.Name AS Country_Name, town_Name, company_name, rating
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while($row = $result->fetch_assoc()) {
@@ -291,7 +264,7 @@ else
                                                     echo "</td>";
 
                                                     echo "<td>"; 
-                                                        echo $row["industry"];
+                                                        echo $row["Industry_name"];
                                                     echo "</td>";
 
                                                     echo "<td>"; 
@@ -299,11 +272,11 @@ else
                                                     echo "</td>";
                                                 
                                                     echo "<td>"; 
-                                                        echo $row["orszagnev"];
+                                                        echo $row["Country_Name"];
                                                     echo "</td>";
 
                                                     echo "<td>"; 
-                                                        echo $row["Telephely"];
+                                                        echo $row["town_Name"];
                                                     echo "</td>";
 
                                                     echo "<td>"; 

@@ -158,6 +158,7 @@
 
 
                     $sql = "SELECT
+                    companies.rating,
                     countries.Name,
                     town.Town_Name
                   FROM companies
@@ -174,7 +175,7 @@
                     }
                     if ($stmt->num_rows > 0) 
                     {
-                            $stmt->bind_result( $country, $town);
+                            $stmt->bind_result($rating ,$country, $town);
                             $stmt->fetch();
                     }
                     else 
@@ -194,14 +195,53 @@
                         <div class="card">
                             <img src="primary_image">
                             <!-- itt alatta 4 másik - ugya a négy megengedett - modal gallery formában <-> alatta az árak, stb -->
+
                         </div>
                         
                         <div class="">
                             <?php
+                             $cond = 0;
+                             
+                             switch ($condition) 
+                             {
+                                case "1":
+                                        $cond = "Új";
+                                    break;
+                                case "2":
+                                    $cond = "Kitűnő";
+                                    break;
+                                case "3":
+                                    $cond = "Megkímélt";
+                                    break;
+                                case "4":
+                                    $cond = "Normál";
+                                    break;
+                                default:  $cond = "Normál"; break;
+                             }
+
+
                                 echo '
                                     <div>
                                             <h4 style="margin-top:20px !important">Price: ' . $price.' $/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
+
+                                            <table class="table table-striped">
+                                                
+                                                <tbody>
+                                                    <tr>
+                                                            <td>Legutóbb Szervizelve:</td>
+                                                            <td>' . $last_service . '</td>
+                                                    </tr>
+                                                    <tr> 
+                                                            <td>Gyártás Éve:</td>
+                                                            <td>' . $build_date . '</td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td>Állapot</td>
+                                                            <td>' . $cond . '</td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
 
                                     </div>
                                     ';
@@ -217,10 +257,17 @@
                                 <div>
                                         <h4 style="margin-top:20px !important">' .$product_Name . '</h4>
                                         <hr style="margin-top:0px;margin-bottom:0px;">
-                                        <p class="text-muted">' . $Country . ', ' . $town . ', ' . $company_Name . ' - ' .  $rating. '/5 &#9733; </p>
-
+                                        <p class="text-muted">' . $country . ', ' . $town . ', ' . $company_Name . ' - ' .  $rating. '/5 &#9733; </p>
+                                        
+                                        <h6 style="margin-top:20px !important"> Információk: </h6>
+                                        <hr style="margin-top:0px;margin-bottom:0px;">
                                         <p style="text-align:justify"> '.$information.'</p>
                                 </div>
+
+                                
+                                <h6 style="margin-top:20px !important"> Foglalási információk:</h6>
+                                <hr style="margin-top:0px;margin-bottom:0px;">
+                                <p style="text-align:justify"> '.$booking_info.'</p>
                                 ';
                         ?>
 
@@ -233,6 +280,11 @@
                 <div class="col-md-8 order-md-1 card">
                         <div class="form-group ">
                                         <label for="daterange">Időszak</label>
+
+                                        <?php 
+                                        
+                                        ?>
+
                                         
                                         <input type="text" class="form-control" name="daterange" id="daterange" 
                                         value="<?php echo $def_start, $def_end;?>" style="text-align:right" />
@@ -291,7 +343,7 @@
                             <?php
                                 echo '
                                     <div>
-                                            <h4 style="margin-top:20px !important">Price: ' . $product_type.' $/day </h4>
+                                            <h4 style="margin-top:20px !important">Price: ' . $price.' $/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
 
                                     </div>

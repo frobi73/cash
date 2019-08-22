@@ -153,7 +153,7 @@
                           <label for="condition" id="at_label">
                             <i class="fas fa-tools"></i>
                           </label>
-                          <select class="form-control" id="condition" name="product_type" placeholder="Erőforrás Típusa" required>
+                          <select class="form-control" id="condition" name="condition" placeholder="Erőforrás Típusa" required>
                                             <option value="0"  selected disabled hidden>Állapot</option>
                                             <option value="1" >Új</option>
                                             <option value="2" >Kitűnő</option>
@@ -251,6 +251,10 @@
                   {
                     $condition = $_POST["condition"];
                   }
+                  else
+                  {
+                    $condition = 4;
+                  }
 
                   if(isset($_POST["price"]))
                   {
@@ -288,12 +292,13 @@
                       printf("Query failed: %s\n", $con->error);
                   }
 
-                  echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
+                  //echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
 
-                  $Sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`, `condition`, `last_service`, `build_date`) VALUES ('$product_name',$product_Type,'$info',$CompanyId,$booking,$price,$img_name,$imgnumb,$condition,$repair_year,$build_year);";
+                  $sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`, `condition`, `last_service`, `build_date`) VALUES ('$product_name',$product_type,'$info',$company_ID,$booking,$price,$img_name,$imgnumb,$condition,$repair_year,$build_year);";
                   if ($stmt = $con->prepare($sql))
                   {
                       $stmt->execute();
+                      $stmt->fetch();
                   }
                   else 
                   {
