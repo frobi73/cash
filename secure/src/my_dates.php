@@ -41,7 +41,7 @@
 
                     while ($stmt->fetch()) {
                         
-                        array_push($arr_id,$my_product_ID,); 
+                        array_push($arr_id,$my_product_ID); 
                         array_push($arr_name,$my_product_name); 
                     }
                     //print_r($arr_fav);
