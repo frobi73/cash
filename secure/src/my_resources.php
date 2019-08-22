@@ -74,7 +74,7 @@
 
                                         echo "<td>"; 
                                             echo '<form action="product.php" method="GET">
-                                                    <a class="btn btn-danger btn-block" href="delete_product.php?_ID=' .  $arr_id[$x] . '"> Törlés </a>
+                                                    <a class="btn btn-primary btn-block" href="delete_product.php?_ID=' .  $arr_id[$x] . '"> Megtekint </a>
                                                     </form>';
                                         echo "</td>";
                                     echo "</tr>";

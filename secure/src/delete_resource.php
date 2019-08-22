@@ -59,6 +59,7 @@
                     <thead>
                         <th>Név</th>
                         <th></th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <?php 
@@ -71,6 +72,13 @@
                                         echo "<td>"; 
                                             echo  $arr_name[$x];
                                         echo "</td>";
+
+                                        echo "<td>"; 
+                                                    
+                                        echo'<form action="product.php" method="GET">
+                                                <a class="btn btn-success btn-block"  href="product.php?_ID=' . $arr_id[$x]  . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '"> Megtekint</a>
+                                        </form>' ;
+                                    echo "</td>";
 
                                         echo "<td>"; 
                                             echo '<form action="product.php" method="GET">

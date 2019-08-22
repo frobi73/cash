@@ -117,8 +117,27 @@
                     include("src/sec_navbar.php");     
                     
                     include("src/db_config.php");
-                    $sql = 'CALL(PRODUCT_DATA(?)';
-                    if ($stmt = $con->prepare('CALL PRODUCT_DATA(?)')) 
+                    $sql = 'SELECT
+                        products.product_name,
+                        products.information,
+                        products.booking_info,
+                        products.images,
+                        products.image_num,
+                        products.price,
+                        products.condition,
+                        products.build_date,
+                        products.last_service,
+                        products.company_id,
+                        companies.company_name,
+                        product_types.product_type_name
+                    FROM products
+                        INNER JOIN companies
+                        ON products.company_id = companies.company_ID
+                        INNER JOIN product_types
+                        ON products.product_type_id = product_types.product_type_ID
+                    WHERE products.product_ID = ?';
+
+                    if ($stmt = $con->prepare($sql)) 
                     {
                       $stmt->bind_param('i', $atadott_id);
                       $stmt->execute();
@@ -126,14 +145,43 @@
                     }
                     if ($stmt->num_rows > 0) 
                     {
-                            $stmt->bind_result( $company_Name, $company_ID, $Country,$rating,$town ,$product_ID,
-                                                $product_Name,$product_type,$information );
+                            $stmt->bind_result( $product_Name, $information, $booking_info, $images, $img_numb, $price, $condition,
+                                                $build_date, $last_service, $company_ID, $company_Name, $product_type);
                             $stmt->fetch();
                     }
                     else 
                     {
                         printf("Query failed: %s\n", $con->error);
                     }
+
+
+
+
+                    $sql = "SELECT
+                    countries.Name,
+                    town.Town_Name
+                  FROM companies
+                    INNER JOIN town
+                      ON companies.town_Id = town.id
+                    INNER JOIN countries
+                      ON town.Country_Id = countries.id
+                  WHERE companies.company_ID = ? ";
+                    if ($stmt = $con->prepare($sql)) 
+                    {
+                    $stmt->bind_param('i', $company_ID);
+                    $stmt->execute();
+                    $stmt->store_result(); 
+                    }
+                    if ($stmt->num_rows > 0) 
+                    {
+                            $stmt->bind_result( $country, $town);
+                            $stmt->fetch();
+                    }
+                    else 
+                    {
+                        printf("Query failed: %s\n", $con->error);
+                    }
+
                 ?>
 
         <div class="jumbotron">
@@ -152,7 +200,7 @@
                             <?php
                                 echo '
                                     <div>
-                                            <h4 style="margin-top:20px !important">Price: ' . $product_type.' $/day </h4>
+                                            <h4 style="margin-top:20px !important">Price: ' . $price.' $/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
 
                                     </div>

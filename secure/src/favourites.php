@@ -47,7 +47,7 @@
                     <thead>
                         <th>Típus</th>
                         <th>Név</th>
-                        <th>Kép</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <?php 
@@ -65,9 +65,13 @@
                                                 <a class="btn btn-block" id="btn-fav-link" href="product.php?_ID=' .  $arr_id[$x] . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '">'.  $arr_name[$x] . '</a>
                                                 </form>';
                                         echo "</td>";
+                                       
                                         echo "<td>"; 
-                                            //echo $arr_id[$x]; 
-                                        echo "</td>";
+                                                    
+                                        echo'<form action="product.php" method="GET">
+                                                <a class="btn btn-success btn-block"  href="product.php?_ID=' . $arr_id[$x]  . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '"> Megtekint</a>
+                                        </form>' ;
+                                    echo "</td>";
                                     echo "</tr>";
                                 }
                             } 

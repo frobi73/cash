@@ -235,7 +235,7 @@ else
                             <th>Telephely</th>
                             <th>Cég</th>
                             <th>Rating</th>
-                            <th>Kép</th>
+                            <th></th>
                             
                         </thead>
                         <tbody>
@@ -315,7 +315,10 @@ else
                                                     echo "</td>";
 
                                                     echo "<td>"; 
-                                                        echo '<img height="50" width="50" id="' . $row["product_name"] . '" data-toggle="modal" data-target="#myModal" src="src/images/product/' . $row["company_name"] . $row["product_name"] .'_01.jpg"  />';
+                                                    
+                                                        echo'<form action="product.php" method="GET">
+                                                                <a class="btn btn-success btn-block"  href="product.php?_ID=' . $row["product_ID"] . ' &startdate=' . $startdate. ' &enddate=' . $enddate . '"> Megtekint</a>
+                                                        </form>' ;
                                                     echo "</td>";
                                             echo "</tr>";
 

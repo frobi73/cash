@@ -53,9 +53,6 @@
                         if(fileSize>maxSize){
                             alert('file size is more then' + maxSize + ' bytes');
                             return false;
-                        }else{
-                            //sikeres - tehát a képek mérete megfelelő
-                            alert('file size is correct- '+fileSize+' bytes');
                         }
                     }else{
                         alert('choose file, please');
@@ -293,10 +290,14 @@
 
                   echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
 
-                  $Sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`) VALUES ('$product_name',$product_Type,'$info',$CompanyId,,$price,,$imgnumb);";
+                  $Sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`, `condition`, `last_service`, `build_date`) VALUES ('$product_name',$product_Type,'$info',$CompanyId,$booking,$price,$img_name,$imgnumb,$condition,$repair_year,$build_year);";
                   if ($stmt = $con->prepare($sql))
                   {
                       $stmt->execute();
+                  }
+                  else 
+                  {
+                      printf("Query failed: %s\n", $con->error);
                   }
 
                 }
