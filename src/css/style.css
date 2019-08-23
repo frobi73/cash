@@ -37,10 +37,7 @@ ul
     color: #52b6ec;
     margin-bottom: 15px;
 }
-img {
-    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-    filter: blur(5px);
-  }
+
 .center 
 {
     text-align: center;

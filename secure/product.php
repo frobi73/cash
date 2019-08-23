@@ -82,7 +82,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
-    <link rel="stylesheet" href="src\carousel.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
@@ -116,7 +115,29 @@
     <title>Capacity Sharing - Product </title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
 
+  <style>
+  
+  .daterangepicker td.disabled, .daterangepicker option.disabled {
+    color: red;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    }
+
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+  </style>
+
+<script>
+var dateRanges = new Array();
+</script>
+
   </head>
+
   <body>
                 <?php 
                     
@@ -198,12 +219,17 @@
                     <div class="col col-md-4 order-md-1 card" >
                         <!-- kepek-->
 
-                        <div class="card">
-                            <img src="primary_image">
+                        <div class="card" style="margin-top:20px">
+                            <img src="src\images\product\user4.png" class="center" style="width:300px;heigth:300px;">
                             <!-- itt alatta 4 másik - ugya a négy megengedett - modal gallery formában <-> alatta az árak, stb -->
+                            <div class="row">
+                                <!-- Images used to open the lightbox -->
 
+                                    
+                            </div>
+                                <script>
+                                </script>
                         </div>
-                        
                         <div class="">
                             <?php
                              $cond = 0;
@@ -228,7 +254,7 @@
 
                                 echo '
                                     <div>
-                                            <h4 style="margin-top:20px !important">Price: ' . $price.' €/day </h4>
+                                            <h4 style="margin-top:20px !important">Ár: ' . $price.' €/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
 
                                             <table class="table table-striped">
@@ -287,54 +313,121 @@
                         <div class="form-group ">
                                         <label for="daterange">Időszak</label>
 
-                                        <?php 
-                                        
-                                        ?>
-
-                                        
                                         <input type="text" class="form-control" name="daterange" id="daterange" 
                                         value="<?php echo $def_start, $def_end;?>" style="text-align:right" />
 
-                                        <script>
-                                               var today = new Date();
-                                               var next_month = new Date();
-                                               var currentMonth = next_month.getMonth();
-                                               next_month.setMonth(currentMonth + 2);
-                                               var some_date_range = [
-                                                        '2019-08-14',
-                                                        '2019-08-20',
-                                                        '2019-08-21',
-                                                        '2019-08-22'
-                                                        ];
-                                               $('#daterange').daterangepicker({
-                                                    //"format": 'DD/MM/YYYY'
+                                        <?php
+                                            include("src/db_config.php");
+                                            $arr_start = [];
+                                            $arr_end = [];
+
+                                            $sql = 'SELECT
+                                                        not_available.start_date,
+                                                        not_available.end_date
+                                                    FROM not_available
+                                                    WHERE not_available.product_ID = ? ';   
+                                            if ($stmt = $con->prepare($sql))
+                                            {
+                                                $stmt->bind_param('i', $atadott_id);
+                                                $stmt->execute();
+                                                $stmt->bind_result($start_date,$enddate);
+                                                //$stmt->store_result(); 
+                                            
+                                                while ($stmt->fetch()) 
+                                                {
+                                                    array_push($arr_start,$start_date); 
+                                                    array_push($arr_end,$enddate); 
+                                                }
+
+                                                echo "<script>";
+                                                   echo " var dateRanges = [";
+
+                                                         $arrlength = count($arr_start);
+                                                         for ($x = 0; $x < $arrlength ; $x++) 
+                                                         {
+                                                            echo "{";
+                                                                echo "'start': moment('". $arr_start[$x] ."'),"; 
+                                                             
+                                                             echo "'end': moment('". $arr_end[$x] ."')";  
+                                                             if($x == $arrlength-1)
+                                                             {
+                                                                echo '}';
+                                                             }
+                                                             else
+                                                             {
+                                                                echo '},';
+                                                             }   
+                                                         }
+                                                echo "];";
+                                            echo "</script>";
+                                               
+                                            }    
+                                            else 
+                                            {
+                                                echo "];";
+                                                echo "</script>";
+                                                printf("Fatal Error", $con->error);
+
+                                            }
+                                           
+                                            
+                                            ?>
+                                        
+                                            <script>
+
+                                                function isInvalidDate(date, log) {
+                                                return dateRanges.reduce(function(bool, range) {
+                                                //     if (log && date >= range.start && date <= range.end) {
+                                                //       console.log(date, range);
+                                                //     }
+                                                    return bool || (date >= range.start && date <= range.end);
+                                                }, false);
+                                                }
+
+                                                var today = new Date();
+                                                var tomorrow = new Date();
+                                                    tomorrow.setDate(today.getDate()+1);
+                                                var next_month = new Date();
+                                                var currentMonth = next_month.getMonth();
+                                                next_month.setMonth(currentMonth + 2);
+
+                                                jQuery(function($) {
+
+                                                $("#daterange").daterangepicker({
                                                     "alwaysShowCalendars": true,
                                                     "inline": true,
                                                     "startDate": "<?php echo $def_start; ?>",
                                                     "endDate": "<?php echo $def_end; ?>",
-                                                    "minDate": today,
+                                                    "minDate": tomorrow,
                                                     "maxDate": next_month,
                                                     "opens": "center",
                                                     "locale": {
                                                         "format": "YYYY/MM/DD",
                                                         "separator": " - ",
-                                                        "firstDay": 1
-                                                    },
-                                                    //onSelect: triggerOnStartSelect(),
-                                                    "isInvalidDate": function(date) 
-                                                    {
-                                                        for(var i = 0; i < some_date_range.length; i++)
-                                                        {
-                                                            if (date.format('YYYY-MM-DD') == some_date_range[i])
-                                                            {
-                                                                return true;
-                                                            }
-                                                        }
+                                                        "firstDay": 1},
+                                                    isInvalidDate: isInvalidDate
+                                                }, function(start, end, label) {
+                                                    var temp = new Date(start);
+                                                    var endDate = new Date(end);
+                                                    var invalid = false;
+                                                    while (temp.getTime() < endDate.getTime()) {
+                                                    if (isInvalidDate(temp, true)) {
+                                                        invalid = true;
+                                                    }
+                                                    temp.setDate(temp.getDate() + 1);
                                                     }
                                                     
-                                                    }, function(start, end, label) {
-                                                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+                                                    if (invalid) {
+                                                    alert('Hibás kiválasztás')
+                                                    }
                                                 });
+                                                });
+                                               
+                                               /*$now = time(); // or your date as well
+$your_date = strtotime("2010-01-31");
+$datediff = $now - $your_date;
+
+echo round($datediff / (60 * 60 * 24));*/
 
                                                 //TODO: Ellenőrzés a disabled dátumokra
                                         </script>
@@ -347,7 +440,7 @@
                         <div class="">
                             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST"> 
 
-                            
+
 
                             <?php
                                 echo '

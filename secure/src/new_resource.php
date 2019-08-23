@@ -21,7 +21,7 @@
 
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="dist/imageuploadify.min.js"></script>
+        <script type="text/javascript" src="src/img_up/imageuploadify.min.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -148,7 +148,7 @@
                          //$files = array_filter($_FILES['upload']['name']); //something like that to be used before processing files.
 
                           // Count # of uploaded files in array
-                          $total = count($_FILES['upload']['name']);
+                          $total = count($_FILES['files']['name']);
                           if($total > 5)
                           {
                             $total = 5;
@@ -157,7 +157,8 @@
                             extract($_POST);
                             $error=array();
                             $extension=array("jpeg","jpg","png");
-                            for( $i=0 ; $i < $total ; $i++ ) {
+                            for( $i=0 ; $i < $total ; $i++ )
+                             {                               
                                 $file_name=$_FILES["files"]["name"][$key];
                                 $file_tmp=$_FILES["files"]["tmp_name"][$key];
                                 $ext=pathinfo($file_name,PATHINFO_EXTENSION);
@@ -249,7 +250,7 @@
                                         VALUES ('$product_name',$product_type,'$info','$company_ID','$booking_info','$price','$img_name','$imgnumb','$condition','$repair_year','$build_year');";
                   if ($con->query($sql) === TRUE) 
                   {
-                    echo "New record created successfully";
+                    echo "<script> alert('Feltöltés sikeres'); </script>";
                   } 
                   else 
                   {

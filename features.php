@@ -94,34 +94,156 @@ else
 
         <div class="jumbotron">
             <div class="container">
+
+            <!-- Projects section v.3 -->
+                    <section class="my-5">
+
+                    <!-- Section heading -->
+                    <h2 class="h1-responsive font-weight-bold text-center my-5">Milyen előnyöket kínálunk önnek ?</h2>
+                    <!-- Section description -->
+                    <p class="grey-text text-center w-responsive mx-auto mb-5"></p>
+
+                    <!-- Grid row -->
+                    <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-5 mb-lg-0 mb-5">
+                        <!--Image-->
+                        <img src="https://image.shutterstock.com/image-photo/business-partnership-meeting-concept-image-600w-407664883.jpg" alt="Sample project image" class="img-fluid z-depth-4 rounded">
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-7">
+
+                        <!-- Grid row -->
+                        <div class="row mb-3">
+                        <div class="col-md-1 col-2">
+                            <i class="fas fa-book fa-2x cyan-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3"> Új megbízások szerzése </h5>
+                            <p class="grey-text">  
+                                                Új üzleti partner, beszállító szerzése.
+                                                Új szaktudás, vagy kompetencia elérése
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                        <!-- Grid row -->
+                        <div class="row mb-3">
+                        <div class="col-md-1 col-2">
+                            <i class="fas fa-globe fa-2x red-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3">Globális, nemzetközi piacra lépés lehetősége</h5>
+                            <p class="grey-text">
+                                                    Új iparágak felé történő nyitás, és innovatív technológiák kipróbálásának lehetősége
+                                                    </p>
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                        <!-- Grid row -->
+                        <div class="row">
+                        <div class="col-md-1 col-2">
+                            <i class="fas fa-users fa-2x deep-purple-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3">Üzleti közösség</h5>
+                            <p class="grey-text mb-0">  Véleményével alakíthatja, befolyásolhatja az üzleti közösséget, valamint jelenlegi és jövőbeni üzleti trendeket ismerhet meg. </p>
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                    <hr class="my-5">
+
+                    <!-- Grid row -->
+                    <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-7">
+
+                        <!-- Grid row -->
+                        <div class="row mb-3">
+                        <div class="col-md-1 col-2">
+                            <i class="fas fa-business-time fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3">Jobb időbeosztás</h5>
+                            <p class="grey-text">Ajánlatkérések megválaszolására fordított idő a töredékére csökken</p>
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                        <!-- Grid row -->
+                        <div class="row mb-3">
+                        <div class="col-md-1 col-2">
+                            <i class="fas fa-handshake fa-2x pink-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3"> Több lehetőség</h5>
+                            <p class="grey-text">Új ügyfelek, megbízások szerzése leegyszerűsödhet.</p>
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                        <!-- Grid row -->
+                        <div class="row mb-lg-0 mb-5">
+                        <div class="col-md-1 col-2">
+                            <i class="fa fa-thumbs-up fa-2x blue-text"></i>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h5 class="font-weight-bold mb-3"> Eredményesebb Munkavégzés </h5>
+                            <p class="grey-text mb-0">Munkatársait folyamatosan tudja foglalkoztatni, eszközeit eredményesebben tudja kihasználni.</p>
+                        </div>
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-5">
+                        <!--Image-->
+                        <img src="https://image.shutterstock.com/image-photo/close-industrial-view-oil-refinery-600w-549195883.jpg" alt="Sample project image" class="img-fluid z-depth-4 rounded">
+                    </div>
+                    <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                    </section>
+                    <!-- Projects section v.3 -->
             <div class="row">
                     <div class="box">
                         <div class="col col-lg-12">
                                 <h2 class="text-center">
-                                    Milyen előnyöket kínálunk önnek ? 
+                                    
                                 </h2>
                                 <hr>
                             <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="center">
                                         <ul>
-                                                    <li>Új megbízások szerzése</li>
-                                                    <li>Új üzleti partner / beszállító szerzése</li>
-                                                    <li>Új szaktudás / kompetencia elérése</li>
-                                                    <li>Globális, nemzetközi piacra lépés lehetősége</li>
-                                                    <li>Új iparágak felé történő nyitás lehetősége</li>
-                                                    <li>Új innovatív technológiák kipróbálásának lehetősége</li>
+                                                  
+                                                    
                                             </ul>
                                         </div>
                                     </div><!--/.col-md-4-->
                                     <div class="col-md-6 col-sm-12">
                                         <div class="center">
                                             <ul>
-                                                    <li> Véleményével alakíthatja, befolyásolhatja az üzleti közösséget</li>
-                                                    <li> Jelenlegi és jövőbeni üzleti trendeket ismerhet meg.</li>
-                                                    <li> Ajánlatkérések megválaszolása fordított idő a töredékére csökken</li>
-                                                    <li> Új ügyfelek, megbízások szerzése leegyszerűsödhet.</li>
-                                                    <li> Munkatársait folyamatosan tudja foglalkoztatni, eszközeit eredményesebben tudja kihasználni.</li>
+                                                   
+                                                    <li> </li>
+                                                    <li> </li>
+                                                    <li> </li>
                                             </ul>
                                         </div>
                                     </div><!--/.col-md-4-->

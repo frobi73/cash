@@ -159,14 +159,16 @@ else
 
                                         <script>
                                                var today = new Date();
+                                               var tomorrow = new Date();
+                                                    tomorrow.setDate(today.getDate()+1);
                                                var next_month = new Date();
                                                var currentMonth = next_month.getMonth();
                                                next_month.setMonth(currentMonth + 2);
                                                $('#daterange').daterangepicker({
                                                     //"format": 'DD/MM/YYYY'
-                                                    "startDate": today,
-                                                    "endDate": today,
-                                                    "minDate": today,
+                                                    "startDate": tomorrow,
+                                                    "endDate": tomorrow,
+                                                    "minDate": tomorrow,
                                                     "maxDate": next_month,
                                                     "opens": "center",
                                                     "locale": {
@@ -203,7 +205,7 @@ else
                         <thead>
                             <th data-class-name="priority" class="priority">Név</th>
                             <th>Iparág</th>
-                            <th >Típus</th>
+                            <th>Típus</th>
                             <th>Ország</th>
                             <th>Telephely</th>
                             <th>Cég</th>
@@ -346,7 +348,7 @@ else
     $('#search_table').DataTable( {
         language: 
         {
-                processing:     "DOlgozok rajta",
+                processing:     "Dolgozok rajta",
                 search:         "Szűrés&nbsp;:",
                 lengthMenu:    "Megjelenítés: _MENU_  eszköz",
                 info:           "Megjelenítve _END_ a _TOTAL_ -ből",

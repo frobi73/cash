@@ -48,7 +48,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="src\style.css">
-    <link rel="stylesheet" href="src\carousel.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
@@ -111,7 +110,16 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                        <td>0.9.2</td>
+                                                    <tr>
+                                                        <td>0.9.5</td>
+                                                            <td> JS not avaible részleg működik nem bugos, features.php átrendezése, stílusváltás </td>
+                                                            <td>reset password hiba, aktiválás működik, de a user nem lát belőle sokat, néha bugos</td>
+                                                        </tr>
+                                                        <td>0.9.4</td>
+                                                            <td> JS not avaible részleg! működik - 7-es ID-nél bugos </td>
+                                                            <td>reset password hiba, aktiválás működik, de a user nem lát belőle sokat, néha bugos</td>
+                                                        </tr>
+                                                        <td>0.9.3</td>
                                                             <td>Keresőmotor működik - 100%, kedvencek elmentése 100% </td>
                                                             <td> </td>
                                                         </tr>
@@ -123,7 +131,7 @@
                                                         <tr>
                                                             <td>0.8.5</td>
                                                             <td>Keresőmotor, product.php kinézetek, funkciók, work.php  </td>
-                                                            <td>Kedvencek elmentése hiba</td>
+                                                            <td></td>
                                                         </tr>
                                                         <tr>
                                                             <td>0.8.0</td>
@@ -149,7 +157,7 @@
                                             <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                                                 optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
                                                 Odit sed qui, dolorum!</p>
-                                            <a class="btn btn-success btn-rounded " href="search.php" id="grad"><i class="far fa-clone left"></i> Keresés </a>
+                                            <a class="btn btn-success btn-rounded btn-lg " href="search.php" id="grad"><i class="far fa-clone left"></i> Keresés </a>
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +174,7 @@
                                             <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                                                 optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
                                                 Odit sed qui, dolorum!</p>
-                                            <a class="btn btn-success btn-rounded"  href="profil.php?cur_tab=new_resource" id="grad"><i class="far fa-clone left"></i> Feltöltés</a>
+                                            <a class="btn btn-success btn-rounded btn-lg"  href="profil.php?cur_tab=new_resource" id="grad"><i class="far fa-clone left"></i> Feltöltés</a>
                                         </div>
                                     </div>
                                 </div>
@@ -183,7 +191,7 @@
                                             <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
                                                 optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
                                                 Odit sed qui, dolorum!</p>
-                                            <a class="btn btn-success btn-rounded" id="grad"><i class="far fa-clone left"></i> Előfizetés</a>
+                                            <a class="btn btn-success btn-rounded btn-lg" id="grad"><i class="far fa-clone left"></i> Előfizetés</a>
                                         </div>
                                     </div>
                                 </div>

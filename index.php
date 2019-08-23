@@ -77,12 +77,10 @@ else
                     
                 ?>
 
-
-
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://bmamissions.org/wp-content/uploads/2019/04/architecture-buildings-factory-247763-e1555609735349-1200x480.jpg" alt="First slide">
+      <img class="d-block w-100" src="http://getwallpapers.com/wallpaper/full/a/d/1/266509.jpg" alt="First slide">
       <div class="container">
               <div class="carousel-caption text-left">
                 <h1>Capacity Sharing</h1>
@@ -95,9 +93,9 @@ else
       <img class="d-block w-100" src="https://www.tifast.com/wp-content/uploads/2019/04/IMG_20190213_145935-1200x480.jpg" alt="Second slide">
       <div class="container">
               <div class="carousel-caption">
-                <h1>Another example headline.</h1>
+                <h1>Capacity Sharing</h1>
                 <p></p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                <p><a class="btn btn-lg btn-primary" href="features.php" role="button">Tudj meg Többet</a></p>
               </div>
             </div>
     </div>
@@ -105,9 +103,9 @@ else
       <img class="d-block w-100 center_img" src="src\images\sample_01.jpg" alt="Third slide">
       <div class="container">
               <div class="carousel-caption text-right">
-                <h1>One more for good measure.</h1>
-                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                <h1>Keresés</h1>
+                <p></p>
+                <p><a class="btn btn-lg btn-primary" href="search.php" role="button">Browse gallery</a></p>
               </div>
             </div>
     </div>
@@ -121,6 +119,8 @@ else
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+
 
  
         <div class="jumbotron">
