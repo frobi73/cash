@@ -91,20 +91,20 @@ else
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
                             <div class="input-group">
-                              <label for="login_email">
+                              <label for="login_email" id="grad">
                                         <i class="fas fa-user"></i>
                               </label>
                                 <input id="login_email" type="text" class="form-control" name="login_email" placeholder="E-mail Cím" required>
                             </div>
                             <div class="input-group">
-                              <label for="login_password">
+                              <label for="login_password" id="grad">
                                         <i class="fas fa-lock"></i>
                                       </label>
                                 <input id="login_password" type="password" class="form-control" name="login_password" placeholder="Password" required>
                             </div>
 
                             <div class="input-group">
-                                <input type="submit" value="Login" name="login_user" class="btn btn-block btn-success"> 
+                                <input type="submit" id="grad"value="Login" name="login_user" class="btn btn-block btn-success"> 
                             </div>
                             <div class="input-group">
                                   <div class="container error center">
@@ -178,19 +178,19 @@ else
                     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 
                             <div class="input-group">
-                              <label for="reg_email">
+                              <label for="reg_email" id="grad">
                                         <i class="fas fa-at"></i>
                               </label>
                                 <input id="reg_email" type="email" class="form-control" name="reg_email" placeholder="E-mail" Required>
                             </div>
                             <div class="input-group">
-                              <label for="reg_password">
+                              <label for="reg_password" id="grad">
                                         <i class="fas fa-lock"></i>
                                       </label>
                                 <input id="reg_password" type="password" class="form-control" name="reg_password" placeholder="Password" Required >
                             </div>
                             <div class="input-group">
-                              <label for="reg_password_again">
+                              <label for="reg_password_again" id="grad">
                                         <i class="fas fa-unlock"></i>
                                       </label>
                                 <input id="reg_password_again" type="password" class="form-control" name="reg_password_again" placeholder="Password again"  Required>
@@ -241,7 +241,7 @@ else
                             </div>
 
                             <div class="input-group">
-                                <input type="submit" value="Register" name="reg_user" class="btn btn-block btn-success"> 
+                                <input type="submit" value="Register" id="grad" name="reg_user" class="btn btn-block btn-success"> 
                             </div>
                             <div class="input-group">
                                   <div class="container error center">

@@ -93,156 +93,46 @@ else
                 ?>
 
         <div class="jumbotron">
-        <div class="container">
+            <div class="container">
             <div class="row">
-                    <div class="col">
-                        <div class="center">
-                                <h2 class="center">
-                                    <?= $lang['demo'];?>
-                                </h2><hr>
-                                <p class="lead"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo reprehenderit magni.
-                                    Sapiente similique assumenda a, praesentium rerum nulla tenetur animi, earum esse culpa explicabo corporis sed eum, commodi qui? 
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae eveniet magni eum commodi quis unde, ea id ipsa nemo tempore 
-                                    quod repudiandae quasi sunt recusandae nisi? Alias minima quis veniam?
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias quae fugit sunt iste ducimus deserunt iusto quia 
-                                    perspiciatis ad, praesentium enim, consequatur distinctio sit, illum recusandae!
-                                </p>
-                        </div>  <!-- center-->
-                    </div><!-- col-->
-            </div><!-- row-->
+                    <div class="box">
+                        <div class="col col-lg-12">
+                                <h2 class="text-center">
+                                    Milyen előnyöket kínálunk önnek ? 
+                                </h2>
+                                <hr>
+                            <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="center">
+                                        <ul>
+                                                    <li>Új megbízások szerzése</li>
+                                                    <li>Új üzleti partner / beszállító szerzése</li>
+                                                    <li>Új szaktudás / kompetencia elérése</li>
+                                                    <li>Globális, nemzetközi piacra lépés lehetősége</li>
+                                                    <li>Új iparágak felé történő nyitás lehetősége</li>
+                                                    <li>Új innovatív technológiák kipróbálásának lehetősége</li>
+                                            </ul>
+                                        </div>
+                                    </div><!--/.col-md-4-->
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="center">
+                                            <ul>
+                                                    <li> Véleményével alakíthatja, befolyásolhatja az üzleti közösséget</li>
+                                                    <li> Jelenlegi és jövőbeni üzleti trendeket ismerhet meg.</li>
+                                                    <li> Ajánlatkérések megválaszolása fordított idő a töredékére csökken</li>
+                                                    <li> Új ügyfelek, megbízások szerzése leegyszerűsödhet.</li>
+                                                    <li> Munkatársait folyamatosan tudja foglalkoztatni, eszközeit eredményesebben tudja kihasználni.</li>
+                                            </ul>
+                                        </div>
+                                    </div><!--/.col-md-4-->
+                                </div><!--/.row-->
+
+                        </div><!-- col-->
+                    </div><!-- box-->
+                </div>  <!-- row-->    
             </div><!-- container-->     
         </div><!-- jumbotron-->     
 
-        <div class="jumbotron">    
-            <div class="container">
-                <form action="search.php" method="post">     
-                     <div class="card">
-                        <div class="card-body">
-                            <div class="input-group flex-nowrap">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text icon" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" name="keres" placeholder="Keresés" id="keres" aria-describedby="addon-wrapping">
-                            </div>  <!--input group-->
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="select_country">Ország</label>
-                                                <select class="form-control" id="select_country" onchange="test(this)"
-                                                    name="orszag" placeholder="Ország" require>
-                                                    <option selected disabled>Ország</option>
-                                                    <option value="hu">Magyar</option>
-                                                    <option value="de">Német</option>   
-                                                    <option value="au">Osztrák</option>  
-                                                </select>      
-                                </div> <!--form group-md-6-->
-                                <div class="form-group col-md-6">
-                                    <label for="placeholder">Város</label>
-                                        <div id="some_div">
-
-                                        </div> <!--some div-->
-                                        <div class="form-group" id="select_city" style="margin-bottom: 0px;">
-                                            <select class="form-control"  name="varos" id="placeholder">
-                                                <option selected disabled>Város</option>
-                                            </select>
-                                        </div>  <!--from group - select city -->
-                                </div><!--from group col-md-6-->
-                            </div> <!--from row--> 
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="Iparag">Iparág</label>
-                                        <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
-                                                <option value="0" selected disabled>Iparág</option>
-                                                <option value="1" >Járműipar</option>
-                                                <option value="2" >Fém és nehéz ipar</option>
-                                                <option value="3" >Építőipar</option>
-                                                <option value="4" >Feldolgozóipar</option>
-                                        </select>
-                                </div> <!--form group-->
-                                <div class="form-group col-md-6">
-                                    <label for="Eroforras">Erőforrás Típusa</label>
-                                        <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
-                                        <option value="0"  selected disabled>Erőforrás típusa</option>
-                                        <option value="1" >Emelőgép 1.</option>
-                                        <option value="2" >Emelőgép 2.</option>
-                                        <option value="3" >Földmunkagép kicsi</option>
-                                        <option value="4" >Földmunkagép nagy</option>
-                                        <option value="5" >CNC 1.</option>
-                                        <option value="6" >CNC 2.</option>
-                                        <option value="7" >Toronydarú 1.</option>
-                                        <option value="8" >Toronydarú 2.</option>
-                                        <option value="9" >Csomagoló gép 1.</option>
-                                        <option value="10" >Csomagoló gép 2.</option>
-                                        <option value="11" >Ipari robotgép</option>
-                                        </select>
-                                </div><!--form group-->
-                            </div>  <!--form row-->
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                        <label for="daterange">Időszak</label>
-                                        
-                                        <input type="text" class="form-control" name="daterange" id="daterange" 
-                                        value="<?php if(isset($datum)){echo $datum;}else{echo date("Y/m/d");}  ?>" style="text-align:right" />
-
-                                        <script>
-                                               var today = new Date();
-                                               var next_month = new Date();
-                                               var currentMonth = next_month.getMonth();
-                                               next_month.setMonth(currentMonth + 2);
-                                               $('#daterange').daterangepicker({
-                                                    //"format": 'DD/MM/YYYY'
-                                                    "startDate": today,
-                                                    "endDate": today,
-                                                    "minDate": today,
-                                                    "maxDate": next_month,
-                                                    "opens": "center",
-                                                    "locale": {
-                                                        "format": "YYYY/MM/DD",
-                                                        "separator": " - ",
-                                                    }
-                                                }, function(start, end, label) {
-                                                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-                                                });
-                                        </script>
-
-                                </div><!--form group-->
-                                <div class="form-group col-md-6">
-                                    <label for="p">Info</label>   
-                                    <p name="p"><i>A megjelenített adatok példa értékűek, valós céget, vagy eszközt nem tartalmaznak, mindössze a példa bemutatásként vannak alkalmazva.<i></p>
-                                </div><!--form group-->
-                            </div>  <!--form row-->
-                            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>
-                        </div><!-- card-body--> 
-                    </div><!-- card-->   
-                </form><!-- form-->         
-
-               
-
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"></h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>A keresés funkció csak regisztrált felhasználóknak működik.
-                                                <br>
-                                    Kattins ide, hogy regisztálj.
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div><!-- Modal content-->
-
-                    </div><!-- Modal dialog-->
-                </div><!-- Modal-->
-
-                </div><!-- container-->     
-        </div><!-- jumbotron-->     
 
 
     <?php include("src/footer.html"); ?>

@@ -95,6 +95,47 @@
                         <!-- Section description -->
                         <p class="grey-text text-center w-responsive mx-auto mb-5"> </p>
 
+                        <!--Grid column-->
+                        <div class="col-md-12 mb-4">
+                                <div class="card card-image" id="kep" style="background-image: url(https://img.freepik.com/free-vector/beautiful-watercolor-background_62951-42.jpg?size=626&ext=jpg);">
+                                <h3 class="card-title py-3 font-weight-bold center" style="color:black"><strong> Hírek </strong></h3>
+                                            
+
+                                            <table class="table" style="color:black">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Verzió</th>
+                                                            <th scope="col">Működik</th>
+                                                            <th scope="col">Ismert hibák</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>0.9.2</td>
+                                                            <td>Keresőmotor működik - 100%, kedvencek elmentése 100% </td>
+                                                            <td> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>0.9.0</td>
+                                                            <td>Feltöltés, törlés, user adatok módosítása, kinézetek</td>
+                                                            <td>új user adatok feltöltés bug, képfeltöltés bug</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>0.8.5</td>
+                                                            <td>Keresőmotor, product.php kinézetek, funkciók, work.php  </td>
+                                                            <td>Kedvencek elmentése hiba</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>0.8.0</td>
+                                                            <td>Keresőmotor tesztelésre kész, feltöltés 50%, kedvencek elmentése </td>
+                                                            <td>reset password hiba, aktiválás működik, de a user nem lát belőle sokat, néha bugos</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                </div>
+                            </div>
+                            <!--Grid column-->
                         <!--Grid row-->
                         <div class="row mx-1">
 

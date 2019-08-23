@@ -24,7 +24,7 @@ ul
 }
 
 #grad {
-    background-image: linear-gradient(to right,rgb(0, 204, 0), yellow) !important;
+    background-image: linear-gradient(to right,#E0E0E0, #00CC66) !important;
   }
 #kep 
   {
@@ -78,7 +78,7 @@ select
     padding: 15px;
 }
 .navbar-light .navbar-nav .nav-link:hover {
-    background-color: rgb(0, 204, 0);
+    background-color:#E0E0E0;
 }
 
 .card-img-top

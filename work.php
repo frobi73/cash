@@ -69,13 +69,6 @@ else
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 
-    <script type="text/javascript" src="src/varos.js"></script>
-
-    <script type="text/javascript" src="src\datepicker\moment.min.js"></script>
-
-    <script type="text/javascript" src="src\datepicker\daterangepicker.js"></script>
-    
-
     <title>Capacity Sharing</title>
     <link rel="shortcut icon" href="src/images/ico/favicon.ico">
    
@@ -87,6 +80,69 @@ else
                     include("src/cookie.html");
                     //<!-- Script Cookie-->    
                 ?>
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="card">
+                <div class="container">
+                    <h1 class="h1 center">Növelje vállalkozása kapacitását akár pár kattintással</h1>
+
+                    <p class="lead" style="text-align:justify">Célunk, hogy egy olyan, folyamatosan bővülő zárt, segítőkész vállalkozói közösségi létrehozása, ahol egymás között szabadon megoszthatóvá válnak az eddig kihasználatlanul állt erőforrások. 
+                    A Capacity Sharing rendszerében Ön egyszerre lehet bérbeadó és bérlő is, vállalkozása adott üzleti helyzetétől függően.
+                    </p>
+                    <h4>Vegyük az alábbi két életszerű példát.</h4>
+                    <h5>1.bérlés</h5>
+                    <p class="lead" style="text-align:justify">
+                        Vállalkozásában elromlott egy nagy teljesítményű targonca és a javítás heteket vesz igénybe, a megoldás sürgető, 
+                        hiszen az eszközre szüksége van, ráadásul a targoncás sem tud dolgozni targonca nélkül.  
+                        Keressen az oldalunkon egy a közelben lévő vállalkozást, ahol éppen rendelkezésre áll és szabadon bérelhető, 
+                        egy ilyen vagy hasonló targonca, mert éppen kihasználatlanul áll az udvaron és foglalja le pár kattintással. 
+                        (a keresés és foglalás konkrét lépéseit <a class="lead" href="search.php">itt találja</a> <br> <br> 
+                   
+                    A foglalásról a bérbeadó értesítést kap, amelyet hétköznap 24 órán belül visszaigazol önnek. A bérlés konkrét részleteit ezután már közvetlenül le tudják egyeztetni. (szükséges-e szállítás, mikortól lehet az eszközt igénybe venni, mikorra kell pontosan visszavinni)
+                    </p>
+                    
+                    <h5>2. Bérbeadás</h5>
+                    <p class="lead" style="text-align:justify">
+                    Vállalkozásában kihasználatlanul áll hetek/hónapok óta egy korábban komoly pénzért vett 3D nyomató. Töltse fel az eszköz adatait, bérlési árát és foglaltsági elérhetőségét (amikor nélkülözni tudja az eszközt) a Capacity Sharing oldalra, hogy más vállalkozások, akik szívesen kipróbálnák, bérelnének 3D nyomtató rátaláljanak az eszközére. Ha ez megtörtént, akkor pár kattintással lefoglalhatják a 3D nyomtatót, ahelyett hogy rengeteg telefonálás, email váltás, ajánlatkészítés előzné meg az együttműködést. Szerencsés esetben akár már 24 órán belül hasznot hozhat önnek az egyébként nem használt eszköz.
+
+                    Ugye milyen egyszerű?
+                    A fenti két példában felvázolt együttműködéssel Ön, és üzleti partnere jól jár, hiszen kapacitás jobb kihasználásával tovább növelheti vállalkozása termelékenységét, bevételét. 
+                    </p>
+                    <div class="row" style="padding-bottom:20px">
+
+                    <div class="col col-md-2">
+
+                    </div><!-- col -->
+                    <div class="col col-md-8">
+                        <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title center"> Eszköz keresés és foglalás lépései.</h5>
+                                    <p class="card-text lead" style="text-align:justify">
+                                        Rendszerünkben gyorsan, számos kritérium alapján tudja megkeresni az önnek megfelelő eszközt,
+                                        legyen az eszköztípus, iparág, város vagy konkrét elérhetőségi dátum.
+                                        Az alábbi videóban bemutatjuk a keresés és foglalás menetét</p>
+                                        <iframe width="100%" height="400" src="https://www.youtube.com/embed/TLV4_xaYynY" 
+                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen style="margin:auto;"></iframe>
+                                </div>
+                            </div> <!-- card -->
+                    </div><!-- col -->
+                    <div class="col col-md-2">
+
+                    </div><!-- col -->
+                        
+                    </div><!-- row -->
+
+
+                   
+                    
+                </div><!-- container-->     
+            </div><!-- card -->
+        </div><!-- container-->     
+    </div><!-- jumbotron-->     
+
 
 
     <?php include("src/footer.html"); ?>

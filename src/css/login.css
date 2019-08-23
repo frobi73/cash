@@ -41,7 +41,7 @@ input[type="password"],input[type="text"],input[type="email"]{
 .card-header
 {
     background-color: rgb(0, 204, 0,0.4);
-    background-image: linear-gradient(to right,rgb(0, 204, 0), yellow) !important;
+    background-image: linear-gradient(to right,#E0E0E0, #00CC66) !important;
 }
 .error
 {

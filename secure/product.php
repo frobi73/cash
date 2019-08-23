@@ -7,6 +7,12 @@
         session_destroy();
         header('Location:'. base_url(TRUE));   
     }
+    if( !isset($_SESSION['id']))
+    {
+        session_unset();
+        session_destroy();
+        header('Location:'. base_url(TRUE));   
+    }
     else
     {
         if(isset($_GET["_ID"])) // ha megkapja a get-tel a változókat
@@ -186,10 +192,10 @@
                 ?>
 
         <div class="jumbotron">
-            <div class="container">
+            <div class="container" >
                 <div class="row">
                     
-                    <div class="col col-md-4 order-md-1 card">
+                    <div class="col col-md-4 order-md-1 card" >
                         <!-- kepek-->
 
                         <div class="card">
@@ -222,7 +228,7 @@
 
                                 echo '
                                     <div>
-                                            <h4 style="margin-top:20px !important">Price: ' . $price.' $/day </h4>
+                                            <h4 style="margin-top:20px !important">Price: ' . $price.' €/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
 
                                             <table class="table table-striped">
@@ -277,7 +283,7 @@
 
                 <div class="row">
                
-                <div class="col-md-8 order-md-1 card">
+                <div class="col-md-8 order-md-1 card" style="padding-bottom:20px;">
                         <div class="form-group ">
                                         <label for="daterange">Időszak</label>
 
@@ -335,100 +341,96 @@
 
                                 </div><!--form group-->
                             </div>
-                     <div class="col col-md-4 order-md-1 card">
+                     <div class="col col-md-4 order-md-1 card" style="padding-bottom:20px;">
                        
                         
                         <div class="">
                             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST"> 
+
+                            
+
                             <?php
                                 echo '
                                     <div>
-                                            <h4 style="margin-top:20px !important">Price: ' . $price.' $/day </h4>
+                                            <h4 style="margin-top:20px !important">Price: ' . $price.' €/day </h4>
                                             <hr style="margin-top:0px;margin-bottom:0px;">
 
                                     </div>
-                                    ';
-                                      
-                                    include("src/db_config.php");
-
-                                    if ($stmt = $con->prepare('CALL WISHLIST_CHECK(?,?);')) 
-                                            {
-                                                $stmt->bind_param('ii', $_ID, $product_ID);
-                                                $stmt->execute();
-                                                $stmt->store_result(); 
-                                            }
-                                            if ($stmt->num_rows > 0) 
-                                            {
-                                                    $stmt->bind_result( $result);
-                                                    $stmt->fetch();
-                                            }
-                                            else 
-                                            {
-                                                printf("Query failed:", $con->error);
-                                            }
-                                        if($result == 1)
-                                        {
-                                            echo '<button type="submit" class="btn btn-success btn-block" name="btn_delete" > 
-                                                        Delete from Wishlist
-                                                    </button>';
-                                        }
-                                        else
-                                        {
-                                            echo '<button type="submit" class="btn btn-success btn-block" name="btn_wish" > 
-                                                    Add to Wishlist
-                                                    </button>';
-                                        }
-
-                                    if($_SERVER['REQUEST_METHOD'] == 'POST') 
-                                    {
-                                        if (isset($_POST['btn_wish']))
-                                        {
-                                            $_ID = $_SESSION["id"];
-                                            echo $_ID,$product_ID;
-                                            if ($stmt = $con->prepare('CALL WISHLIST_INSERT(?,?)')) 
-                                            {
-                                                $stmt->bind_param('ii', $_ID, $product_ID);
-                                                $stmt->execute();
-                                                $stmt->store_result(); 
-                                            }
-                                            else 
-                                            {
-                                                printf("Query failed:", $con->error);
-                                            }
-                                        }
-                                        if (isset($_POST['btn_delete']))
-                                        {
-                                            $_ID = $_SESSION["id"];
-                                            echo $_ID,$product_ID;
-                                            if ($stmt = $con->prepare('CALL WISHLIST_DEL(?,?);')) 
-                                            {
-                                                $stmt->bind_param('ii', $_ID, $product_ID);
-                                                $stmt->execute();
-                                                $stmt->store_result(); 
-                                            }
-                                            else 
-                                            {
-                                                printf("Query failed:", $con->error);
-                                            }
-                                        }
-                                    }                            
+                                    '; 
                                 ?>
+                                            <button type="submit" class="btn btn-success btn-block" name="btn_save" > 
+                                                        <?php 
+                                                        include("src/db_config.php");  
+                                                        $atadott_ID = $_GET["_ID"];
+                                                        $_ID = $_SESSION["id"];
+                                                        $sql = "SELECT * FROM wishlist  WHERE wishlist.ProductId = $atadott_ID AND wishlist.UserId = $_ID ";
+                                                        
+                                                        $results = mysqli_query($con, $sql);
+                                                        if (mysqli_num_rows($results) == 1)  //már benne van ez a kombó a táblában
+                                                        {
+                                                            echo "Törlés a kedvencek közül";
+                                                        }
+                                                        else
+                                                        {
+                                                            echo "Mentés a kedvencekbe";
+                                                        }
+                                                        $con->close();
 
-
+                                                        ?>
+                                                    </button>
                                 </form>
+
+                                <?php
+                                        if($_SERVER['REQUEST_METHOD'] == 'POST') 
+                                        {
+                                            if (isset($_POST['btn_save']))
+                                            {
+                                                include("src/db_config.php");
+                                                $atadott_ID = $_GET["_ID"];
+                                                $_ID = $_SESSION["id"];
+                                               
+                                                $sql = "SELECT * FROM wishlist  WHERE wishlist.ProductId = $atadott_ID AND wishlist.UserId = $_ID ";         
+                                                $results = mysqli_query($con, $sql);
+                                                if (mysqli_num_rows($results) == 1)  //már benne van ez a kombó a táblában
+                                                {
+                                                    $sql_ = "DELETE FROM wishlist WHERE wishlist.ProductId = $atadott_ID AND wishlist.UserId = $_ID";
+                                                        if ($con->query($sql_) == TRUE) 
+                                                        {
+                                                            //header('Location:'.$_SERVER['PHP_SELF']);
+                                                        }
+                                                        else 
+                                                        {
+                                                            echo "Error: " . $sql_ . "<br>" . $con->error;
+                                                        } 
+                                                }
+                                                else
+                                                {
+                                                    $sql_ = " INSERT INTO wishlist (userId, productId)
+                                                                    VALUES($_ID,$atadott_ID); ";
+
+                                                        if ($con->query($sql_) == TRUE) 
+                                                        {
+                                                            //header('Location:'.$_SERVER['PHP_SELF']);
+                                                        } 
+                                                        else 
+                                                        {
+                                                            echo "Error: " . $sql_ . "<br>" . $con->error;
+                                                        } 
+                                                    }	
+
+                                            echo '<script>window.location.href ="product.php?_ID=' . $atadott_ID  . ' &startdate=' . date("Y/m/d") . ' &enddate=' . date("Y/m/d") . '";</script>';    
+                                                $con->close();
+                                            }
+                                        }
+                                    ?>
+
                                     <hr>
-                                <button type="submit" class="btn btn-warning btn-block" name="btn_wish" > 
-                                     Tovább
+                                <button type="submit" class="btn btn-warning btn-block" name="btn_book" > 
+                                           Tovább
                                 </button>
 
-
-
                         </div>
-
                     </div>
-
-                
-
                 </div> <!-- row-->
             </div><!-- Container-->
 

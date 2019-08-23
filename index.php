@@ -171,42 +171,7 @@ else
                 </div><!-- box-->
             </div>  <!-- row-->
             <br>
-            <div class="row">
-                <div class="box">
-                    <div class="col col-lg-12">
-                            <h2 class="text-center">
-                                Milyen előnyöket kínálunk önnek ? 
-                            </h2>
-                            <hr>
-                        <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="center">
-                                       <ul>
-                                                <li>Új megbízások szerzése</li>
-                                                <li>Új üzleti partner / beszállító szerzése</li>
-                                                <li>Új szaktudás / kompetencia elérése</li>
-                                                <li>Globális, nemzetközi piacra lépés lehetősége</li>
-                                                <li>Új iparágak felé történő nyitás lehetősége</li>
-                                                <li>Új innovatív technológiák kipróbálásának lehetősége</li>
-                                        </ul>
-                                    </div>
-                                </div><!--/.col-md-4-->
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="center">
-                                        <ul>
-                                                <li> Véleményével alakíthatja, befolyásolhatja az üzleti közösséget</li>
-                                                <li> Jelenlegi és jövőbeni üzleti trendeket ismerhet meg.</li>
-                                                <li> Ajánlatkérések megválaszolása fordított idő a töredékére csökken</li>
-                                                <li> Új ügyfelek, megbízások szerzése leegyszerűsödhet.</li>
-                                                <li> Munkatársait folyamatosan tudja foglalkoztatni, eszközeit eredményesebben tudja kihasználni.</li>
-                                        </ul>
-                                    </div>
-                                </div><!--/.col-md-4-->
-                            </div><!--/.row-->
-
-                    </div><!-- col-->
-                </div><!-- box-->
-            </div>  <!-- row-->    
+            
         </div><!-- jumbotron-->     
 
     </div><!-- Container-->

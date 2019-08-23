@@ -7,9 +7,9 @@
                 $_ID = $_SESSION["id"];
                 include("db_config.php");
                 $company= "SELECT
-                accounts.company_ID
-              FROM accounts
-              WHERE accounts.account_ID = ?";
+                            accounts.company_ID
+                        FROM accounts
+                        WHERE accounts.account_ID = ?";
 
                 if ($stmt = $con->prepare($company)) 
                 {
@@ -41,7 +41,7 @@
 
                     while ($stmt->fetch()) {
                         
-                        array_push($arr_id,$my_product_ID,); 
+                        array_push($arr_id,$my_product_ID); 
                         array_push($arr_name,$my_product_name); 
                     }
                     //print_r($arr_fav);
@@ -81,9 +81,9 @@
                                     echo "</td>";
 
                                         echo "<td>"; 
-                                            echo '<form action="product.php" method="GET">
-                                                    <a class="btn btn-danger btn-block" href="delete_product.php?_ID=' .  $arr_id[$x] . '"> Törlés </a>
-                                                    </form>';
+                                            echo '<button type="button" class="btn btn-danger btn-block" data-toggle="modal"  value="'. $arr_id[$x]  .'" data-target="#delete_modal">
+                                                        Törlés
+                                            </button>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -92,6 +92,40 @@
                         ?>
                     </tbody>
             </table>
+            
+            <script>
+
+            $("button").click(function() {
+                var fired_button = $(this).val();
+                document.getElementById("hid").value = fired_button;
+            });
+            
+            </script>
+
+            <!-- Modal -->
+            <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="delete_modal_label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="delete_modal_label">Törlés</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="src/delete_product.php" method="GET">
+                    Biztosan törli ezt  a termékét ?
+                    <input type="hidden" value="" name="atadott_ID" id="hid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Mégse</button>
+                        
+                        <input type="submit" class="btn btn-danger " value="Törlés">
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
 
 
   </div> <!-- col-md-8 order-md-1 card -->

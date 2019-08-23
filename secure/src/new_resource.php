@@ -1,3 +1,5 @@
+
+
 <div class="col-md-8 order-md-1 card" style="padding-bottom:20px !important;">
     <h2 style="margin-bottom:10px !important;margin-top:10px !important">Új erőforrás feltöltése</h2>
 
@@ -11,85 +13,24 @@
         <h4 style="margin-bottom:10px !important;margin-top:10px !important">Képek feltöltése:</h4>
             <div class="row" style="margin:auto"> 
                 
-                <div class="wrap-custom-file">
-                  <input type="file" name="image1" class="upload-file" id="image1" accept=".jpg, .png" />
-                  <label  for="image1">
-                    <span>Select Cover Image</span>
-                  </label>
-                </div>
+            <div class="container">
 
-                <div class="wrap-custom-file">
-                  <input type="file" name="image2" class="upload-file" id="image2" accept=".jpg, .png" />
-                  <label for="image2">
-                    <span>Select Image 1</span>
-                  </label>
-                </div>
+                  <input type="file" name="files[]" accept=".jpg,.png" multiple>
+              
+            </div>
 
-                <div class="wrap-custom-file">
-                  <input type="file" name="image3" class="upload-file" id="image3" accept=".jpg, .png" />
-                  <label for="image3">
-                    <span>Select Image 2</span>
-                  </label>
-                </div>
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="dist/imageuploadify.min.js"></script>
 
-                <div class="wrap-custom-file">
-                  <input type="file" name="image4" class="upload-file" id="image4" accept=".jpg, .png" />
-                  <label for="image4">
-                    <span>Select Image 3</span>
-                  </label>
-                </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('input[type="file"]').imageuploadify();
+            })
+        </script>
 
-
-<script>
-
-
-
-            $(function(){
-                var fileInput = $('.upload-file');
-                var maxSize = 4194304;
-                $('.upload-form').submit(function(e){
-                    if(fileInput.get(0).files.length){
-                        var fileSize = fileInput.get(0).files[0].size; // in bytes
-                        if(fileSize>maxSize){
-                            alert('file size is more then' + maxSize + ' bytes');
-                            return false;
-                        }
-                    }else{
-                        alert('choose file, please');
-                        return false;
-                    }
-                    
-                });
-            });
-                    
-
-
-                $('input[type="file"]').each(function(){
-
-              var $file = $(this),
-                      $label = $file.next('label'),
-                      $labelText = $label.find('span'),
-                      labelDefault = $labelText.text();
-
-                  $file.on('change', function(event){
-                    var fileName = $file.val().split( '\\' ).pop(),
-                        tmppath = URL.createObjectURL(event.target.files[0]);
-                    if( fileName ){
-                      $label
-                        .addClass('file-ok')
-                        .css('background-image', 'url(' + tmppath + ')');
-                      $labelText.text(fileName);
-                    }else{
-                      $label.removeClass('file-ok');
-                      $labelText.text(labelDefault);
-                    }
-                  });
-
-                  });
-</script>
-            
             </div><!-- row -->
-            A képek maximális mérete 2 MB. Megengedett képformátumok: .jpg, .png
+            A képek maximális mérete 8 MB. Megengedett képformátumok: .jpg, .png
         <hr>
 
         <h4 style="margin-bottom:10px !important;margin-top:10px !important">Eszköz adatok:</h4>
@@ -183,15 +124,11 @@
 
                 <div class="form-group green-border-focus">
                     <label for="info">Egyéb információ *</label>
-                    <textarea class="form-control" id="info" rows="3" name="booking" > 
-                          Az eszköz elérhető a foglalás napjától reggel 8:00-tól, és a 
-                          foglalás utolsó napján 18:00-ig vissza kell szállítani! Szállításban segíteni nem tudok! 
-                          Az eszközhöz értő embert tudok biztosítani 1100 Ft/órás munkabér mellett
-                    </textarea>
+                    <textarea class="form-control" id="booking_info" rows="4" maxlength="500" name="booking" >Az eszköz elérhető a foglalás napjától reggel 8:00-tól, és a foglalás utolsó napján 18:00-ig vissza kell szállítani! Szállításban segíteni nem tudok! Az eszközhöz értő embert tudok biztosítani 1100 Ft/órás munkabér mellett!</textarea>
                 </div>
 
 
-                <button type="submit" class="btn btn-success btn-block" id="new_res" value="Szerkesztés" name="new_res">Feltöltés</button>
+                <button type="submit" class="btn btn-success btn-block" id="new_res" value="" name="new_res">Feltöltés</button>
       
         <?php 
 
@@ -208,30 +145,41 @@
                   $img_name = $product_name . "_" . uniqid();;
                   $imgnumb = 0; // a képek száma az adott termékhez, hogy könnyítse a megjelenítést 
 
-                  if(isset($_POST["image1"]))
-                  {
-                    img_upload($img_name,0);
-                    $imgnumb = 1;
-                  }
+                         //$files = array_filter($_FILES['upload']['name']); //something like that to be used before processing files.
 
-                  if(isset($_POST["image2"]))
-                  {
-                    img_upload($img_name,1);
-                    $imgnumb = 2;
-                  }
+                          // Count # of uploaded files in array
+                          $total = count($_FILES['upload']['name']);
+                          if($total > 5)
+                          {
+                            $total = 5;
+                          }
+                          // Loop through each file
+                            extract($_POST);
+                            $error=array();
+                            $extension=array("jpeg","jpg","png");
+                            for( $i=0 ; $i < $total ; $i++ ) {
+                                $file_name=$_FILES["files"]["name"][$key];
+                                $file_tmp=$_FILES["files"]["tmp_name"][$key];
+                                $ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
-                  if(isset($_POST["image3"]))
-                  {
-                    img_upload($img_name,2);
-                    $imgnumb = 3;
-                  }
+                                if(in_array($ext,$extension)) {
+                                    if(!file_exists("src/images/product/".$file_name)) {
+                                        move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"src/images/product/".$file_name);
+                                    }
+                                    else {
+                                        $filename=basename($file_name,$ext);
+                                        $newFileName=$filename.time().".".$ext;
+                                        move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"src/images/product/".$newFileName);
+                                    }
+                                }
+                                else {
+                                    array_push($error,"$file_name");
+                                }
+                            }
 
-                  if(isset($_POST["image4"]))
-                  {
-                    img_upload($img_name,3);
-                    $imgnumb = 4;
 
-                  }
+
+
                   if(isset($_POST["product_type"]))
                   {
                     $product_type = $_POST["product_type"];
@@ -268,13 +216,15 @@
 
                   if(isset($_POST["booking"]))
                   {
-                    $booking = $_POST["booking"];
+                    $booking_info = $_POST["booking"];
                   }
 
                   $_ID = $_SESSION["id"];
                   include("db_config.php");
-                  $company= "SELECT accounts.company_ID FROM accounts
-                              WHERE accounts.account_ID = ?";
+                  $company= "SELECT
+                  accounts.company_ID
+                FROM accounts
+                WHERE accounts.account_ID = ?";
 
                   if ($stmt = $con->prepare($company)) 
                   {
@@ -287,53 +237,27 @@
                       $stmt->bind_result($company_ID);
                       $stmt->fetch();
                   }
+                  
                   else 
                   {
                       printf("Query failed: %s\n", $con->error);
                   }
-
+                  echo $company_ID;
                   //echo $product_name,$product_type, $info, $booking, $price, $company_ID, $img_name, $imgnumb,  $_ID;
 
-                  $sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`, `condition`, `last_service`, `build_date`) VALUES ('$product_name',$product_type,'$info',$company_ID,$booking,$price,$img_name,$imgnumb,$condition,$repair_year,$build_year);";
-                  if ($stmt = $con->prepare($sql))
+                  $sql = "INSERT INTO `products`(`product_name`, `product_type_id`, `information`, `company_id`, `booking_info`, `price`, `images`, `image_num`, `condition`, `last_service`, `build_date`) 
+                                        VALUES ('$product_name',$product_type,'$info','$company_ID','$booking_info','$price','$img_name','$imgnumb','$condition','$repair_year','$build_year');";
+                  if ($con->query($sql) === TRUE) 
                   {
-                      $stmt->execute();
-                      $stmt->fetch();
-                  }
+                    echo "New record created successfully";
+                  } 
                   else 
                   {
-                      printf("Query failed: %s\n", $con->error);
+                      echo "Error: " . $sql . "<br>" . $con->error;
                   }
 
                 }
               }
-
-                  function img_upload($img_name,$numb) 
-                  {
-                    //$fileToUpload = $_FILES['fileToUpload']['name'];
-                    $e_numb = "image" . ($numb+1);
-                    if(isset($_FILES[$e_numb]['name']))
-                    {
-                      $target_dir = "src/images/product/";
-                    
-                      $target_file = $target_dir . basename($_FILES[$e_numb]["name"]);
-                      $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                      $newfilename =  $img_name . '_'. $numb . '.' . $imageFileType;
-                            if (move_uploaded_file($_FILES[$e_numb]["tmp_name"], $target_dir . $newfilename )) 
-                            {
-              
-                                echo "The file ". basename( $_FILES[$e_numb]["name"]). " has been uploaded.";
-                            } 
-                            else 
-                            {
-                                echo "Sorry, there was an error uploading your file.";
-                            }
-                    }
-                   
-                  }
-
-
-     
         
         ?>
         </form>
@@ -346,6 +270,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
+<script src="src/img_up/imageuploadify.js"></script>
+<link href="src/img_up/imageuploadify.min.css" rel="stylesheet">
 
 <script>
 
@@ -385,5 +312,3 @@ $("#datepicker_service").datepicker( {
 
 </script>
   </div> <!-- col-md-8 order-md-1 card -->
-
- 

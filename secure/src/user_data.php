@@ -3,67 +3,6 @@
         include("db_config.php");
         $_ID = $_SESSION["id"];
 
-
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST') 
-        {
-            if (isset($_POST['edit_company']))
-            {
-                if(isset($_POST['Contact_name'])) 
-                { 
-                    $contact_name = $_POST['Contact_name'];
-                }
-                if(isset($_POST['contact_phone'])) 
-                { 
-                    $contact_phone = $_POST['contact_phone'];
-                }
-                if(isset($_POST['Contact_email'])) 
-                {
-                    $Contact_email = $_POST['Contact_email'];
-                }
-                if(isset($_POST['Company_phone'])) 
-                { 
-                    $company_phone = $_POST['Company_phone'];
-                }
-
-                if(isset($_POST['Company_name'])) 
-                { 
-                    $Company_Name = $_POST['Company_name'];
-                }
-                if(isset($_POST['Company_email'])) 
-                { 
-                    $company_email = $_POST['Company_email'];
-                }
-                if(isset($_POST['tax'])) 
-                { 
-                    $tax_number = $_POST['tax'];
-                }
-                if(isset($_POST['Country_name'])) 
-                { 
-                    $country = $_POST['Country_name'];
-                }
-                if(isset($_POST['Town'])) 
-                { 
-                    $Town_Name = $_POST['Town'];
-                }
-                if(isset($_POST['Street_name'])) 
-                { 
-                    $Street = $_POST['Street_name'];
-                }
- 
-                    $sql = "CALL AddOrModifyCompany($_ID,'$Company_Name','$company_email','$company_phone','$country','$Town_Name','$Street','$contact_name','$contact_phone','$tax_number');";
-
-                    /*  $company_ID,$company_Name,$company_email,  $company_phone,
-                    $country, $Town_Name,$street, $contact_name, $contact_phone,$account_email,
-                    $tax_number;*/
-                    
-                    if ($con->query($sql) === TRUE) {
-                        /*echo "Sikeres mentés.";*/
-                    } else {
-                        echo "Hiba: " . $con->error;
-                    }
-            }
-        }
                 $sql = "SELECT
                 town.Town_Name,
                 companies.company_ID,
@@ -100,7 +39,8 @@
         }
         else 
         {
-            printf("Query failed: %s\n", $con->error);
+            //printf("Query failed: %s\n", $con->error);
+            $Town_Name=$company_ID=$company_Name=$company_email=$street= $contact_name= $contact_phone=$tax_number=$company_phone=$country=$account_email = "";
         }
 ?>
 
@@ -196,7 +136,7 @@
                             <label for="Country_name" id="at_label">
                                 <i class="fas fa-at"></i>
                             </label>
-                        <input type="text" class="form-control" id="Country_name" name="Country_name" placeholder="" value="<?php echo $country; ?>" required>
+                        <input type="text" class="form-control" id="Country_name" name="Country_name" placeholder="Country" value="<?php echo $country; ?>" required>
                     </div><!-- input group -->
                 </div><!--col md 6 mb 3 -->
         </div><!-- row -->
@@ -219,7 +159,7 @@
                         <label for="Street_name" id="at_label">
                             <i class="far fa-user"></i>
                         </label>
-                    <input type="text" class="form-control" id="Street_name" name="Street_name" placeholder="" value="<?php echo $street; ?>" required>
+                    <input type="text" class="form-control" id="Street_name" name="Street_name" placeholder="Street Name" value="<?php echo $street; ?>" required>
                 </div><!-- input group -->
             </div><!--col md 6 mb 3 -->
         </div><!-- row -->
@@ -267,3 +207,68 @@
    Contact Phone Number*, Contact Email Adress*, Company Name*, Company Adress 
    (Country*, Region*, Town*, Street*, Street Number*), Company Vezetékes Telefon *, 
    Company Email Adress *, Company Tax Number * -->
+
+   <?php 
+   
+
+   if($_SERVER['REQUEST_METHOD'] == 'POST') 
+   {
+       if (isset($_POST['edit_company']))
+       {
+           if(isset($_POST['Contact_name'])) 
+           { 
+               $contact_name = $_POST['Contact_name'];
+           }
+           if(isset($_POST['contact_phone'])) 
+           { 
+               $contact_phone = $_POST['contact_phone'];
+           }
+           if(isset($_POST['Contact_email'])) 
+           {
+               $Contact_email = $_POST['Contact_email'];
+           }
+           if(isset($_POST['Company_phone'])) 
+           { 
+               $company_phone = $_POST['Company_phone'];
+           }
+
+           if(isset($_POST['Company_name'])) 
+           { 
+               $Company_Name = $_POST['Company_name'];
+           }
+           if(isset($_POST['Company_email'])) 
+           { 
+               $company_email = $_POST['Company_email'];
+           }
+           if(isset($_POST['tax'])) 
+           { 
+               $tax_number = $_POST['tax'];
+           }
+           if(isset($_POST['Country_name'])) 
+           { 
+               $country = $_POST['Country_name'];
+           }
+           if(isset($_POST['Town'])) 
+           { 
+               $Town_Name = $_POST['Town'];
+           }
+           if(isset($_POST['Street_name'])) 
+           { 
+               $Street = $_POST['Street_name'];
+           }
+
+               $sql = "CALL AddOrModifyCompany(?,?,?,?,?,?,?,?,?,?);"; 
+               if ($stmt = $con->prepare($sql)) 
+               {
+                   $stmt->bind_param('isssssssss', $_ID,$Company_Name,$company_email,$company_phone,$country,$Town_Name,$Street,$contact_name,$contact_phone,$tax_number);
+                   $stmt->execute();
+                   $stmt->store_result(); 
+               }
+               else 
+               {
+                   printf("Query failed: %s\n", $con->error);
+               }
+       }
+   }
+   
+   ?>
