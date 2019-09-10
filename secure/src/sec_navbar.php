@@ -66,15 +66,15 @@
               </a>
                 <div class="dropdown-menu">
 
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="data"  href="profil.php"> Profil adatok</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="new_resource" href="profil.php"> Új Erőforrás Feltöltése</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_dates" href="profil.php"> Eszközeim időadatainak beállítása</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="delete_resource" href="profil.php"> Erőforrásaim törlése</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_bookings" href="profil.php"> Foglalásaim bérlőként</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_resources" href="profil.php"> Foglalásaim bérbeadóként</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="subscriptions" href="profil.php"> Előfizetéseim</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="favourites" href="profil.php"> Kedvencek</button>
-                    <button class="dropdown-item" type="submit" name="cur_tab" value="invite_member" href="profil.php"> Ismerősök meghívása</button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="data"  href="profil.php"> <?=$lang['menu_1'];?></button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="new_resource" href="profil.php"> <?=$lang['menu_2'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_dates" href="profil.php"> <?=$lang['menu_3'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="delete_resource" href="profil.php"> <?=$lang['menu_4'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_bookings" href="profil.php">  <?=$lang['menu_5'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="my_resources" href="profil.php"> <?=$lang['menu_6'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="subscriptions" href="profil.php"> <?=$lang['menu_7'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="favourites" href="profil.php"><?=$lang['menu_8'];?> </button>
+                    <button class="dropdown-item" type="submit" name="cur_tab" value="invite_member" href="profil.php"> <?=$lang['menu_9'];?></button>
                     <a class="dropdown-item"  href="logout.php">  <i class="fas fa-sign-out-alt"></i> <?=$lang['nav5'];?> </a>
                   </div> <!-- dropwdown-menu-->
               </form>

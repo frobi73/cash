@@ -114,6 +114,7 @@ $lang['capacity_5'] = '3D nyomtató';
 
 $lang['time'] = 'Időszak';
 
+$lang['search_bar_0'] = 'Név';
 $lang['search_bar_1'] = 'Iparág';
 $lang['search_bar_2'] = 'Típus';
 $lang['search_bar_3'] = 'Ország';

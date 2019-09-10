@@ -4,31 +4,31 @@
     <form action="profil.php" method="GET">
         <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="data" > Profil adatok </button>
+                <button class="btn" type="submit" name="cur_tab" value="data" > <?=$lang['menu_1'];?>  </button> <!-- $lang['menu_1'] -->
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="new_resource" > Új Erőforrás Feltöltése</button>
+                <button class="btn" type="submit" name="cur_tab" value="new_resource" > <?=$lang['menu_2'];?>  </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="my_dates"> Eszközeim időadatainak beállítása</button>
+                <button class="btn" type="submit" name="cur_tab" value="my_dates">  <?=$lang['menu_3'];?>  </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="delete_resource"> Erőforrásaim törlése</button>
+                <button class="btn" type="submit" name="cur_tab" value="delete_resource"> <?=$lang['menu_4'];?>  </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="my_bookings"> Foglalásaim bérlőként</button>
+                <button class="btn" type="submit" name="cur_tab" value="my_bookings">  <?=$lang['menu_5'];?> </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="my_resources"> Foglalásaim bérbeadóként</button>
+                <button class="btn" type="submit" name="cur_tab" value="my_resources">  <?=$lang['menu_6'];?> </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="subscriptions">  Előfizetéseim</button>
+                <button class="btn" type="submit" name="cur_tab" value="subscriptions">  <?=$lang['menu_7'];?> </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="favourites"> Kedvencek</button>
+                <button class="btn" type="submit" name="cur_tab" value="favourites"> <?=$lang['menu_8'];?> </button>
             </li>
             <li class="nav-item">
-                <button class="btn" type="submit" name="cur_tab" value="invite_member"> Ismerősök meghívása</button>
+                <button class="btn" type="submit" name="cur_tab" value="invite_member"> <?=$lang['menu_9'];?> </button>
             </li>
         
         </ul>

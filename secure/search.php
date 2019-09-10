@@ -106,53 +106,54 @@ else
                             </div>  <!--input group //TODO: valuek átírása--> 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="select_country">Ország</label>
+                                    <label for="select_country">  <?=$lang['country'];?> </label>
                                                 <select class="form-control" id="select_country" onchange="test(this)"
                                                     name="orszag" placeholder="Ország" required>
-                                                    <option selected disabled>Ország</option>
+                                                    <option selected disabled> <?=$lang['country'];?> </option>
                                                     <option value="Ungarn">Magyar</option>
-                                                    <option value="Deutschland">Német</option>   
-                                                    <option value="Osterreich">Osztrák</option>  
+                                                    <option value="Deutschland"> Deutschland</option>   
+                                                    <option value="Osterreich"> Österreich</option>  
                                                 </select>      
                                 </div> <!--form group-md-6-->
                                 <div class="form-group col-md-6">
-                                    <label for="placeholder">Város</label>
+                                    <label for="placeholder"> <?=$lang['city'];?></label>
                                         <div id="some_div">
 
                                         </div> <!--some div-->
                                         <div class="form-group" id="select_city" style="margin-bottom: 0px;">
                                             <select class="form-control"  name="varos" id="placeholder">
-                                                <option selected disabled>Város</option>
+                                                <option selected disabled> <?=$lang['city'];?></option>
                                             </select>
                                         </div>  <!--from group - select city -->
                                 </div><!--from group col-md-6-->
                             </div> <!--from row--> 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="Iparag">Iparág</label>
+                                    <label for="Iparag"><?=$lang['ipar'];?></label>
                                         <select class="form-control" id="selection" name="Iparag" placeholder="Iparág">
-                                                <option value="0" selected disabled>Iparág</option>
-                                                <option value="1" >Járműipar</option>
-                                                <option value="2" >Fém és nehéz ipar</option>
-                                                <option value="3" >Építőipar</option>
-                                                <option value="4" >Feldolgozóipar</option>
+                                                <option value="0" selected disabled>  <?=$lang['ipar'];?></option>
+                                                <option value="1" > <?=$lang['ipar_1'];?> </option>
+                                                <option value="2" > <?=$lang['ipar_2'];?></option>
+                                                <option value="3" > <?=$lang['ipar_3'];?></option>
+                                                <option value="4" > <?=$lang['ipar_4'];?></option>
+                                                <option value="5" > <?=$lang['ipar_5'];?></option>
                                         </select>
                                 </div> <!--form group-->
                                 <div class="form-group col-md-6">
-                                    <label for="Eroforras">Erőforrás Típusa</label>
+                                    <label for="Eroforras"><option value="4" > <?=$lang['capacity_1'];?></option></label>
                                         <select class="form-control" id="selection" name="Eroforras" placeholder="Erőforrás Típusa">
-                                        <option value="0"  selected disabled>Erőforrás típusa</option>
-                                        <option value="1" >Emelőgép 1.</option>
-                                        <option value="2" >Emelőgép 2.</option>
-                                        <option value="3" > CNC</option>
-                                        <option value="4" >Földmunkagép nagy</option>
-                                        <option value="5" >3D nyomtató</option>
+                                        <option value="0"  selected disabled><?=$lang['capacity_1'];?></option>
+                                        <option value="1" ><?=$lang['capacity_1'];?></option>
+                                        <option value="2" ><?=$lang['capacity_2'];?></option>
+                                        <option value="3" ><?=$lang['capacity_3'];?></option>
+                                        <option value="4" ><?=$lang['capacity_4'];?></option>
+                                        <option value="5" ><?=$lang['capacity_5'];?></option>
                                         </select>
                                 </div><!--form group-->
                             </div>  <!--form row-->
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                        <label for="daterange">Időszak</label>
+                                        <label for="daterange"><?=$lang['time'];?></label>
                                         
                                         <input type="text" class="form-control" name="daterange" id="daterange" 
                                         value="<?php if(isset($datum)){echo $datum;}else{echo date("Y/m/d");}  ?>" style="text-align:right" />
@@ -194,7 +195,7 @@ else
                                 </div><!--form group-->
                             </div>  <!--form row-->
                             <!--<button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#myModal">Keresés</button>-->
-                            <input type="submit" class="btn btn-block btn-success" id="grad" value ="Keresés">
+                            <input type="submit" class="btn btn-block btn-success" id="grad" value =<?=$lang['search'];?>>
                         </div><!-- card-body--> 
                     </div><!-- card-->   
                 </form><!-- form-->         
@@ -203,14 +204,14 @@ else
 
                     <table id="search_table" class="table dt-responsive nowrap"  style="width:100% !important;" >
                         <thead>
-                            <th data-class-name="priority" class="priority">Név</th>
-                            <th>Iparág</th>
-                            <th>Típus</th>
-                            <th>Ország</th>
-                            <th>Telephely</th>
-                            <th>Cég</th>
-                            <th>Rating</th>
-                            <th></th>
+                            <th data-class-name="priority" class="priority"> <?=$lang['search_bar_0'];?></th>
+                            <th> <?=$lang['search_bar_1'];?></th>
+                            <th> <?=$lang['search_bar_2'];?></th>
+                            <th> <?=$lang['search_bar_3'];?></th>
+                            <th> <?=$lang['search_bar_4'];?></th>
+                            <th> <?=$lang['search_bar_5'];?></th>
+                            <th> <?=$lang['search_bar_6'];?></th>
+                            <th> <?=$lang['search_bar_7'];?></th>
                             
                         </thead>
                         <tbody>
@@ -348,16 +349,16 @@ else
     $('#search_table').DataTable( {
         language: 
         {
-                processing:     "Dolgozok rajta",
-                search:         "Szűrés&nbsp;:",
-                lengthMenu:    "Megjelenítés: _MENU_  eszköz",
-                info:           "Megjelenítve _END_ a _TOTAL_ -ből",
-                infoEmpty:      "Nem található elem",
+                processing:     "Working",
+                search:         "<?=$lang['datatable_1'];?>",
+                lengthMenu:     "asd",
+                info:           "_END_ / _TOTAL_",
+                infoEmpty:     "<?=$lang['datatable_4'];?>",
                 infoFiltered:   "( Összesen : _MAX_ elemből)",
-                infoPostFix:    "",
+                infoPostFix:    "asd",
                 loadingRecords: "Betöltés alatt",
                 zeroRecords:    "Nincs találat",
-                emptyTable:     "Először Keress",
+                emptyTable:     "<?=$lang['datatable_7'];?>",
                 paginate: {
                     first:      "Első",
                     previous:   "Előző",

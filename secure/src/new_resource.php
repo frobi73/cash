@@ -1,7 +1,7 @@
 
 
 <div class="col-md-8 order-md-1 card" style="padding-bottom:20px !important;">
-    <h2 style="margin-bottom:10px !important;margin-top:10px !important">Új erőforrás feltöltése</h2>
+    <h2 style="margin-bottom:10px !important;margin-top:10px !important"> <?=$lang['menu_2'];?> </h2>
 
     
     <hr>
@@ -10,7 +10,7 @@
 
         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" class="upload-form"> 
 
-        <h4 style="margin-bottom:10px !important;margin-top:10px !important">Képek feltöltése:</h4>
+        <h4 style="margin-bottom:10px !important;margin-top:10px !important"> <?=$lang['img'];?> </h4>
             <div class="row" style="margin:auto"> 
                 
             <div class="container">
@@ -30,32 +30,32 @@
         </script>
 
             </div><!-- row -->
-            A képek maximális mérete 8 MB. Megengedett képformátumok: .jpg, .png
+            <?=$lang['img_data'];?>
         <hr>
 
-        <h4 style="margin-bottom:10px !important;margin-top:10px !important">Eszköz adatok:</h4>
+        <h4 style="margin-bottom:10px !important;margin-top:10px !important"><?=$lang['res_data'];?></h4>
         <hr>
         <div class="row"> 
             <div class="col-md-6 mb-3">
-              <label for="name">Erőforrás neve *</label>
+              <label for="name"><?=$lang['res_name'];?></label>
                 <div class="input-group">
                         <label for="name" id="at_label">
                         <i class="fas fa-folder-open"></i>
                         </label>
-                <input id="name" type="text" class="form-control" name="product_name" placeholder="Erőforrás neve" required>
+                <input id="name" type="text" class="form-control" name="product_name" placeholder=<?php echo $lang['res_name'];?>  required>
                 </div><!-- input group -->
             </div><!--cold md 6 mb 3 -->
 
           <div class="col-md-6 mb-3">
               <div class="form-group ">
-                                    <label for="product_type">Erőforrás Típusa</label>
-                                        <select class="form-control" id="selection" name="product_type" placeholder="Erőforrás Típusa" required>
-                                            <option value="0"  selected disabled hidden>Erőforrás típusa</option>
-                                            <option value="1" >Emelőgép</option>
-                                            <option value="2" >Földmunkagép</option>
-                                            <option value="3" >CNC</option>
-                                            <option value="4" >Toronydarú</option>
-                                            <option value="5" >3D nyomtató</option>
+                                    <label for="product_type"><?=$lang['res_name'];?></label>
+                                        <select class="form-control" id="selection" name="product_type" placeholder=<?php echo $lang['res_type'];?> required>
+                                            <option value="0"  selected disabled hidden><?=$lang['res_name'];?></option>
+                                            <option value="1" > <?=$lang['res_type_1'];?> </option>
+                                            <option value="2" > <?=$lang['res_type_2'];?> </option>
+                                            <option value="3" > <?=$lang['res_type_3'];?> </option>
+                                            <option value="4" > <?=$lang['res_type_4'];?> </option>
+                                            <option value="5" > <?=$lang['res_type_5'];?></option>
                                         </select>
                                 </div><!--form group-->
               </div><!--col-->
@@ -64,22 +64,22 @@
           <div class="row">
 
               <div class="col-md-6 mb-3">
-                <label for="year">Gyártási év *</label>
+                <label for="year"><?=$lang['buildyear'];?></label>
                   <div class="input-group">
                           <label for="year" id="at_label">
                             <i class="fas fa-table"></i>
                           </label>
-                  <input id="datepicker_year" type="text" class="form-control" name="year" placeholder="Gyártási év" required>
+                  <input id="datepicker_year" type="text" class="form-control" name="year" placeholder=<?=$lang['buildyear'];?> required>
                   </div><!-- input group -->
               </div><!--cold md 6 mb 3 -->
 
               <div class="col-md-6 mb-3">
-                <label for="repair">Legutoljára Szervizelve*</label>
+                <label for="repair"><?=$lang['repair'];?></label>
                   <div class="input-group">
                           <label for="repair" id="at_label">
                             <i class="fas fa-table"></i>
                           </label>
-                      <input id="datepicker_service" type="text" class="form-control" name="repair" placeholder="Legutóbb karbantartva" required>
+                      <input id="datepicker_service" type="text" class="form-control" name="repair" placeholder=<?=$lang['repair'];?> required>
                   </div><!-- input group -->
               </div><!--cold md 6 mb 3 -->
 
@@ -89,41 +89,41 @@
             <div class="row">
 
               <div class="col-md-6 mb-3">
-                <label for="condition">Állapot *</label>
+                <label for="condition"><?=$lang['condi'];?></label>
                   <div class="input-group">
                           <label for="condition" id="at_label">
                             <i class="fas fa-tools"></i>
                           </label>
                           <select class="form-control" id="condition" name="condition" placeholder="Erőforrás Típusa" required>
-                                            <option value="0"  selected disabled hidden>Állapot</option>
-                                            <option value="1" >Új</option>
-                                            <option value="2" >Kitűnő</option>
-                                            <option value="3" >Megkímélt</option>
-                                            <option value="4" >Normál</option>
+                                            <option value="0"  selected disabled hidden><?=$lang['condi'];?></option>
+                                            <option value="1" ><?=$lang['cond_1'];?></option>
+                                            <option value="2" ><?=$lang['cond_2'];?></option>
+                                            <option value="3" ><?=$lang['cond_3'];?></option>
+                                            <option value="4" ><?=$lang['cond_4'];?></option>
                                         </select>
                   </div><!-- input group -->
               </div><!--cold md 6 mb 3 -->
 
                 <div class="col-md-6 mb-3">
-                    <label for="price">Ár/nap *</label>
+                    <label for="price"><?=$lang['price'];?></label>
                       <div class="input-group">
                               <label for="condition" id="at_label">
                                   <i class="fas fa-dollar-sign"></i>
                               </label>
-                      <input id="price" type="text" class="form-control"  data-decimals="0" name="price" placeholder="Ár/ nap" required>
+                      <input id="price" type="text" class="form-control"  data-decimals="0" name="price" placeholder=<?=$lang['price'];?> required>
                       </div><!-- input group -->
 
                       </div><!-- row -->   
                 </div><!-- row -->
 
                 <div class="form-group green-border-focus">
-                    <label for="info">Leírás *</label>
+                    <label for="info"><?=$lang['info_1'];?></label>
                     <textarea class="form-control" id="info" rows="3" maxlength="500" name ="info"></textarea>
-                    Hátralevő karakterek: <span id='count'> </span>
+                    <?=$lang['text_char_data'];?> <span id='count'> </span>
                 </div>
 
                 <div class="form-group green-border-focus">
-                    <label for="info">Egyéb információ *</label>
+                    <label for="info"><?=$lang['info_2'];?></label>
                     <textarea class="form-control" id="booking_info" rows="4" maxlength="500" name="booking" >Az eszköz elérhető a foglalás napjától reggel 8:00-tól, és a foglalás utolsó napján 18:00-ig vissza kell szállítani! Szállításban segíteni nem tudok! Az eszközhöz értő embert tudok biztosítani 1100 Ft/órás munkabér mellett!</textarea>
                 </div>
 
